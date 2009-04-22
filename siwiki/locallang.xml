@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for 'siwiki'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="home">home</label>
+			<label index="save">save</label>
+			<label index="back">go back</label>
+			<label index="cancel">cancel</label>
+			<label index="edit">edit</label>
+			<label index="delete">delete</label>
+			<label index="plot">overview</label>
+                        <label index="no">no</label>
+                        <label index="yes">yes</label>
+                        <label index="deletePanelBody">Are you sure?</label>
+                        <label index="deletePanelHeader">Delete this article...</label>
+                        <label index="revert">Revert</label>
+                        <label index="revertPanelBody">Are you sure?</label>
+                        <label index="revertPanelHeader">Revert to this article version...</label>
+                        <label index="notification">Notification</label>
+                        <label index="notificationPanelBody1">Would you like to get notified when this article get changed?</label>
+                        <label index="notificationPanelBody2">Do not notify me anymore?</label>
+                        <label index="notificationPanelHeader">Notify me...</label>
+                        <label index="undo">undo</label>
+                        <label index="redo">redo</label>
+                        <label index="typoname">font name</label>
+                        <label index="typosize">font size</label>
+                        <label index="typostyle">font style</label>
+                        <label index="typocolor">font color</label>
+                        <label index="backgroundcolor">background color</label>
+                        <label index="lists">lists</label>
+                        <label index="listsunorderd">unorderd list</label>
+                        <label index="listsorderd">orderd list</label>
+                        <label index="paragraph">paragraph style</label>
+                        <label index="insertitem">insert item</label>
+                        <label index="insertlink">insert link</label>
+                        <label index="insertimage">insert image</label>
+                        <label index="toc">Table of contents</label>
+                        <label index="tocBody">All articles in: </label>
+                        <label index="tocFooter">Panel shows you all articles for the current namespace.</label>
+                        <label index="info">Info</label>
+                        <label index="infoFooter">Informations about this article.</label>
+                        <label index="tstamp">Last change:</label>
+                        <label index="crdate">Creation date:</label>
+                        <label index="creator">Creator:</label>
+                        <label index="editor">Editor:</label>
+                        <label index="version">Article version</label>
+                        <label index="sameVersions">these versions are identical</label>
+                        <label index="signature">Signature</label>
+                        <label index="searchlabel">article search</label>
+                        <label index="comment">comment:</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="home">Startseite</label>
+			<label index="save">Speichern</label>
+			<label index="cancel">Abbrechen</label>
+			<label index="back">zurück</label>
+			<label index="edit">Bearbeiten</label>
+			<label index="delete">Löschen</label>
+			<label index="plot">Übersicht</label>
+			<label index="no">Nein</label>
+                        <label index="yes">Ja</label>
+                        <label index="deletePanelBody">Sind Sie sich sicher?</label>
+                        <label index="deletePanelHeader">Diesen Artikel löschen...</label>
+                        <label index="revert">Wiederherstellen</label>
+                        <label index="revertPanelBody">Sind Sie sicher?</label>
+                        <label index="revertPanelHeader">Zu dieser Artikel Version zurückkehren...</label>
+                        <label index="notification">Benachrichtigung</label>
+                        <label index="notificationPanelBody1">Möchten Sie informiert werden, wenn dieser Artikel verändert wird?</label>
+                        <label index="notificationPanelBody2">Sie wollen nicht mehr informiert werden, wenn dieser Artikel geändert wird?</label>
+                        <label index="notificationPanelHeader">Benachrichtigung...</label>
+                        <label index="undo">Zurück</label>
+                        <label index="redo">Vor</label>
+                        <label index="typoname">Schriftart</label>
+                        <label index="typosize">Schriftgröße</label>
+                        <label index="typostyle">Fett Kursiv </label>
+                        <label index="typocolor">Schriftfarbe</label>
+                        <label index="backgroundcolor">Hintergrundfarbe</label>
+                        <label index="lists">Listen</label>
+                        <label index="listsunorderd">unsortierte Liste</label>
+                        <label index="listsorderd">sortierte Liste</label>
+                        <label index="paragraph">Überschriften</label>
+                        <label index="insertitem">Einfügen</label>
+                        <label index="insertlink">Link einfügen</label>
+                        <label index="insertimage">Bild einfügen</label>
+                        <label index="toc">Inhaltsverzeichnis</label>
+                        <label index="tocBody">Alle Artikel in: </label>
+                        <label index="tocFooter">Die Ansicht zeigt alle Artikel in dieser Kategorie</label>
+                        <label index="info">Info</label>
+                        <label index="infoFooter">Informationen zu diesem Artikel.</label>
+                        <label index="tstamp">Letzte Änderung:</label>
+                        <label index="crdate">Erstellt:</label>
+                        <label index="creator">Ersteller:</label>
+                        <label index="editor">Editor:</label>
+                        <label index="version">Artikel Version</label>
+                        <label index="sameVersions">Die beiden Versionen sind identisch</label>
+                        <label index="signature">Signatur</label>
+                        <label index="searchlabel">Artikelsuche</label>
+                        <label index="comment">Kommentar:</label>
+		</languageKey>
+	</data>
+</T3locallang>
+

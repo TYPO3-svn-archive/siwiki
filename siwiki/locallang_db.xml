@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'siwiki'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pluginLabel">siWiki</label>
+			<label index="tx_siwiki">siWiki</label>
+			<label index="tx_siwiki_articles">siWiki Articles</label>
+			<label index="tx_siwiki_articles.title">siWiki Article Title</label>
+			<label index="tx_siwiki_articles.namespace">siWiki Article Namespace</label>
+			<label index="tx_siwiki_articles.article">siWiki Article</label>
+			<label index="tx_siwiki_articles.creator">siWiki Article Creator</label>
+			<label index="tx_siwiki_articles.editor">siWiki Article Editor</label>
+			<label index="tx_siwiki_articles.version">siWiki Article Version</label>
+			<label index="flexform.mainSheetTitle">Common settings</label>
+			<label index="flexform.miscSheetTitle">Miscellaneous</label>
+			<label index="flexform.rteSheetTitle">RTE settings</label>
+			<label index="flexform.rteWidth">Width (px)</label>
+			<label index="flexform.rteHeight">Height (px)</label>
+			<label index="flexform.controllerSelection">siWiki controller</label>
+			<label index="flexform.controllerSelection.siwiki">siWiki display</label>
+			<label index="flexform.storageFolderSelection">siWiki storage folder</label>
+			<label index="flexform.enableGraphviz">Enable graphviz overview?</label>
+			<label index="flexform.anonymous">Use anonymous?</label>
+			<label index="flexform.adminMail">Leave an email address to this field, if you want to get notified when an exception is triggerd.</label>
+			<label index="flexform.fullTextSearch">Enable full text search? (otherwise just title and namespace getting matched)</label>
+                        <label index="tx_siwiki_namespaces.name">siWiki Article Namespace</label>
+                        <label index="tx_siwiki_namespaces.description">Description</label>
+                        <label index="tx_siwiki_namespaces">siWiki Namespaces</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tx_siwiki_articles">siWiki Artikel</label>
+			<label index="tx_siwiki_articles.title">siWiki Artikel Titel</label>
+			<label index="tx_siwiki_articles.namespace">siWiki Artikel Kategorie</label>
+			<label index="tx_siwiki_articles.title">siWiki Artikel</label>
+			<label index="tx_siwiki_articles.creator">siWiki Artikel Ersteller</label>
+			<label index="tx_siwiki_articles.editor">siWiki Artikel Bearbeiter</label>
+			<label index="tx_siwiki_articles.version">siWiki Artikel Version</label>
+			<label index="flexform.mainSheetTitle">Allgemeine Einstellungen</label>
+			<label index="flexform.miscSheetTitle">Verschiedenes</label>
+			<label index="flexform.rteSheetTitle">RTE Einstellungen</label>
+			<label index="flexform.rteWidth">Breite (px)</label>
+			<label index="flexform.rteHeight">Höhe (px)</label>
+			<label index="flexform.storageFolderSelection">siWiki storage folder</label>
+			<label index="flexform.enableGraphviz">Graphviz Übersicht aktivieren?</label>
+			<label index="flexform.fullTextSearch">Volltextsuche aktivieren? (Ansonsten werden nur Title und Kategorie durchsucht)</label>
+			<label index="flexform.anonymous">Anonym arbeiten?</label>
+			<label index="flexform.adminMail">Sende eMail an diese Adresse, wenn ein Fehler auftritt.</label>
+                        <label index="tx_siwiki_namespaces.name">Name</label>
+                        <label index="tx_siwiki_namespaces.description">Beschreibung</label>
+                        <label index="tx_siwiki_namespaces">siWiki Kategorien</label>
+
+		</languageKey>
+	</data>
+</T3locallang>

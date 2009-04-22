@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class tx_siwiki_models_plotrelations</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class tx_siwiki_models_plotrelations</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Plots relations of articles</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Andreas Lappe &lt;<a href="mailto:nd@off-pist.de">nd@off-pist.de</a>&gt;</li>
+				<li><span class="field">author:</span> Stefan Isak &lt;<a href="mailto:stefan.isak@googlemail.com">stefan.isak@googlemail.com</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: class.tx_siwiki_models_plotrelations.php 1161 2009-02-13 14:44:20Z sisak $</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_models---class.tx_siwiki_models_plotrelations.php.html">/models/class.tx_siwiki_models_plotrelations.php</a> (line <span class="field">13</span>)
+		</p>
+		
+				
+		<pre>tx_lib_object
+   |
+   --tx_siwiki_models_plotrelations</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																				
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#plot" title="details" class="method-name">plot</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$pid</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">''</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">String</span>
+										<a href="#s" title="details" class="method-name">s</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$input</span>, [<span class="var-type">String</span>&nbsp;<span class="var-name">$table</span> = <span class="var-default">'cheese'</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodplot" id="plot"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">plot</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Main function...</p>
+<p class="description"><p>Plots the actual file by getting all different stuff and appending it to file</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			plot
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$pid</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$pid</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methods" id="s"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">s</span> (line <span class="line-number">29</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a fucking DBAL</p>
+<p class="description"><p>escape Strings to avoid mysql injections</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">String</span>
+		<span class="method-name">
+			s
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$input</span>, [<span class="var-type">String</span>&nbsp;<span class="var-name">$table</span> = <span class="var-default">'cheese'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$input</span>			</li>
+					<li>
+				<span class="var-type">String</span>
+				<span class="var-name">$table</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 09 Apr 2009 16:07:03 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

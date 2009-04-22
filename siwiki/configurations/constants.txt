@@ -1,0 +1,2 @@
+plugins.siwiki.ajaxPageType = 552
+plugins.siwiki.relationsPageType = 551

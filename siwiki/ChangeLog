@@ -1,0 +1,48 @@
+09-04-16 Stefan Isak <stefanisak@gmail.com>
+	* version 0.1.0
+	* fixed some issues with link panel in ie
+	* switched fill character for article title from - to _
+	* added some flexform values
+	* initial release
+
+09-03-27 Stefan Isak <stefanisak@gmail.com>, Andreas Lappe <nd@off-pist.de>
+	* version 0.0.9
+	* added some bug fixes for the diff view
+	* added a simple notification service
+	* fixed some naming annoyances
+
+09-03-26 Stefan Isak <stefanisak@gmail.com>, Andreas Lappe <nd@off-pist.de>
+	* added diff view an revert functionality
+	* fixed some problems with the link panel
+
+09-02-13 Stefan Isak <stefanisak@gmail.com>, Andreas Lappe <nd@off-pist.de>
+	* basic security check
+	* some code cleanup
+	* include a very simple rights management
+
+09-02-10 Stefan Isak <stefanisak@gmail.com>, Andreas Lappe <nd@off-pist.de>
+	* Insert locking really works
+	* fixed some problems with panels
+
+09-02-09 Stefan Isak <stefanisak@gmail.com>, Andreas Lappe <nd@off-pist.de>
+	* Insert of TOC works
+	* Plot relations further refined
+
+09-02-06 Stefan Isak <stefanisak@gmail.com>, Andreas Lappe <nd@off-pist.de>
+	* Info Panel added
+	* Locking works
+
+09-02-05 Andreas Lappe <nd@off-pist.de>
+	* Changed (!?)
+	* First Alpha-Release (internal)
+
+09-01-12 Andreas Lappe  <nd@off-pist.de>
+	* version 0.0.3
+
+09-01-12 Stefan Isak  <stefanisak@gmail.com>
+	* version 0.0.2
+	* RTE toolbar customizing (wikilink.js) 
+
+08-09-25 Stefan Isak  <stefanisak@gmail.com>
+	* version 0.0.1
+	* Initial release

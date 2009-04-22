@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class tx_siwiki_views_siwiki</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class tx_siwiki_views_siwiki</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The only view we have so far. It renders all different templates!</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Andreas Lappe &lt;<a href="mailto:nd@off-pist.de">nd@off-pist.de</a>&gt;</li>
+				<li><span class="field">author:</span> Stefan Isak &lt;<a href="mailto:stefan.isak@googlemail.com">stefan.isak@googlemail.com</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: class.tx_siwiki_views_siwiki.php 1177 2009-04-09 12:29:29Z sisak $</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_views---class.tx_siwiki_views_siwiki.php.html">/views/class.tx_siwiki_views_siwiki.php</a> (line <span class="field">13</span>)
+		</p>
+		
+				
+		<pre>tx_lib_phpTemplateEngine
+   |
+   --tx_siwiki_views_siwiki</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																																																												
+												<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createBackLink" title="details" class="method-name">createBackLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createCancelLink" title="details" class="method-name">createCancelLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createDeleteLink" title="details" class="method-name">createDeleteLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createDropDownBox" title="details" class="method-name">createDropDownBox</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createEditLink" title="details" class="method-name">createEditLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createHomeLink" title="details" class="method-name">createHomeLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createInfoLink" title="details" class="method-name">createInfoLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createNotificationCheckbox" title="details" class="method-name">createNotificationCheckbox</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createPlotLink" title="details" class="method-name">createPlotLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createRevertLink" title="details" class="method-name">createRevertLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#createSearchBox" title="details" class="method-name">createSearchBox</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#createSubmitLink" title="details" class="method-name">createSubmitLink</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createTocLink" title="details" class="method-name">createTocLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createVersionLink" title="details" class="method-name">createVersionLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#includeYuiRte" title="details" class="method-name">includeYuiRte</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$title</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$namespace</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$articleHash</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printAsDiff" title="details" class="method-name">printAsDiff</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$old</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$new</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printAsHtml" title="details" class="method-name">printAsHtml</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$article</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printAsImage" title="details" class="method-name">printAsImage</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printAsNumberedLines" title="details" class="method-name">printAsNumberedLines</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$article</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printAsYuiRte" title="details" class="method-name">printAsYuiRte</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$namespace</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$article</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printBottomToolbar" title="details" class="method-name">printBottomToolbar</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printDiffMenuItems" title="details" class="method-name">printDiffMenuItems</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printEditMenuItems" title="details" class="method-name">printEditMenuItems</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printFormTag" title="details" class="method-name">printFormTag</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printMenuItems" title="details" class="method-name">printMenuItems</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printNewMenuItems" title="details" class="method-name">printNewMenuItems</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printTitle" title="details" class="method-name">printTitle</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#printToolbar" title="details" class="method-name">printToolbar</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$which</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#renderJSON" title="details" class="method-name">renderJSON</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$view</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#renderPNG" title="details" class="method-name">renderPNG</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$view</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#renderToc" title="details" class="method-name">renderToc</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$view</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodcreateBackLink" id="createBackLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createBackLink</span> (line <span class="line-number">311</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the back link as YUI button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createBackLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateCancelLink" id="createCancelLink"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createCancelLink</span> (line <span class="line-number">734</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create the cancel link as yui button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createCancelLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateDeleteLink" id="createDeleteLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createDeleteLink</span> (line <span class="line-number">445</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the delete link as YUI button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createDeleteLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateDropDownBox" id="createDropDownBox"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createDropDownBox</span> (line <span class="line-number">377</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates a drop down box</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createDropDownBox
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateEditLink" id="createEditLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createEditLink</span> (line <span class="line-number">289</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the edit link as YUI button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createEditLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateHomeLink" id="createHomeLink"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createHomeLink</span> (line <span class="line-number">270</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the HOME Link as YUI Button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createHomeLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateInfoLink" id="createInfoLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createInfoLink</span> (line <span class="line-number">565</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the info link</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createInfoLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateNotificationCheckbox" id="createNotificationCheckbox"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createNotificationCheckbox</span> (line <span class="line-number">619</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the notification checkbox</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createNotificationCheckbox
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreatePlotLink" id="createPlotLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createPlotLink</span> (line <span class="line-number">493</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the plotRelations link</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> plotRelations.php</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createPlotLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateRevertLink" id="createRevertLink"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createRevertLink</span> (line <span class="line-number">332</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the revert link as YUI button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createRevertLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateSearchBox" id="createSearchBox"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createSearchBox</span> (line <span class="line-number">73</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			createSearchBox
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateSubmitLink" id="createSubmitLink"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createSubmitLink</span> (line <span class="line-number">756</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a submit button with YUI</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			createSubmitLink
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcreateTocLink" id="createTocLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createTocLink</span> (line <span class="line-number">523</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the index link</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> plotRelations.php</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createTocLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateVersionLink" id="createVersionLink"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createVersionLink</span> (line <span class="line-number">420</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the version link as YUI button</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createVersionLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodincludeYuiRte" id="includeYuiRte"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">includeYuiRte</span> (line <span class="line-number">778</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Include YUI RTE by printing the &lt;script /&gt; block</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			includeYuiRte
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$title</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$namespace</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$articleHash</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$title</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$namespace</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$articleHash</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintAsDiff" id="printAsDiff"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printAsDiff</span> (line <span class="line-number">1020</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print two article versions side by side</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printAsDiff
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$old</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$new</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$old</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$new</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintAsHtml" id="printAsHtml"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">printAsHtml</span> (line <span class="line-number">54</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render the article as html and wrap into div</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printAsHtml
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$article</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$article</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintAsImage" id="printAsImage"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printAsImage</span> (line <span class="line-number">43</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printAsImage
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$str</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintAsNumberedLines" id="printAsNumberedLines"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">printAsNumberedLines</span> (line <span class="line-number">1039</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print the string with numbered lines</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printAsNumberedLines
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$article</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$article</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintAsYuiRte" id="printAsYuiRte"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printAsYuiRte</span> (line <span class="line-number">67</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render the Yahoo! User Interface Rich Text Editor with the article</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printAsYuiRte
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$namespace</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$article</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$title</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$namespace</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$article</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintBottomToolbar" id="printBottomToolbar"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">printBottomToolbar</span> (line <span class="line-number">162</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printBottomToolbar
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintDiffMenuItems" id="printDiffMenuItems"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printDiffMenuItems</span> (line <span class="line-number">204</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print the menu items but only IF A USER IS LOGGED IN</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printDiffMenuItems
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodprintEditMenuItems" id="printEditMenuItems"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">printEditMenuItems</span> (line <span class="line-number">224</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print the menu items but only IF A USER IS LOGGED IN</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printEditMenuItems
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodprintFormTag" id="printFormTag"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printFormTag</span> (line <span class="line-number">767</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print the &lt;form&gt; tag</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printFormTag
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintMenuItems" id="printMenuItems"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">printMenuItems</span> (line <span class="line-number">180</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print the menu items but only IF A USER IS LOGGED IN</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printMenuItems
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodprintNewMenuItems" id="printNewMenuItems"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printNewMenuItems</span> (line <span class="line-number">248</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print the menu items but only IF A USER IS LOGGED IN</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printNewMenuItems
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodprintTitle" id="printTitle"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">printTitle</span> (line <span class="line-number">1060</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Print title :)</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printTitle
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$title</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprintToolbar" id="printToolbar"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">printToolbar</span> (line <span class="line-number">142</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			printToolbar
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$which</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$which</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$search</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrenderJSON" id="renderJSON"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">renderJSON</span> (line <span class="line-number">22</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render JSON output for AJAX (YUI)</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			renderJSON
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$view</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$view</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrenderPNG" id="renderPNG"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">renderPNG</span> (line <span class="line-number">33</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render PNG</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			renderPNG
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$view</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$view</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrenderToc" id="renderToc"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">renderToc</span> (line <span class="line-number">38</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			renderToc
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$view</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$view</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 09 Apr 2009 16:07:04 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

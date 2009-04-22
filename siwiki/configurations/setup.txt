@@ -1,0 +1,343 @@
+// include necessary files
+page.includeCSS.siwikiSkinSam = typo3conf/ext/siwiki/resources/build/assets/skins/sam/skin.css
+page.includeJS.yuiCombined = typo3conf/ext/siwiki/resources/yui-combined_2.7.0b.js
+page.includeJS.siwikiCombined = typo3conf/ext/siwiki/resources/siwiki-combined.js
+
+page.bodyTag = <body class="yui-skin-sam">
+
+// setting the configurations
+temp.tx_siwiki.configurations {
+		pathToTemplateDirectory = EXT:siwiki/templates/
+		pathToLanguageFile = EXT:siwiki/locallang.xml
+		ajaxPageType = {$plugins.siwiki.ajaxPageType}
+		relationsPageType = {$plugins.siwiki.relationsPageType}
+		siwikiTemplate = siwiki.php
+		editTemplate = edit.php
+		newTemplate = new.php
+		diffTemplate = diff.php
+		notificationTemplate = notification.php
+		ajaxTemplate = json.php
+		errorTemplate = error.php
+		pngTemplate = png.php
+		tocTemplate = toc.php
+		rootpage = 1 
+		defaultNamespace = 1 
+                #in Minutes
+                timeAnArticleRemainsLocked = 5  		
+                uploadedImageMaxWidth = 750
+                articleInfoDateString = %d. %B %Y (%R)
+}
+
+# The controller switch
+plugin.tx_siwiki = USER_INT
+plugin.tx_siwiki {
+	userFunc = tx_siwiki_controllers_siwiki->main
+	configurations < temp.tx_siwiki.configurations
+}
+tt_content.list.20.tx_siwiki =< plugin.tx_siwiki
+
+# The ajax response
+siwikiajax = PAGE
+siwikiajax.typeNum = {$plugins.siwiki.ajaxPageType}
+siwikiajax.config {
+		disableAllHeaderCode = 1
+		no_cache = 1
+		debug = 0
+		xhtml_cleaning = 0
+		admPanel = 0
+	#	additionalHeaders = Content-type:application/json
+		additionalHeaders = Content-type:text/html
+	}
+siwikiajax.10 = USER_INT
+siwikiajax.10 {
+		userFunc = tx_siwiki_controllers_ajax->main
+		configurations < temp.tx_siwiki.configurations
+}
+
+# The png response
+siwikirelations = PAGE
+siwikirelations.typeNum = {$plugins.siwiki.relationsPageType}
+siwikirelations.config {
+		disableAllHeaderCode = 1
+		no_cache = 1
+		debug = 0
+		xhtml_cleaning = 0
+		admPanel = 0
+		additionalHeaders = Content-type:image/png
+	}
+siwikirelations.10 = USER_INT
+siwikirelations.10 {
+		userFunc = tx_siwiki_controllers_ajax->main
+		configurations < temp.tx_siwiki.configurations
+		configurations.storagePid = 0
+		configurations.graphvizPath = /usr/local/bin/
+                configurations.graphvizBinary = dot
+                configurations.graphvizFontName = /usr/share/fonts/truetype/DejaVuSans.ttf
+                configurations.graphvizFontSize = 10px
+}
+
+plugin.tx_siwiki._CSS_DEFAULT_STYLE (
+
+/* needed to hide the default textarea */
+.editor-hidden {
+	visibility: hidden;
+	top: -9999px;
+	left: -9999px;
+	position:
+	absolute;
+}
+textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/*toolbar icons*/
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-editcode span.yui-toolbar-icon {
+	background: transparent url(../typo3conf/ext/siwiki/resources/build/assets/skins/sam/html_editor.gif) 50% 50% no-repeat !important;
+	left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-button-editcode-selected span.yui-toolbar-icon {
+	background: transparent url(../typo3conf/ext/siwiki/resources/build/assets/skins/sam/html_editor.gif) 50% 50% no-repeat !important;
+	left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertsignature span.yui-toolbar-icon {
+	background: transparent url(../typo3conf/ext/siwiki/resources/images/signature16.png) 50% 50% no-repeat !important;
+	left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-button-insertsignature-selected span.yui-toolbar-icon {
+	background: transparent url(../typo3conf/ext/siwiki/resources/images/signature16.png) 50% 50% no-repeat !important;
+	left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserttoc span.yui-toolbar-icon {
+	background: transparent url(../typo3conf/ext/siwiki/resources/images/toc16.png) 50% 50% no-repeat !important;
+	left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-button-inserttoc-selected span.yui-toolbar-icon {
+	background: transparent url(../typo3conf/ext/siwiki/resources/images/toc16.png) 50% 50% no-repeat !important;
+	left: 5px;
+}
+
+
+/* default styles for siwiki */
+div.siwiki-article .siwiki-article-toc li {
+        list-style-type: decimal;
+}
+div.siwiki-article .siwiki-article-toc {
+         padding: 10px;
+         background-color: #DDDDDD;
+}
+div.siwiki-article .siwiki-article-toc ol {
+        padding-left: 20px;
+        margin-left: 10px;
+}
+div.siwiki-article .siwiki-article-toc-h1 {
+        font-size: 131%;
+}
+
+div.siwiki-article .siwiki-article-signature {
+	text-align: right;
+        padding: 5px;
+}
+div.siwiki-article li.siwiki-article-toc-heading1 {
+        font-size: 108%;
+	list-style: none;	
+}
+div.siwiki-article li.siwiki-article-toc-heading2 {
+        font-size: 100%;
+        padding-left: 1em;
+	list-style: decimal inside;	
+}
+div.siwiki-article a.siwiki-article-link {
+        color: blue;
+}
+div.siwiki-article a.siwiki-article-futurelink {
+        color: red;
+}
+
+/* menu elements */
+.yui-button#siwiki-menu-home button {
+    background: url(../typo3conf/ext/siwiki/resources/images/home16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-edit button {
+    background: url(../typo3conf/ext/siwiki/resources/images/edit16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-delete button {
+    background: url(../typo3conf/ext/siwiki/resources/images/delete16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-plot button {
+    background: url(../typo3conf/ext/siwiki/resources/images/overview16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-toc button {
+    background: url(../typo3conf/ext/siwiki/resources/images/index16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-info button {
+    background: url(../typo3conf/ext/siwiki/resources/images/info16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-version button {
+    background: url(../typo3conf/ext/siwiki/resources/images/versions16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-back button {
+    background: url(../typo3conf/ext/siwiki/resources/images/back16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-revert button {
+    background: url(../typo3conf/ext/siwiki/resources/images/revert16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-notification button {
+    background: url(../typo3conf/ext/siwiki/resources/images/notification16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-cancel button {
+    background: url(../typo3conf/ext/siwiki/resources/images/cancel16.png) 10% 50% no-repeat;
+    padding-left: 2em;
+}
+
+.yui-button#siwiki-menu-submit button {
+    background: url(../typo3conf/ext/siwiki/resources/images/save16.png) 10% 50% no-repeat;
+    padding-left: 2em;
+}
+
+
+#siwiki-article-comment {
+	width: 30em;
+}
+#siwiki-menu-items {
+        float: left;
+        width: 75%;
+}
+#siwiki-searchbox {
+	width: 13em; 
+	background: #ffffff url(../typo3conf/ext/siwiki/resources/images/search16.png) no-repeat right center;
+	padding-right: 20px;
+	*padding-right: 0px;
+}
+
+#siwiki-autocomplete {
+	padding-top: 5px;
+	width: 12em;
+}
+#siwiki-search {
+	float:left;
+}
+#siwiki-toolbar {
+	height: 2em;
+	padding-bottom: 1em;
+	clear: left;
+}
+#siwiki-bottom-toolbar {
+	text-align: right;
+	height: 2em;
+	padding-top: 1em;
+	clear: left;
+}
+
+#tx_siwiki table.diff {
+border-collapse: separate;
+border-spacing: 3px;
+width:100%;
+}
+
+#tx_siwiki td.diff-blockheader {
+background-color: #dddddd;
+font-weight:bold;
+}
+
+#tx_siwiki table.diff th {
+text-align:center;
+width:50%;
+}
+
+#tx_siwiki table.diff td {
+font-family:monospace;
+}
+
+#tx_siwiki td.diff-addedline {
+background-color: #B1CBB1;
+}
+
+#tx_siwiki td.diff-deletedline {
+background-color:#FFEDA4;
+}
+#tx_siwiki td.diff-context {
+background-color:#EEEEEE;
+}
+#tx_siwiki table.diff td.diff-addedline strong { 
+color:green;
+}
+#tx_siwiki table.diff td.diff-deletedline strong {
+color:red;
+}
+#siwiki_article_dropDownMenu {
+background: transparent url(../typo3conf/ext/siwiki/resources/images/loading22.gif) no-repeat 30% center;
+}
+)
+
