@@ -137,9 +137,13 @@ function wikilink(rte, asyncUrl, defaultNamespace) {
 		
             //CreateLink panel was opened, update the Menu...
             YAHOO.util.Connect.asyncRequest('GET', asyncUrl, callbacks);
-        			var el = rte.currentElement[0];
+				if(this.browser.ie){
+        				var el = rte._getSelectedElement();
+				} else {
+					var el = rte.currentElement[0];
+				}
         			url = el.getAttribute("href");
-        			if(el !== null && url !== null){
+        			if(url){
 	        			var _url = url.split("://");
 	        			if(_url[0] == "wiki"){
 	        				var _url = _url[1].split("@");
@@ -164,10 +168,17 @@ function wikilink(rte, asyncUrl, defaultNamespace) {
                         		linkUrl.parentNode.style.display = 'none';
                         		linkTarget.parentNode.style.display = 'none';
                         		linkTitle.parentNode.style.display = 'none';
+
+					// show wiki link attributes
+					wikilinkUrl.parentNode.style.display = 'block';  
+					wikilinkNamespaces.parentNode.style.display = 'block';
+
+					showDefaultLink.style.display = 'block';
+					showWikiLink.style.display = 'none';
+
 	        			// new wiki link
-					wikilinkUrl.value = decodeURIComponent(el.innerHTML.split(" ").join("_"));
-	        			showDefaultLink.style.display = 'block';
-	        			showWikiLink.style.display = 'none';
+					var linkname = el.innerHTML.replace(/<a>/,"").replace(/<\/a>/,"").replace(/\s/,"_");
+					wikilinkUrl.value = decodeURIComponent(linkname);
 	        		}		
         }
     });
@@ -205,7 +216,7 @@ function wikilink(rte, asyncUrl, defaultNamespace) {
          	var _url = url.split("://");
 		if(_url[0] == "wiki"){
 			var _url = _url[1].split("@");
-			currentNamespace = decodeURIComponent(_url[1]);
+			currentNamespace = decodeURIComponent(_url[1].replace(/\//,""));
 		} 
         } 
 

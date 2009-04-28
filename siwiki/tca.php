@@ -63,10 +63,8 @@ $TCA['tx_siwiki_articles'] = array (
             'exclude' => 1,        
             'label' => 'LLL:EXT:siwiki/locallang_db.xml:tx_siwiki_articles.creator',        
             'config' => Array (
-                'type' => 'select',    
-                'foreign_table' => 'fe_users',
-                'foreign_table_where' => 'ORDER BY fe_users.username',
-                'foreign_label' => 'username',
+                'type' => 'input',    
+                'size' => '80',
                 'default' => '',
             )
         ),
@@ -74,12 +72,8 @@ $TCA['tx_siwiki_articles'] = array (
             'exclude' => 1,        
             'label' => 'LLL:EXT:siwiki/locallang_db.xml:tx_siwiki_articles.editor',        
             'config' => Array (
-                'type' => 'select',    
-                'foreign_table' => 'fe_users',
-                'foreign_table_where' => 'ORDER BY fe_users.username',
-                'size' => '1',
-                'minitems' => 0,
-                'maxitems' => 1,
+                'type' => 'input',    
+                'size' => '80',
                 'default' => '',
             )
         ),

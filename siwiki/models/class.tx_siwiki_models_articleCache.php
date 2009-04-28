@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_articleCache.php 1190 2009-04-20 15:01:13Z sisak $
+ * @version $Id: class.tx_siwiki_models_articleCache.php 1201 2009-04-28 10:00:45Z sisak $
  * @see tx_siwiki_models_article
  *
  */
@@ -222,18 +222,21 @@ class tx_siwiki_models_articleCache extends tx_siwiki_models_article {
                 foreach($matches as $tagArray) {
                         $tag = $tagArray[0];
                         if(preg_match("/href=\"wiki:\/\/.[^\"]*\"/", $tag)) {
-                                $style = preg_replace("/.*style=\"(.[^\"]*)\".*/", "\\1", $tag);
+                                preg_match_all("/.*style=\"(.[^\"]*)\".*/", $tag, $style);
                                 $title = urldecode(preg_replace("/.*href=\"wiki:\/\/(.[^@]*)@.*\".*/", "\\1", $tag));
                                 $namespace = urldecode(preg_replace("/.*href=\"wiki:\/\/.[^@]*@(.[^\"]*)\".*/", "\\1", $tag));
+                                $namespace = str_replace("/","",$namespace); 
                                 $linked_namespace = tx_siwiki_models_namespace::getNamespaceByName($namespace, $this->pid);
                                 $linked_uid = $this->getUidByArticleTitle($title, $this->pid, $linked_namespace);
-                                $linktext = preg_replace("/.*>(.*?)<\/a>/", "\\1", $tag);
+                                preg_match_all("/(?<=^|>)[^><]+?(?=<|$)/",$tag,$linktext);
+                                //$linktext = preg_replace("/.*>(.*?)<\/a>/", "\\1", $tag);
+                                $linktext = implode(" ",$linktext[0]);
 
                                 $linkClassName = tx_div::makeInstanceClassName('tx_lib_link');
                                 $link = new $linkClassName();
                                 $link->destination($this->controller->getDestination());
                                 $link->designator($this->controller->getDesignator());
-                                if(! empty($style)) $link->attributes(array('style' => $style));
+                                if(! empty($style)) $link->attributes(array('style' => $style[1][0]));
                                 $link->noHash();
                                 $link->label($linktext);
                                 $link->title($title.'@'.$namespace);

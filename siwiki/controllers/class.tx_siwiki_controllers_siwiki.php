@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_siwiki.php 1194 2009-04-22 07:13:16Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_siwiki.php 1201 2009-04-28 10:00:45Z sisak $
  *
  */ 
 
@@ -55,6 +55,7 @@ class tx_siwiki_controllers_siwiki extends tx_lib_controller {
                                 $modelClassName = tx_div::makeInstanceClassName('tx_siwiki_models_articleCache');
                                 $modelArticleCache = new $modelClassName($this,$this->parameters);
                                 $modelArticleCache->insert($uid,$this->configurations->get('storageFolder'));
+
                         }
                         catch(Exception $e){
                                 if($this->configurations->get('adminMail')) mail($this->configurations->get('adminMail'), 'exception triggered!', $e);

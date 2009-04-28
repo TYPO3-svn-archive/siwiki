@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1189 2009-04-17 09:11:37Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1201 2009-04-28 10:00:45Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -836,6 +836,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 				markup: 'xhtml',
 			        animate: true,
 			        dompath: true,
+                                filterWord: true,
 			        focusAtStart: true,
                                 css: 'html {height: 95%;}body {height: 100%;padding: 7px; background-color: #fff; font:13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}a {color: blue;text-decoration: underline;cursor: pointer;}.warning-localfile {border-bottom: 1px dashed red !important;}.yui-busy {cursor: wait !important;}img.selected { //Safari image selectionborder: 2px dotted #808080;}img {cursor: pointer !important;border: none;}h2 {font-size: 138.5%;color: #555555;margin-bottom: 8px;border-bottom: 1px solid #aaa;}h3 {font-size: 131%;color: #555555;margin-bottom: 6px;border-bottom: 1px solid #aaa;}h4 {font-size: 123.1%;color: #555555;margin-bottom: 4px;border-bottom: 1px solid #aaa;} .siwiki-article-toc{border: 1px dashed #555555;padding:10px;margin:10px 0;}.siwiki-article-signature { text-align: right; padding: 5px;} table {border-collapse:collapse; }td {border: 1px solid #555;}',
 			        toolbar: {
