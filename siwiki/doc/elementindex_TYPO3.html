@@ -24,7 +24,6 @@
 	<a class="index-letter" href="elementindex_TYPO3.html#g">g</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#i">i</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#l">l</a>
-	<a class="index-letter" href="elementindex_TYPO3.html#m">m</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#n">n</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#p">p</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#r">r</a>
@@ -65,13 +64,6 @@
 	</div>
 	<dl>
 			<dt class="field">
-						<span class="method-title">access</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/ext_update.html#methodaccess">ext_update::access()</a> in class.ext_update.php</div>
-							<div class="index-item-description">Access allowed if there's no content in  DB</div>
-					</dd>
-			<dt class="field">
 						<span class="method-title">ajaxAction</span>
 					</dt>
 		<dd class="index-item-body">
@@ -106,17 +98,11 @@
 							<div class="index-item-description">cancel edit</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">checkForContent</span>
+						<span class="method-title">checkMimetype</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/ext_update.html#methodcheckForContent">ext_update::checkForContent()</a> in class.ext_update.php</div>
-							<div class="index-item-description">Check if there's content in the DB already. If so, don't allow to import samples!  This is the case when the user updates the extension</div>
-					</dd>
-			<dt class="field">
-						<span class="include-title">class.ext_update.php</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_class.ext_update.php.html">class.ext_update.php</a> in class.ext_update.php</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_upload.html#methodcheckMimetype">tx_siwiki_models_upload::checkMimetype()</a> in class.tx_siwiki_models_upload.php</div>
+							<div class="index-item-description">Check if the mimetype is allowed</div>
 					</dd>
 			<dt class="field">
 						<span class="include-title">class.tx_siwiki_classes_misc.php</span>
@@ -131,10 +117,23 @@
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_controllers---class.tx_siwiki_controllers_ajax.php.html">class.tx_siwiki_controllers_ajax.php</a> in class.tx_siwiki_controllers_ajax.php</div>
 					</dd>
 			<dt class="field">
+						<span class="include-title">class.tx_siwiki_controllers_latestUpdates.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_controllers---class.tx_siwiki_controllers_latestUpdates.php.html">class.tx_siwiki_controllers_latestUpdates.php</a> in class.tx_siwiki_controllers_latestUpdates.php</div>
+					</dd>
+			<dt class="field">
 						<span class="include-title">class.tx_siwiki_controllers_siwiki.php</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_controllers---class.tx_siwiki_controllers_siwiki.php.html">class.tx_siwiki_controllers_siwiki.php</a> in class.tx_siwiki_controllers_siwiki.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">createAddLink</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_siwiki.html#methodcreateAddLink">tx_siwiki_views_siwiki::createAddLink()</a> in class.tx_siwiki_views_siwiki.php</div>
+							<div class="index-item-description">Creates the add link</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">createBackLink</span>
@@ -178,6 +177,13 @@
 							<div class="index-item-description">Creates the edit link as YUI button</div>
 					</dd>
 			<dt class="field">
+						<span class="method-title">createFilemanagerLink</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_siwiki.html#methodcreateFilemanagerLink">tx_siwiki_views_siwiki::createFilemanagerLink()</a> in class.tx_siwiki_views_siwiki.php</div>
+							<div class="index-item-description">Creates the filemanager panel</div>
+					</dd>
+			<dt class="field">
 						<span class="method-title">createHomeLink</span>
 					</dt>
 		<dd class="index-item-body">
@@ -190,6 +196,19 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_siwiki.html#methodcreateInfoLink">tx_siwiki_views_siwiki::createInfoLink()</a> in class.tx_siwiki_views_siwiki.php</div>
 							<div class="index-item-description">Creates the info link</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">createLink</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_latestUpdates.html#methodcreateLink">tx_siwiki_views_latestUpdates::createLink()</a> in class.tx_siwiki_views_latestUpdates.php</div>
+							<div class="index-item-description">renders all links for the latest update list</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">createLink</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_siwiki.html#methodcreateLink">tx_siwiki_views_siwiki::createLink()</a> in class.tx_siwiki_views_siwiki.php</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">createNewArticle</span>
@@ -277,6 +296,18 @@
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_models---class.tx_siwiki_models_diff.php.html">class.tx_siwiki_models_diff.php</a> in class.tx_siwiki_models_diff.php</div>
 					</dd>
 			<dt class="field">
+						<span class="include-title">class.tx_siwiki_models_files.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_models---class.tx_siwiki_models_files.php.html">class.tx_siwiki_models_files.php</a> in class.tx_siwiki_models_files.php</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">class.tx_siwiki_models_latestUpdates.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_models---class.tx_siwiki_models_latestUpdates.php.html">class.tx_siwiki_models_latestUpdates.php</a> in class.tx_siwiki_models_latestUpdates.php</div>
+					</dd>
+			<dt class="field">
 						<span class="include-title">class.tx_siwiki_models_locking.php</span>
 					</dt>
 		<dd class="index-item-body">
@@ -313,6 +344,12 @@
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_models---class.tx_siwiki_models_upload.php.html">class.tx_siwiki_models_upload.php</a> in class.tx_siwiki_models_upload.php</div>
 					</dd>
 			<dt class="field">
+						<span class="include-title">class.tx_siwiki_views_latestUpdates.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_views---class.tx_siwiki_views_latestUpdates.php.html">class.tx_siwiki_views_latestUpdates.php</a> in class.tx_siwiki_views_latestUpdates.php</div>
+					</dd>
+			<dt class="field">
 						<span class="include-title">class.tx_siwiki_views_siwiki.php</span>
 					</dt>
 		<dd class="index-item-body">
@@ -330,13 +367,19 @@
 						<span class="var-title">$defaultAction</span>
 					</dt>
 		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_siwiki.html#var$defaultAction">tx_siwiki_controllers_siwiki::$defaultAction</a> in class.tx_siwiki_controllers_siwiki.php</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$defaultAction</span>
+					</dt>
+		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_ajax.html#var$defaultAction">tx_siwiki_controllers_ajax::$defaultAction</a> in class.tx_siwiki_controllers_ajax.php</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$defaultAction</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_siwiki.html#var$defaultAction">tx_siwiki_controllers_siwiki::$defaultAction</a> in class.tx_siwiki_controllers_siwiki.php</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_latestUpdates.html#var$defaultAction">tx_siwiki_controllers_latestUpdates::$defaultAction</a> in class.tx_siwiki_controllers_latestUpdates.php</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">delete</span>
@@ -360,10 +403,29 @@
 							<div class="index-item-description">Deletes article from tx_siwiki_articles and tx_siwiki_articles_cache</div>
 					</dd>
 			<dt class="field">
+						<span class="method-title">deleteFile</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_files.html#methoddeleteFile">tx_siwiki_models_files::deleteFile()</a> in class.tx_siwiki_models_files.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">deleteFileAction</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_ajax.html#methoddeleteFileAction">tx_siwiki_controllers_ajax::deleteFileAction()</a> in class.tx_siwiki_controllers_ajax.php</div>
+					</dd>
+			<dt class="field">
 						<span class="method-title">diffAction</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_siwiki.html#methoddiffAction">tx_siwiki_controllers_siwiki::diffAction()</a> in class.tx_siwiki_controllers_siwiki.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">displayAction</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_latestUpdates.html#methoddisplayAction">tx_siwiki_controllers_latestUpdates::displayAction()</a> in class.tx_siwiki_controllers_latestUpdates.php</div>
+							<div class="index-item-description">Shows latest updates for a wiki installation</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">displayAction</span>
@@ -393,13 +455,6 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_ext_tables.php.html">ext_tables.php</a> in ext_tables.php</div>
 					</dd>
-			<dt class="field">
-						ext_update
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/ext_update.html">ext_update</a> in class.ext_update.php</div>
-							<div class="index-item-description">Update tables on ext-installation/-upgrade</div>
-					</dd>
 		</dl>
 	<a name="g"></a>
 	<div class="index-letter-section">
@@ -408,6 +463,13 @@
 		<div style="clear: both"></div>
 	</div>
 	<dl>
+			<dt class="field">
+						<span class="method-title">getAllFilesByArticle</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_files.html#methodgetAllFilesByArticle">tx_siwiki_models_files::getAllFilesByArticle()</a> in class.tx_siwiki_models_files.php</div>
+							<div class="index-item-description">Get an array containing all files of a certain pid</div>
+					</dd>
 			<dt class="field">
 						<span class="method-title">getAllNamespaces</span>
 					</dt>
@@ -442,6 +504,12 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_classes_misc.html#methodgetLastname">tx_siwiki_classes_misc::getLastname()</a> in class.tx_siwiki_classes_misc.php</div>
 							<div class="index-item-description">Return the lastname of the current fe_user</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">getMimetypes</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_upload.html#methodgetMimetypes">tx_siwiki_models_upload::getMimetypes()</a> in class.tx_siwiki_models_upload.php</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getNamespaceByName</span>
@@ -521,20 +589,6 @@
 							<div class="index-item-description">Inserts a new article into tx_siwiki_articles and tx_siwiki_articles_cache</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">insertSampleContent</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/ext_update.html#methodinsertSampleContent">ext_update::insertSampleContent()</a> in class.ext_update.php</div>
-							<div class="index-item-description">And finally some sample content (both rendered and not)</div>
-					</dd>
-			<dt class="field">
-						<span class="method-title">insertSampleNamespace</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/ext_update.html#methodinsertSampleNamespace">ext_update::insertSampleNamespace()</a> in class.ext_update.php</div>
-							<div class="index-item-description">So we insert a sample namespace</div>
-					</dd>
-			<dt class="field">
 						<span class="method-title">isLocked</span>
 					</dt>
 		<dd class="index-item-body">
@@ -559,8 +613,8 @@
 						<span class="method-title">load</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_article.html#methodload">tx_siwiki_models_article::load()</a> in class.tx_siwiki_models_article.php</div>
-							<div class="index-item-description">Set the properties to those of the specified article</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_latestUpdates.html#methodload">tx_siwiki_models_latestUpdates::load()</a> in class.tx_siwiki_models_latestUpdates.php</div>
+							<div class="index-item-description">load the latest changed entries</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">load</span>
@@ -570,25 +624,17 @@
 							<div class="index-item-description">Set the properties to those of the specified article in version $version</div>
 					</dd>
 			<dt class="field">
+						<span class="method-title">load</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_article.html#methodload">tx_siwiki_models_article::load()</a> in class.tx_siwiki_models_article.php</div>
+							<div class="index-item-description">Set the properties to those of the specified article</div>
+					</dd>
+			<dt class="field">
 						<span class="method-title">loadToc</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_toc.html#methodloadToc">tx_siwiki_models_toc::loadToc()</a> in class.tx_siwiki_models_toc.php</div>
-					</dd>
-		</dl>
-	<a name="m"></a>
-	<div class="index-letter-section">
-		<div style="float: left" class="index-letter-title">m</div>
-		<div style="float: right"><a href="#top">top</a></div>
-		<div style="clear: both"></div>
-	</div>
-	<dl>
-			<dt class="field">
-						<span class="method-title">main</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/ext_update.html#methodmain">ext_update::main()</a> in class.ext_update.php</div>
-							<div class="index-item-description">Executed when updated</div>
 					</dd>
 		</dl>
 	<a name="n"></a>
@@ -714,6 +760,12 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_siwiki.html#methodprintToolbar">tx_siwiki_views_siwiki::printToolbar()</a> in class.tx_siwiki_views_siwiki.php</div>
 					</dd>
+			<dt class="field">
+						<span class="method-title">pushfileAction</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_siwiki.html#methodpushfileAction">tx_siwiki_controllers_siwiki::pushfileAction()</a> in class.tx_siwiki_controllers_siwiki.php</div>
+					</dd>
 		</dl>
 	<a name="r"></a>
 	<div class="index-letter-section">
@@ -767,14 +819,21 @@
 						<span class="method-title">s</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_plotrelations.html#methods">tx_siwiki_models_plotrelations::s()</a> in class.tx_siwiki_models_plotrelations.php</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_namespace.html#methods">tx_siwiki_models_namespace::s()</a> in class.tx_siwiki_models_namespace.php</div>
 							<div class="index-item-description">Get a fucking DBAL</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">s</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_namespace.html#methods">tx_siwiki_models_namespace::s()</a> in class.tx_siwiki_models_namespace.php</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_files.html#methods">tx_siwiki_models_files::s()</a> in class.tx_siwiki_models_files.php</div>
+							<div class="index-item-description">Get a fucking DBAL</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">s</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_plotrelations.html#methods">tx_siwiki_models_plotrelations::s()</a> in class.tx_siwiki_models_plotrelations.php</div>
 							<div class="index-item-description">Get a fucking DBAL</div>
 					</dd>
 			<dt class="field">
@@ -788,14 +847,14 @@
 						<span class="method-title">s</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_article.html#methods">tx_siwiki_models_article::s()</a> in class.tx_siwiki_models_article.php</div>
-							<div class="index-item-description">Get a fucking DBAL</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_ajax.html#methods">tx_siwiki_models_ajax::s()</a> in class.tx_siwiki_models_ajax.php</div>
+							<div class="index-item-description">Get a fucking DBAL -&gt; cheese</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">s</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_ajax.html#methods">tx_siwiki_models_ajax::s()</a> in class.tx_siwiki_models_ajax.php</div>
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_article.html#methods">tx_siwiki_models_article::s()</a> in class.tx_siwiki_models_article.php</div>
 							<div class="index-item-description">Get a fucking DBAL</div>
 					</dd>
 			<dt class="field">
@@ -858,6 +917,18 @@
 						<span class="var-title">$table</span>
 					</dt>
 		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_articleVersion.html#var$table">tx_siwiki_models_articleVersion::$table</a> in class.tx_siwiki_models_articleVersion.php</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$table</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_files.html#var$table">tx_siwiki_models_files::$table</a> in class.tx_siwiki_models_files.php</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$table</span>
+					</dt>
+		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_namespace.html#var$table">tx_siwiki_models_namespace::$table</a> in class.tx_siwiki_models_namespace.php</div>
 					</dd>
 			<dt class="field">
@@ -865,12 +936,6 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_article.html#var$table">tx_siwiki_models_article::$table</a> in class.tx_siwiki_models_article.php</div>
-					</dd>
-			<dt class="field">
-						<span class="var-title">$table</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_articleVersion.html#var$table">tx_siwiki_models_articleVersion::$table</a> in class.tx_siwiki_models_articleVersion.php</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$tableForVersions</span>
@@ -883,13 +948,6 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/_tca.php.html">tca.php</a> in tca.php</div>
-					</dd>
-			<dt class="field">
-						<span class="method-title">testAction</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_siwiki.html#methodtestAction">tx_siwiki_controllers_siwiki::testAction()</a> in class.tx_siwiki_controllers_siwiki.php</div>
-							<div class="index-item-description">Inserts a new article into tx_siwiki_articles and tx_siwiki_articles_cache</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">tocAction</span>
@@ -910,6 +968,13 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_ajax.html">tx_siwiki_controllers_ajax</a> in class.tx_siwiki_controllers_ajax.php</div>
 							<div class="index-item-description">this is the ajax controller</div>
+					</dd>
+			<dt class="field">
+						tx_siwiki_controllers_latestUpdates
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_latestUpdates.html">tx_siwiki_controllers_latestUpdates</a> in class.tx_siwiki_controllers_latestUpdates.php</div>
+							<div class="index-item-description">this is the main controller to display latest updates</div>
 					</dd>
 			<dt class="field">
 						tx_siwiki_controllers_siwiki
@@ -951,6 +1016,19 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_diff.html">tx_siwiki_models_diff</a> in class.tx_siwiki_models_diff.php</div>
+					</dd>
+			<dt class="field">
+						tx_siwiki_models_files
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_files.html">tx_siwiki_models_files</a> in class.tx_siwiki_models_files.php</div>
+							<div class="index-item-description">Namespaces for articles</div>
+					</dd>
+			<dt class="field">
+						tx_siwiki_models_latestUpdates
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_latestUpdates.html">tx_siwiki_models_latestUpdates</a> in class.tx_siwiki_models_latestUpdates.php</div>
 					</dd>
 			<dt class="field">
 						tx_siwiki_models_locking
@@ -995,11 +1073,18 @@
 							<div class="index-item-description">Uploads for articles</div>
 					</dd>
 			<dt class="field">
+						tx_siwiki_views_latestUpdates
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_latestUpdates.html">tx_siwiki_views_latestUpdates</a> in class.tx_siwiki_views_latestUpdates.php</div>
+							<div class="index-item-description">renders latestUpdates</div>
+					</dd>
+			<dt class="field">
 						tx_siwiki_views_siwiki
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_views_siwiki.html">tx_siwiki_views_siwiki</a> in class.tx_siwiki_views_siwiki.php</div>
-							<div class="index-item-description">The only view we have so far. It renders all different templates!</div>
+							<div class="index-item-description">renders all templates besides updates</div>
 					</dd>
 		</dl>
 	<a name="u"></a>
@@ -1015,6 +1100,13 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_locking.html#methodupdateLocking">tx_siwiki_models_locking::updateLocking()</a> in class.tx_siwiki_models_locking.php</div>
 							<div class="index-item-description">Update lock</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">uploadFile</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_models_upload.html#methoduploadFile">tx_siwiki_models_upload::uploadFile()</a> in class.tx_siwiki_models_upload.php</div>
+							<div class="index-item-description">Uploads a file to a specified folder and returns the filepath</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">uploadImage</span>
@@ -1038,6 +1130,13 @@
 			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_siwiki.html#methodwrapTranslatedContent">tx_siwiki_controllers_siwiki::wrapTranslatedContent()</a> in class.tx_siwiki_controllers_siwiki.php</div>
 							<div class="index-item-description">wrap all content with a general div container</div>
 					</dd>
+			<dt class="field">
+						<span class="method-title">wrapTranslatedContent</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="TYPO3/tx_siwiki/tx_siwiki_controllers_latestUpdates.html#methodwrapTranslatedContent">tx_siwiki_controllers_latestUpdates::wrapTranslatedContent()</a> in class.tx_siwiki_controllers_latestUpdates.php</div>
+							<div class="index-item-description">wrap all content with a general div container</div>
+					</dd>
 		</dl>
 
 <div class="index-letter-menu">
@@ -1048,7 +1147,6 @@
 	<a class="index-letter" href="elementindex_TYPO3.html#g">g</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#i">i</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#l">l</a>
-	<a class="index-letter" href="elementindex_TYPO3.html#m">m</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#n">n</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#p">p</a>
 	<a class="index-letter" href="elementindex_TYPO3.html#r">r</a>

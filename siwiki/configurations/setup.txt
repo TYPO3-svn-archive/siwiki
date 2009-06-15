@@ -20,21 +20,41 @@ temp.tx_siwiki.configurations {
 		errorTemplate = error.php
 		pngTemplate = png.php
 		tocTemplate = toc.php
+		pushTemplate = push.php
+		updatesTemplate = updates.php
+		filemanagerUploadFolder = fileadmin/user_upload/siwiki/filemanager/
 		rootpage = 1 
 		defaultNamespace = 1 
                 #in Minutes
                 timeAnArticleRemainsLocked = 5  		
                 uploadedImageMaxWidth = 750
                 articleInfoDateString = %d. %B %Y (%R)
+                updatesLimit = 10
 }
 
+# Includes
+includeLibs.tx_div = EXT:div/class.tx_div.php
+includeLibs.tx_lib_switch = EXT:lib/class.tx_lib_switch.php
+includeLibs.tx_siwiki_controllers_siwiki = EXT:siwiki/controllers/class.tx_siwiki_controllers_siwiki.php
+
 # The controller switch
-plugin.tx_siwiki = USER_INT
-plugin.tx_siwiki {
-	userFunc = tx_siwiki_controllers_siwiki->main
-	configurations < temp.tx_siwiki.configurations
+plugin.tx_siwiki.controllerSwitch = USER
+plugin.tx_siwiki.controllerSwitch {
+	userFunc = tx_lib_switch->main
+
+	wiki = USER_INT
+	wiki {
+		userFunc = tx_siwiki_controllers_siwiki->main
+		configurations < temp.tx_siwiki.configurations
+	}
+
+	latestUpdates = USER_INT
+	latestUpdates {
+		userFunc = tx_siwiki_controllers_latestUpdates->main
+		configurations < temp.tx_siwiki.configurations
+	}
 }
-tt_content.list.20.tx_siwiki =< plugin.tx_siwiki
+tt_content.list.20.tx_siwiki =< plugin.tx_siwiki.controllerSwitch
 
 # The ajax response
 siwikiajax = PAGE
@@ -196,6 +216,37 @@ div.siwiki-article a.siwiki-article-futurelink {
     *padding: 0.25em 1.75em;  /* IE only */
 }
 
+#siwiki-panel-add-loading {
+    background: transparent url(../typo3conf/ext/siwiki/resources/images/loading22.gif) no-repeat 40% 50%;
+}
+
+#siwiki-panel-add label {
+	clear: left;
+	float: left;
+	display: block;
+	width: 30%;
+}
+
+.yui-button#siwiki-menu-add button {
+    background: url(../typo3conf/ext/siwiki/resources/images/add16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+.yui-button#siwiki-menu-filemanager button {
+    background: url(../typo3conf/ext/siwiki/resources/images/filemanager16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
 .yui-button#siwiki-menu-toc button {
     background: url(../typo3conf/ext/siwiki/resources/images/index16.png) center center no-repeat;
     text-indent: -4em;
@@ -339,5 +390,72 @@ color:red;
 #siwiki_article_dropDownMenu {
 background: transparent url(../typo3conf/ext/siwiki/resources/images/loading22.gif) no-repeat 30% center;
 }
+
+#siwiki-panel-filemanager-form {
+border: 1px solid #888888;
+padding: 10px;
+}
+
+#siwiki-panel-filemanager-form label {
+clear: left;
+float: left;
+display: block;
+width: 100px;
+}
+
+#siwiki-panel-filemanager-form input {
+	margin-bottom: 5px;
+}
+
+#siwiki-panel-filemanager-list {
+	border-top: 1px solid #888888;
+	border-left: 1px solid #888888;
+	border-right: 1px solid #888888;
+padding: 10px;
+}
+
+#siwiki-panel-filemanager-list .yui-button {
+margin: 2px 0;
+}
+
+#siwiki-panel-filemanager-list .yui-push-button {
+margin: 2px 10px 2px 0;
+}
+
+#siwiki-panel-filemanager-list .yui-link-button {
+width: 150px;
+}
+
+#siwiki-panel-filemanager-list .yui-push-button button {
+	background: url(../typo3conf/ext/siwiki/resources/images/delete16.png) center center no-repeat;
+        text-indent: -4em;
+	overflow: hidden;
+	padding: 0 .75em;
+	width: 2em;
+        *margin-left: 4em;   /* IE only */
+        *padding: 0.25em 1.75em;  /* IE only */
+}
+
+#siwiki-panel-filemanager-list td {
+	vertical-align: top;
+}
+
+
+#tx_siwiki_latestUpdates table {
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+
+#tx_siwiki_latestUpdates tr.impair {
+	background-color: #dddddd;
+}
+#tx_siwiki_latestUpdates tr.pair {
+	background-color: #eeeeee;
+}
+#tx_siwiki_latestUpdates td {
+	padding: 3px;
+}
+
 )
+
 

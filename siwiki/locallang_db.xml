@@ -15,6 +15,9 @@
 			<label index="tx_siwiki_articles.creator">siWiki Article Creator</label>
 			<label index="tx_siwiki_articles.editor">siWiki Article Editor</label>
 			<label index="tx_siwiki_articles.version">siWiki Article Version</label>
+			<label index="flexform.controllerSwitch">Sub Plugins</label>
+			<label index="flexform.controllerSwitch.wiki">Wiki</label>
+			<label index="flexform.controllerSwitch.latestUpdates">Latest Updates</label>
 			<label index="flexform.mainSheetTitle">Common settings</label>
 			<label index="flexform.miscSheetTitle">Miscellaneous</label>
 			<label index="flexform.rteSheetTitle">RTE settings</label>
@@ -24,9 +27,13 @@
 			<label index="flexform.controllerSelection.siwiki">siWiki display</label>
 			<label index="flexform.storageFolderSelection">siWiki storage folder</label>
 			<label index="flexform.enableGraphviz">Enable graphviz overview?</label>
+			<label index="flexform.enableFilemanager">Enable Filemanager?</label>
 			<label index="flexform.anonymous">Use anonymous?</label>
 			<label index="flexform.adminMail">Leave an email address to this field, if you want to get notified when an exception is triggerd.</label>
 			<label index="flexform.fullTextSearch">Enable full text search? (otherwise just title and namespace getting matched)</label>
+			<label index="flexform.updatesSheetTitle">Latest updates</label>
+			<label index="flexform.updatesLimit">How many entries do you want to display?</label>
+                        <label index="flexform.wikiPage">PageId of the according wiki installation?</label>
                         <label index="tx_siwiki_namespaces.name">siWiki Article Namespace</label>
                         <label index="tx_siwiki_namespaces.description">Description</label>
                         <label index="tx_siwiki_namespaces">siWiki Namespaces</label>
@@ -39,6 +46,9 @@
 			<label index="tx_siwiki_articles.creator">siWiki Artikel Ersteller</label>
 			<label index="tx_siwiki_articles.editor">siWiki Artikel Bearbeiter</label>
 			<label index="tx_siwiki_articles.version">siWiki Artikel Version</label>
+			<label index="flexform.controllerSwitch">Sub Plugins</label>
+			<label index="flexform.controllerSwitch.wiki">Wiki</label>
+			<label index="flexform.controllerSwitch.latestUpdates">Letzte Änderungen</label>
 			<label index="flexform.mainSheetTitle">Allgemeine Einstellungen</label>
 			<label index="flexform.miscSheetTitle">Verschiedenes</label>
 			<label index="flexform.rteSheetTitle">RTE Einstellungen</label>
@@ -46,9 +56,13 @@
 			<label index="flexform.rteHeight">Höhe (px)</label>
 			<label index="flexform.storageFolderSelection">siWiki storage folder</label>
 			<label index="flexform.enableGraphviz">Graphviz Übersicht aktivieren?</label>
+			<label index="flexform.enableFilemanager">Filemanager aktivieren?</label>
 			<label index="flexform.fullTextSearch">Volltextsuche aktivieren? (Ansonsten werden nur Title und Kategorie durchsucht)</label>
 			<label index="flexform.anonymous">Anonym arbeiten?</label>
 			<label index="flexform.adminMail">Sende eMail an diese Adresse, wenn ein Fehler auftritt.</label>
+			<label index="flexform.updatesSheetTitle">letzte Änderungen</label>
+                        <label index="flexform.updatesLimit">Wieviele Einträge sollen angezeigt werden?</label>
+                        <label index="flexform.wikiPage">Auf welcher Seite ist das entsprechende Wiki installiert?</label>
                         <label index="tx_siwiki_namespaces.name">Name</label>
                         <label index="tx_siwiki_namespaces.description">Beschreibung</label>
                         <label index="tx_siwiki_namespaces">siWiki Kategorien</label>

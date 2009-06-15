@@ -1,13 +1,13 @@
 <?php
 /**
  *
- * The only view we have so far. It renders all different templates!
+ * renders all templates besides updates
  *
  * @author Stefan Isak <stefan.isak@googlemail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1201 2009-04-28 10:00:45Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1217 2009-06-15 14:07:53Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -186,6 +186,8 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         if($this->controller->configurations->get('enableGraphviz')) $menu .= $this->createPlotLink();
                         $menu .= $this->createTocLink();
                         $menu .= $this->createInfoLink();
+                        $menu .= $this->createAddLink();
+                        if($this->controller->configurations->get('enableFilemanager')) $menu .= $this->createFilemanagerLink();
                         $menu .= $this->createNotificationCheckbox();
                 }
                 // add a div container to the menu items
@@ -381,18 +383,16 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 		$link->noHash();
 		$link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
-                                	'action' => 'diff'));
-                $newVersion = $this->controller->parameters->get('newVersion');
-                $oldVersion = $this->controller->parameters->get('oldVersion');
-                $link = $link->makeUrl(false).'&'.$this->getDesignator().'[oldVersion]=';
-                $link2 = '&'.$this->getDesignator().'[newVersion]='.$newVersion;
+                                        'action' => 'diff',
+                                        'newVersion' => $this->controller->parameters->get('newVersion'),
+                                        'oldVersion' => ''));
                 return '<script type="text/javascript">
                                YAHOO.util.Event.onContentReady("siwiki-menu-items", function () {
 
                                        var onMenuItemClick = function (p_sType, p_aArgs, p_oItem) {
-                                               window.location.href = "'.$link.'"+p_oItem.value+"'.$link2.'";
+                                               window.location.href = "'.$link->makeUrl(false).'"+p_oItem.value;
                                        };
-                                       var version = '.$newVersion.';
+                                       var version = '.$this->controller->parameters->get('newVersion').';
                                        var items = [];
                                        var maxItems = 20;
                                        while(version > 1 && maxItems != 0){
@@ -460,18 +460,19 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                 var handleNo = function() {
                                        this.cancel();
                                 }
-                                var deleteDialog = new YAHOO.widget.SimpleDialog("delete",{ width: "300px",
-                                                                modal: true,
-                                                                fixedcenter: true,
-                                                                visible: false,
-                                                                draggable: false,
-                                                                close: true,
-                                                                icon: YAHOO.widget.SimpleDialog.ICON_HELP,
-                                                                text: "%%%deletePanelBody%%%",
-                                                                constraintoviewport: true,
-                                                                buttons: [ { text:"%%%yes%%%", handler:handleYes },
-                                                                           { text:"%%%no%%%", handler:handleNo, isDefault:true }]
-                                });
+                                var deleteDialog = new YAHOO.widget.SimpleDialog("delete",
+                                              { width: "300px",
+                                                modal: true,
+                                                fixedcenter: true,
+                                                visible: false,
+                                                draggable: false,
+                                                close: true,
+                                                icon: YAHOO.widget.SimpleDialog.ICON_HELP,
+                                                text: "%%%deletePanelBody%%%",
+                                                constraintoviewport: true,
+                                                buttons: [ { text:"%%%yes%%%", handler:handleYes },
+                                                           { text:"%%%no%%%", handler:handleNo, isDefault:true }]
+                                               });
                                 deleteDialog.setHeader("%%%deletePanelHeader%%%");
                                 deleteDialog.render("siwiki-panel-delete");
 
@@ -557,6 +558,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         </script>';      
 	}
 
+
         /**
          * Creates the info link
          *
@@ -576,7 +578,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                 return '<span id="siwiki-panel-info"></span>
                         <script type="text/javascript">
                         YAHOO.util.Event.onAvailable("siwiki-panel-info", function(){
-                                panel4 = new YAHOO.widget.Panel("panel4", {  visible:false, draggable:true, close:true, width: "300px" } );
+                                var panel4 = new YAHOO.widget.Panel("panel4", {  visible:false, draggable:true, close:true, width: "300px" } );
                                 function onButtonClick(){
                                         YAHOO.util.Connect.asyncRequest("GET", "'.$link->makeUrl(false).'", 
                                                    {
@@ -603,7 +605,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                         }
                                            }); 
                                         YAHOO.util.Event.onContentReady("panel4", function() { 
-                                                                                panel4.show();
+                                               panel4.show();
                                         });
                                 }       
                                 var info = new YAHOO.widget.Button({id:"siwiki-menu-info", title:"%%%info%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
@@ -613,6 +615,429 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 
 
         /**
+         * Creates the add link
+         *
+         * @return string
+         */
+        function createAddLink() {
+		$link = tx_div::makeInstance('tx_lib_link');
+		$link->destination($this->getDestination());
+		$link->designator($this->getDesignator());
+                $link->parameters(array('action' => 'new'));
+		$link->noHash();
+
+		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+		$linkNs = tx_div::makeInstance('tx_lib_link');
+		$linkNs->destination($destination);
+		$linkNs->designator($this->getDesignator());
+                $linkNs->parameters(array('action' => 'ajax',
+                                          'request' => 'getNamespaces'));
+		$linkNs->noHash();
+
+                return '<div id="siwiki-panel-add"> 
+                                <div class="hd">%%%addHeader%%%</div> 
+                                <div class="bd">
+                                        <p>%%%addDescription%%%</p>
+                                        <form id="dialogForm" name="dialogForm" action="'.$link->makeUrl(false).'" method="GET">                                        
+                                                <label for="siwikiTitle">%%%title%%%</label><input type="text" name="siwikiTitle" />  
+                                                <input type="hidden" name="siwikiNamespace" id="siwikiNamespace" /><br /><br />
+                                                <div id="siwiki-panel-add-loading">
+                                                <label for="siwikiNamespace">%%%namespace%%%</label><span id="siwiki-panel-add-namespace"></span> 
+                                                </div>
+                                        </form>
+                                        <br />
+                                </div> 
+                                <div class="ft">%%%addFooter%%%</div> 
+                        </div>
+
+                        <script type="text/javascript">
+                                var gotData = false;
+                                function createDropDownMenu(namespaces) {
+                                        if(!gotData){
+                                                var menuItems = [];
+                                                for (var i = 0, len = namespaces.length; i < len; ++i) {
+                                                    var m = namespaces[i];
+                                                    menuItems[i] = {
+                                                        text: m.name,
+                                                        value: m.uid
+                                                    };
+                                                }
+                                                
+                                                var dropDownMenu = new YAHOO.widget.Button({
+                                                    type: "menu",
+                                                    id: "siwiki-panel-namespace",
+                                                    label: menuItems[0].text,
+                                                    value: menuItems[0].value,
+                                                    name: "namespace",
+                                                    menu: menuItems,
+                                                    container: "siwiki-panel-add-namespace"
+                                                });
+
+                                                var currentNamespace = YAHOO.util.Dom.get("siwikiNamespace");
+                                                    currentNamespace.value = menuItems[0].value;
+
+                                                dropDownMenu.getMenu().mouseUpEvent.subscribe(function(ev, args) {
+                                                    dropDownMenu.set("label", args[1].cfg.getProperty("text"));
+                                                    currentNamespace.value = args[1].value;
+                                                    dropDownMenu._hideMenu();
+                                                });
+                                        }
+                                }
+
+                                function onButtonClick(){
+                                        if(!gotData){
+                                                YAHOO.util.Connect.asyncRequest("GET", "'.$linkNs->makeUrl(false).'", 
+                                                {
+                                                        success : function(o) {
+                                                                        try {
+                                                                                var namespaces = YAHOO.lang.JSON.parse(o.responseText);
+                                                                        }
+                                                                        catch (e){
+                                                                        }		
+                                                                        createDropDownMenu(namespaces);
+                                                                        gotData = true;
+                                                         },
+                                                        failure:function(o) {
+                                                                if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                }
+                                                        }
+                                                });
+                                        }
+                                        panel5.show();
+                                } 
+
+                                var panel5 = new YAHOO.widget.Dialog("siwiki-panel-add", 
+                                        {       visible:false, 
+                                                draggable:false, 
+                                                fixedcenter:true, 
+                                                modal:true, 
+                                                close:true, 
+                                                buttons: [ { text:"%%%create%%%", handler:handleSave },
+                                                           { text:"%%%cancel%%%", handler:handleCancel, isDefault:true }]
+                                        });
+
+                                function handleSave() {
+                                       var data = this.getData();
+                                       window.location.href = "'.$link->makeUrl(false).'&'.$this->getDesignator().'[namespace]="+data.siwikiNamespace+"&'.$this->getDesignator().'[title]="+data.siwikiTitle;  
+                                }
+
+                                function handleCancel() {
+                                        this.cancel();
+                                }
+
+                                panel5.render();
+
+                                var add = new YAHOO.widget.Button({id:"siwiki-menu-add", title:"%%%add%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
+                        </script>';      
+	}
+
+        function createLink($parameters = null, $ajax = true){
+                if($ajax) $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+                else $destination = $this->getDestination();
+		$link = tx_div::makeInstance('tx_lib_link');
+		$link->destination($destination);
+		$link->designator($this->getDesignator());
+                $link->parameters($parameters);
+		$link->noHash();
+                return $link->makeUrl(false);
+        }
+
+        /**
+         * Creates the filemanager panel
+         *
+         * @return string
+         */
+        function createFilemanagerLink() {
+		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+		$link = tx_div::makeInstance('tx_lib_link');
+		$link->destination($destination);
+		$link->designator($this->getDesignator());
+                $link->parameters(array('action' => 'ajax',
+                                        'request' => 'fileUpload'));
+		$link->noHash();
+
+		$linkGetFiles = tx_div::makeInstance('tx_lib_link');
+		$linkGetFiles->destination($destination);
+		$linkGetFiles->designator($this->getDesignator());
+                $linkGetFiles->parameters(array('uid' => $this->controller->parameters->get('uid'),
+                                                'action' => 'ajax',
+                                                'request' => 'getAllFilesByArticle'));
+		$linkGetFiles->noHash();
+
+		$linkInitialize = tx_div::makeInstance('tx_lib_link');
+		$linkInitialize->destination($destination);
+		$linkInitialize->designator($this->getDesignator());
+                $linkInitialize->parameters(array('uid' => $this->controller->parameters->get('uid'),
+                                                  'action' => 'ajax',
+                                                  'request' => 'initializeFilemanager'));
+		$linkInitialize->noHash();
+
+                return '<div id="siwiki-panel-filemanager"> 
+                                <div class="hd">%%%filemanagerHeader%%%</div> 
+                                <div class="bd">
+                                        <p><img src="typo3conf/ext/siwiki/resources/images/filemanager32.png" alt="%%%filemanagerHeader%%%" /> %%%filemanagerDescription%%%</p>
+
+                                        <div id="siwiki-panel-filemanager-list">
+                                        </div>
+
+                                        <div id="siwiki-panel-filemanager-form">
+                                        <h3>%%%filemanagerForm%%%</h3><br />
+                                        <form id="filemanagerForm" name="filemanagerForm" action="'.$link->makeUrl(false).'" encoding="multipart/form-data" method="POST">                                        
+                                        <label for="file">%%%filemanagerFormFile%%%</label>
+                                                <input type="file" id="'.$this->getDesignator().'[file]" name="file" /><br />
+                                        <label for="'.$this->getDesignator().'[name]">%%%filemanagerFormName%%%</label>
+                                                <input type="text" id="'.$this->getDesignator().'-name" name="'.$this->getDesignator().'[name]" /><br />
+                                        <label for="'.$this->getDesignator().'[description]">%%%filemanagerFormDescription%%%</label>
+                                                <input type="text" id="'.$this->getDesignator().'[description]" name="'.$this->getDesignator().'[description]" />
+                                                <input type="hidden" id="'.$this->getDesignator().'[uid]" name="'.$this->getDesignator().'[uid]" value="'.$this->controller->parameters->get('uid').'" />
+                                        </form>
+                                        </div>
+                                </div> 
+                                <div class="ft">%%%filemanagerFooter%%%</div> 
+                        </div>
+                        <div id="infoDialog"></div> 
+                        <script type="text/javascript">
+                                        var filemanager;
+                                        var checked;
+                                        var controlNumber;
+
+                                var loading = new YAHOO.widget.Panel("wait",  
+                                        { width:"240px", 
+                                        fixedcenter:true, 
+                                        close:false, 
+                                        draggable:false, 
+                                        zindex:4,
+                                        modal:true,
+                                        visible:false
+                                        } 
+                                );
+
+                                loading.setHeader("%%%loading%%%");
+                                loading.setBody("<img src=\"typo3conf/ext/siwiki/resources/images/loadingBar.gif\" alt=\"%%%loading%%%\" />");
+                                loading.render(document.body);
+
+                                var handleInfoDialogOk = function() {
+                                        this.hide();
+                                }  
+                                var infoDialog =  new YAHOO.widget.SimpleDialog("infoDialog", 
+                                                { width: "250px",
+                                                fixedcenter: true,
+                                                visible: false,
+                                                draggable: false,
+                                                close: true,
+                                                modal: true,
+                                                constraintoviewport: true,
+                                                buttons: [ { text:"%%%ok%%%", handler:handleInfoDialogOk, isDefault:true }]
+                                }); 
+                                infoDialog.setHeader("%%%error%%%");
+                                infoDialog.render();
+
+                                function handleSave() {
+                                        this.submit();
+                                }
+
+                                function handleCancel() {
+                                        this.cancel();
+                                }
+
+                                var handleFailure = function(o) {
+                                        alert("Submission failed: " + o.status);
+                                };
+
+                                var panel6 = new YAHOO.widget.Dialog("siwiki-panel-filemanager", 
+                                        {       visible:false, 
+                                                draggable:true, 
+                                                modal:false, 
+                                                close:true, 
+                                                buttons: [ { text:"%%%filemanagerFormButton%%%", handler:handleSave },
+                                                           { text:"%%%cancel%%%", handler:handleCancel, isDefault:true }]
+                                        });
+                                panel6.validate = function() {
+                                        var file = this.getData().file;
+                                        var name = YAHOO.util.Dom.get("siwiki-name").value;
+                                        var errorMessage = false;
+                                        if(file == ""){
+                                               errorMessage = "%%%errorNoFile%%%"; 
+                                        } else if(name == ""){
+                                                errorMessage = "%%%errorFileName%%%"; 
+                                        }
+                                        if(errorMessage){
+                                                infoDialog.setBody("<img src=\"typo3conf/ext/siwiki/resources/images/error22.png\" alt=\"%%%error%%%\" /> " + errorMessage);
+                                                infoDialog.show();
+                                                return false;
+                                        } else {
+                                                loading.show();
+                                                return true;
+                                        }
+                                }
+
+                             var onUpload = function(o) {
+                                    var response = YAHOO.lang.JSON.parse(o.responseText);
+                                    if (response[0]["status"] !== "UPLOADED")  {
+                                                var timer = {
+                                                        count: 3,
+                                                        "updateLoading" : function(data) {
+                                                                this.count--;
+                                                                if(this.count == 0){
+                                                                        loading.hide();
+                                                                        later.cancel();
+                                                                        loading.setHeader("%%%loading%%%");
+                                                                        loading.setBody("<img src=\"typo3conf/ext/siwiki/resources/images/loadingBar.gif\" alt=\"%%%loading%%%\" />");
+                                                                } else {
+                                                                        loading.setHeader("%%%error%%%");
+                                                                        loading.setBody("<img src=\"typo3conf/ext/siwiki/resources/images/error22.png\" alt=\"%%%error%%%\" /> " + response[0]["status"]);
+                                                                }
+                                                        }
+                                                }
+        		                        var later = YAHOO.lang.later(1000, timer, "updateLoading",[{"data":"foo"}], true);
+                                    } else {
+                                                var timer = {
+                                                        count: 4,
+                                                        "updateLoading" : function(data) {
+                                                                this.count--;
+                                                                if(this.count == 0){
+                                                                        loading.hide();
+                                                                        later.cancel();
+                                                                        panel6.hide();
+                                                                        checked = true;
+                                                                        filemanager.set("checked",checked,false); 
+                                                                        onFilemanagerClick();
+                                                                        loading.setHeader("%%%loading%%%");
+                                                                        loading.setBody("<img src=\"typo3conf/ext/siwiki/resources/images/loadingBar.gif\" alt=\"%%%loading%%%\" />");
+                                                                } else {
+                                                                        loading.setHeader("%%%ok%%%");
+                                                                        loading.setBody("<img src=\"typo3conf/ext/siwiki/resources/images/ok22.png\" alt=\"%%%ok%%%\" /> %%%filemanagerUploadOk%%%");
+                                                                }
+                                                        }
+                                                }
+        		                        var later = YAHOO.lang.later(1000, timer, "updateLoading",[{"data":"foo"}], true);
+                                    }
+                             }
+
+                             panel6.callback.upload = onUpload;
+                        
+                                panel6.render();
+
+                                function listFiles(files){
+                                        var list = YAHOO.util.Dom.get("siwiki-panel-filemanager-list");
+                                        var fileList = "<h3>%%%filemanagerFilelist%%%</h3><br /><table><tr><td>";
+                                        var links = [];
+                                        var linksDelete = [];
+
+                                                for (var i = 0, len = files.length; i < len; ++i) {
+                                                    var m = files[i];
+                                                    var urlLink = "'.$this->createLink(Array('uid' => $this->controller->parameters->get('uid')),false).'"; 
+                                                    urlLink += "&siwiki[action]=pushfile&siwiki[file]="+m.file_name;
+
+                                                    fileList += "<a href=\""+urlLink+"\" id=\"siwiki-filemanager-link"+i+"\" title=\""+m.file_description+"\">"+m.file_name+"</a>";
+
+                                                    fileList += "<span id=\"linkDelete"+i+"\"></span><br />";
+
+                                                    if(!((i+1)%5)) fileList += "</td><td>";
+                                                }
+                                                fileList += "</td></tr></table>";
+                                                list.innerHTML = fileList;
+                                                for (var i = 0, len = files.length; i < len; ++i) {
+                                                        if(!links[i]){
+                                                                links[i] =  new YAHOO.widget.Button("siwiki-filemanager-link"+i); 
+
+                                                                linksDelete[i] =  new YAHOO.widget.Button({ id: "linkDeleteId"+i, name: files[i].file_name, container: "linkDelete"+i, title: "%%%delete%%%", onclick: { fn: onDeleteClick }}); 
+                                                        }
+                                                }
+                                }
+
+                                function onDeleteClick(ev){
+                                        var url = "'.$this->createLink(Array('action' => 'deleteFile', 'uid' => $this->controller->parameters->get('uid'))).'";
+                                        url += "&siwiki[fileName]=" + this.get("name");
+                                        YAHOO.util.Connect.asyncRequest("GET", url,
+                                        {
+                                                success : function(o) {
+                                                                try {
+                                                                    var response = YAHOO.lang.JSON.parse(o.responseText);
+                                                                    if (response[0]["status"] !== "DELETED")  {
+                                                                            alert(response[0]["status"]);
+                                                                    } else {
+                                                                            controlNumber--;
+                                                                            if(controlNumber == 0){
+                                                                                        checked = false;
+                                                                                        filemanager.set("checked",checked,false); 
+                                                                            } 
+                                                                            panel6.hide();
+                                                                            onFilemanagerClick();
+                                                                    }
+                                                                }
+                                                                catch (e){
+                                                                }		
+                                                 },
+                                                failure:function(o) {
+                                                        if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                        }
+                                                }
+                                        });
+                                }       
+
+                                function onFilemanagerClick(){
+                                        if(!gotData){
+                                                YAHOO.util.Connect.asyncRequest("GET", "'.$linkGetFiles->makeUrl(false).'", 
+                                                {
+                                                        success : function(o) {
+                                                                        try {
+                                                                            var files = YAHOO.lang.JSON.parse(o.responseText);
+                                                                        }
+                                                                        catch (e){
+                                                                        }		
+                                                                        listFiles(files);
+                                                         },
+                                                        failure:function(o) {
+                                                                if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                }
+                                                        }
+                                                });
+                                        }
+                                        filemanager.set("checked",checked,false); 
+                                        panel6.show();
+                                } 
+
+
+
+                                        YAHOO.util.Event.onContentReady("siwiki-panel-filemanager", function() {
+                                                YAHOO.util.Connect.asyncRequest("GET", "'.$linkInitialize->makeUrl(false).'", 
+                                                           {
+                                                                success : function(o) {
+                                                                                try {
+                                                                                  var messages = YAHOO.lang.JSON.parse(o.responseText);
+                                                                                }
+                                                                                catch (e) {
+                                                                                        //console.log("json parse error: e");
+                                                                                }
+                
+                                                                                if(messages.number != 0){
+                                                                                        controlNumber = messages.number;
+                                                                                        checked = true;
+                                                                                } else {
+                                                                                        checked = false;
+                                                                                } 
+
+                                                                                filemanager = new YAHOO.widget.Button({
+                                                                                        type: "checkbox", 
+                                                                                        id:"siwiki-menu-filemanager", 
+                                                                                        title:"%%%filemanager%%%", 
+                                                                                        container:"siwiki-menu-items", 
+                                                                                        checked: checked,
+                                                                                        onclick: { fn: onFilemanagerClick } 
+                                                                                });
+                                                                },
+                                                                failure:function(o) {
+                                                                        if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                                //console.log("ajax connection failed");
+                                                                        }
+                                                                }
+                                                }); 
+                                        }); 
+                        </script>';      
+	}
+        /**
+         *
          * Creates the notification checkbox
          *
          * @return string
@@ -856,6 +1281,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                    { type: 'select', label: 'Arial', value: 'fontname', disabled: true,
                                                        menu: [
                                                            { text: 'Arial', checked: true },
+                                                           { text: 'Times New Roman' },
                                                            { text: 'Courier New' }
                                                        ]
                                                    },
@@ -870,7 +1296,10 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                      { type: 'push', label: 'Underline CTRL + SHIFT + U', value: 'underline' },
                                                      { type: 'separator' },
                                                      { type: 'color', label: '%%%typocolor%%%', value: 'forecolor', disabled: true },
-                                                     { type: 'color', label: '%%%backgroundcolor%%%', value: 'backcolor', disabled: true }
+                                                     { type: 'color', label: '%%%backgroundcolor%%%', value: 'backcolor', disabled: true },
+                                                     { type: 'separator' },
+                                                     { type: 'push', label: 'Remove Formatting', value: 'removeformat', disabled: true }, 
+                                                     { type: 'push', label: 'Show/Hide Hidden Elements', value: 'hiddenelements' } 
                                                    ]
                                                 },
                                                 { type: 'separator' },

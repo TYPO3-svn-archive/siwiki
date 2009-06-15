@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_ajax.php 1177 2009-04-09 12:29:29Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_ajax.php 1210 2009-06-10 09:51:24Z sisak $
  *
  */ 
 class tx_siwiki_controllers_ajax extends tx_lib_controller {
@@ -55,8 +55,23 @@ class tx_siwiki_controllers_ajax extends tx_lib_controller {
 
                 return $translator->translateContent();
         }
-}
 
+        function deleteFileAction() {
+                $modelClassName = tx_div::makeInstanceClassName('tx_siwiki_models_files');
+                $model = new $modelClassName($this);
+                $model->deleteFile($this->parameters, $this->configurations->get('storagePid'));
+
+                $viewClassName = tx_div::makeInstanceClassName('tx_siwiki_views_siwiki');
+                $view = new $viewClassName($this, $model);
+                $view->castElements('tx_siwiki_views_siwiki');
+                $view->renderJSON($this->configurations->get('ajaxTemplate'));
+
+                $translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
+                $translator = new $translatorClassName($this,$view);
+                return $translator->translateContent();
+        }
+
+}
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/siwiki/controllers/class.tx_siwiki_controllers_ajax.php']) {
         include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/siwiki/controllers/class.tx_siwiki_controllers_ajax.php']);
 }

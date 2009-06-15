@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_siwiki.php 1201 2009-04-28 10:00:45Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_siwiki.php 1209 2009-05-28 15:17:50Z sisak $
  *
  */ 
 
@@ -414,6 +414,18 @@ class tx_siwiki_controllers_siwiki extends tx_lib_controller {
                 $translator = new $translatorClassName($this,$view);
 
                 return $this->wrapTranslatedContent($translator->translateContent());
+        }
+
+
+        function pushfileAction(){
+                $this->username = tx_siwiki_classes_misc::getUsername();
+                if($this->configurations->get('anonymous') || ($this->username != 'anonymous' && $this->username)){ 
+                        $viewClassName = tx_div::makeInstanceClassName('tx_siwiki_views_siwiki');
+                        $view = new $viewClassName($this);
+                        return $view->render($this->configurations->get('pushTemplate'));
+                } else {
+                        return 'permission denied';
+                }
         }
 }
 

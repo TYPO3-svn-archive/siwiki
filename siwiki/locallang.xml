@@ -10,6 +10,7 @@
 			<label index="save">save</label>
 			<label index="back">go back</label>
 			<label index="cancel">cancel</label>
+			<label index="create">Create</label>
 			<label index="edit">edit</label>
 			<label index="delete">delete</label>
 			<label index="plot">overview</label>
@@ -50,13 +51,39 @@
                         <label index="version">Article version</label>
                         <label index="sameVersions">these versions are identical</label>
                         <label index="signature">Signature</label>
-                        <label index="searchlabel">article search</label>
+                        <label index="searchlabel">search</label>
                         <label index="comment">comment:</label>
+                        <label index="addHeader">Create new article...</label>
+                        <label index="addDescription">Name your article and select a namespace.</label>
+                        <label index="title">Title</label>
+                        <label index="namespace">Namespace</label>
+                        <label index="filemanager">Filemanager</label>
+                        <label index="filemanagerDescription">You see all files related to this article.</label>
+                        <label index="filemanagerHeader">File manager</label>
+                        <label index="filemanagerFilelist">File list</label>
+                        <label index="filemanagerForm">Load a file up</label>
+                        <label index="filemanagerFormButton">Upload</label>
+                        <label index="filemanagerFormFile">File</label>
+                        <label index="filemanagerFormName">Name</label>
+                        <label index="filemanagerFormDescription">Description</label>
+                        <label index="loading">Loading</label>
+                        <label index="ok">Ok</label>
+                        <label index="error">Error</label>
+                        <label index="errorFileExists">File already exists</label>
+                        <label index="errorCreateFolder">Cant create folder</label>
+                        <label index="errorMimetype">Mimetype is not allowed</label>
+                        <label index="errorNoFile">No file submitted</label>
+                        <label index="errorUpload">Error uploading file, maybe the file is too large</label>
+                        <label index="errorFileMax">File is too large</label>
+                        <label index="errorUploadPart">Partial upload</label>
+                        <label index="errorFileName">Filename is empty</label>
+                        <label index="latestUpdates">Latest updates</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="home">Startseite</label>
 			<label index="save">Speichern</label>
 			<label index="cancel">Abbrechen</label>
+			<label index="create">Erstellen</label>
 			<label index="back">zurück</label>
 			<label index="edit">Bearbeiten</label>
 			<label index="delete">Löschen</label>
@@ -100,6 +127,32 @@
                         <label index="signature">Signatur</label>
                         <label index="searchlabel">Artikelsuche</label>
                         <label index="comment">Kommentar:</label>
+                        <label index="addHeader">Neuen Artikel erstellen...</label>
+                        <label index="addDescription">Wählen Sie einen Titel und eine Kategorie.</label>
+                        <label index="title">Titel</label>
+                        <label index="namespace">Kategorie</label>
+                        <label index="filemanager">Dateimanager</label>
+                        <label index="filemanagerUploadOk">Datei wurde hochgeladen</label>
+                        <label index="filemanagerDescription">Sie sehen alle Dateien zu diesem Artikel.</label>
+                        <label index="filemanagerHeader">Dateimanager</label>
+                        <label index="filemanagerFilelist">Dateiliste</label>
+                        <label index="filemanagerForm">Laden Sie eine Datei hoch</label>
+                        <label index="filemanagerFormButton">Datei hochladen</label>
+                        <label index="filemanagerFormFile">Datei</label>
+                        <label index="filemanagerFormName">Name</label>
+                        <label index="filemanagerFormDescription">Beschreibung</label>
+                        <label index="loading">Einen Moment</label>
+                        <label index="ok">Ok</label>
+                        <label index="error">Fehler</label>
+                        <label index="errorFileExists">Datei existiert bereits</label>
+                        <label index="errorCreateFolder">Ordner konnte nicht erstellt werden</label>
+                        <label index="errorMimetype">Dateityp ist nicht erlaubt</label>
+                        <label index="errorNoFile">Es wurde keine Datei ausgewählt</label>
+                        <label index="errorUpload">Konnte Datei nicht hochladen, evtl. ist sie zu groß</label>
+                        <label index="errorFileMax">Die Datei ist zu groß</label>
+                        <label index="errorUploadPart">Datei wurde unvollständig hochgeladen</label>
+                        <label index="errorFileName">Dateiname fehlt</label>
+                        <label index="latestUpdates">Letzte Änderungen</label>
 		</languageKey>
 	</data>
 </T3locallang>

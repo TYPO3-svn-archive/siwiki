@@ -21,11 +21,11 @@
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">The only view we have so far. It renders all different templates!</p>
+<p class="short-description">renders all templates besides updates</p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Andreas Lappe &lt;<a href="mailto:nd@off-pist.de">nd@off-pist.de</a>&gt;</li>
 				<li><span class="field">author:</span> Stefan Isak &lt;<a href="mailto:stefan.isak@googlemail.com">stefan.isak@googlemail.com</a>&gt;</li>
-				<li><span class="field">version:</span> $Id: class.tx_siwiki_views_siwiki.php 1177 2009-04-09 12:29:29Z sisak $</li>
+				<li><span class="field">version:</span> $Id: class.tx_siwiki_views_siwiki.php 1214 2009-06-10 15:51:32Z sisak $</li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_views---class.tx_siwiki_views_siwiki.php.html">/views/class.tx_siwiki_views_siwiki.php</a> (line <span class="field">13</span>)
@@ -51,8 +51,13 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																																																																																																																																																																																												
+																																																																																																																																																																																																																																																																																				
 												<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#createAddLink" title="details" class="method-name">createAddLink</a>
+										()
+									</div>
+																<div class="method-definition">
 											<span class="method-result">string</span>
 										<a href="#createBackLink" title="details" class="method-name">createBackLink</a>
 										()
@@ -79,6 +84,11 @@
 									</div>
 																<div class="method-definition">
 											<span class="method-result">string</span>
+										<a href="#createFilemanagerLink" title="details" class="method-name">createFilemanagerLink</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
 										<a href="#createHomeLink" title="details" class="method-name">createHomeLink</a>
 										()
 									</div>
@@ -86,6 +96,11 @@
 											<span class="method-result">string</span>
 										<a href="#createInfoLink" title="details" class="method-name">createInfoLink</a>
 										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#createLink" title="details" class="method-name">createLink</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$parameters</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$ajax</span> = <span class="var-default">true</span>])
 									</div>
 																<div class="method-definition">
 											<span class="method-result">string</span>
@@ -223,11 +238,32 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 
-<a name="methodcreateBackLink" id="createBackLink"><!-- --></a>
+<a name="methodcreateAddLink" id="createAddLink"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createBackLink</span> (line <span class="line-number">311</span>)
+		<span class="method-title">createAddLink</span> (line <span class="line-number">622</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the add link</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createAddLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcreateBackLink" id="createBackLink"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createBackLink</span> (line <span class="line-number">312</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -245,10 +281,10 @@
 			
 	</div>
 <a name="methodcreateCancelLink" id="createCancelLink"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createCancelLink</span> (line <span class="line-number">734</span>)
+		<span class="method-title">createCancelLink</span> (line <span class="line-number">1160</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -266,7 +302,7 @@
 			
 	</div>
 <a name="methodcreateDeleteLink" id="createDeleteLink"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">createDeleteLink</span> (line <span class="line-number">445</span>)
@@ -287,10 +323,10 @@
 			
 	</div>
 <a name="methodcreateDropDownBox" id="createDropDownBox"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createDropDownBox</span> (line <span class="line-number">377</span>)
+		<span class="method-title">createDropDownBox</span> (line <span class="line-number">379</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -308,10 +344,10 @@
 			
 	</div>
 <a name="methodcreateEditLink" id="createEditLink"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createEditLink</span> (line <span class="line-number">289</span>)
+		<span class="method-title">createEditLink</span> (line <span class="line-number">290</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -328,11 +364,32 @@
 		
 			
 	</div>
+<a name="methodcreateFilemanagerLink" id="createFilemanagerLink"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createFilemanagerLink</span> (line <span class="line-number">750</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates the filemanager panel</p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			createFilemanagerLink
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 <a name="methodcreateHomeLink" id="createHomeLink"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createHomeLink</span> (line <span class="line-number">270</span>)
+		<span class="method-title">createHomeLink</span> (line <span class="line-number">269</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -353,7 +410,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createInfoLink</span> (line <span class="line-number">565</span>)
+		<span class="method-title">createInfoLink</span> (line <span class="line-number">567</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -370,11 +427,39 @@
 		
 			
 	</div>
-<a name="methodcreateNotificationCheckbox" id="createNotificationCheckbox"><!-- --></a>
+<a name="methodcreateLink" id="createLink"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createNotificationCheckbox</span> (line <span class="line-number">619</span>)
+		<span class="method-title">createLink</span> (line <span class="line-number">734</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			createLink
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$parameters</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$ajax</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$parameters</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ajax</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcreateNotificationCheckbox" id="createNotificationCheckbox"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createNotificationCheckbox</span> (line <span class="line-number">1045</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -392,10 +477,10 @@
 			
 	</div>
 <a name="methodcreatePlotLink" id="createPlotLink"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createPlotLink</span> (line <span class="line-number">493</span>)
+		<span class="method-title">createPlotLink</span> (line <span class="line-number">494</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -416,10 +501,10 @@
 			
 	</div>
 <a name="methodcreateRevertLink" id="createRevertLink"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createRevertLink</span> (line <span class="line-number">332</span>)
+		<span class="method-title">createRevertLink</span> (line <span class="line-number">334</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -437,10 +522,10 @@
 			
 	</div>
 <a name="methodcreateSearchBox" id="createSearchBox"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createSearchBox</span> (line <span class="line-number">73</span>)
+		<span class="method-title">createSearchBox</span> (line <span class="line-number">72</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -457,10 +542,10 @@
 			
 	</div>
 <a name="methodcreateSubmitLink" id="createSubmitLink"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createSubmitLink</span> (line <span class="line-number">756</span>)
+		<span class="method-title">createSubmitLink</span> (line <span class="line-number">1183</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -483,10 +568,10 @@
 			
 	</div>
 <a name="methodcreateTocLink" id="createTocLink"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createTocLink</span> (line <span class="line-number">523</span>)
+		<span class="method-title">createTocLink</span> (line <span class="line-number">524</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -507,7 +592,7 @@
 			
 	</div>
 <a name="methodcreateVersionLink" id="createVersionLink"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">createVersionLink</span> (line <span class="line-number">420</span>)
@@ -528,10 +613,10 @@
 			
 	</div>
 <a name="methodincludeYuiRte" id="includeYuiRte"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">includeYuiRte</span> (line <span class="line-number">778</span>)
+		<span class="method-title">includeYuiRte</span> (line <span class="line-number">1205</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -560,10 +645,10 @@
 			
 	</div>
 <a name="methodprintAsDiff" id="printAsDiff"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">printAsDiff</span> (line <span class="line-number">1020</span>)
+		<span class="method-title">printAsDiff</span> (line <span class="line-number">1459</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -589,10 +674,10 @@
 			
 	</div>
 <a name="methodprintAsHtml" id="printAsHtml"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">printAsHtml</span> (line <span class="line-number">54</span>)
+		<span class="method-title">printAsHtml</span> (line <span class="line-number">53</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -615,10 +700,10 @@
 			
 	</div>
 <a name="methodprintAsImage" id="printAsImage"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">printAsImage</span> (line <span class="line-number">43</span>)
+		<span class="method-title">printAsImage</span> (line <span class="line-number">42</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -640,10 +725,10 @@
 			
 	</div>
 <a name="methodprintAsNumberedLines" id="printAsNumberedLines"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">printAsNumberedLines</span> (line <span class="line-number">1039</span>)
+		<span class="method-title">printAsNumberedLines</span> (line <span class="line-number">1478</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -666,10 +751,10 @@
 			
 	</div>
 <a name="methodprintAsYuiRte" id="printAsYuiRte"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">printAsYuiRte</span> (line <span class="line-number">67</span>)
+		<span class="method-title">printAsYuiRte</span> (line <span class="line-number">66</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -698,10 +783,10 @@
 			
 	</div>
 <a name="methodprintBottomToolbar" id="printBottomToolbar"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">printBottomToolbar</span> (line <span class="line-number">162</span>)
+		<span class="method-title">printBottomToolbar</span> (line <span class="line-number">160</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -723,7 +808,7 @@
 			
 	</div>
 <a name="methodprintDiffMenuItems" id="printDiffMenuItems"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">printDiffMenuItems</span> (line <span class="line-number">204</span>)
@@ -744,7 +829,7 @@
 			
 	</div>
 <a name="methodprintEditMenuItems" id="printEditMenuItems"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">printEditMenuItems</span> (line <span class="line-number">224</span>)
@@ -765,10 +850,10 @@
 			
 	</div>
 <a name="methodprintFormTag" id="printFormTag"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">printFormTag</span> (line <span class="line-number">767</span>)
+		<span class="method-title">printFormTag</span> (line <span class="line-number">1194</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -791,10 +876,10 @@
 			
 	</div>
 <a name="methodprintMenuItems" id="printMenuItems"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">printMenuItems</span> (line <span class="line-number">180</span>)
+		<span class="method-title">printMenuItems</span> (line <span class="line-number">178</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -812,10 +897,10 @@
 			
 	</div>
 <a name="methodprintNewMenuItems" id="printNewMenuItems"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">printNewMenuItems</span> (line <span class="line-number">248</span>)
+		<span class="method-title">printNewMenuItems</span> (line <span class="line-number">247</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -833,10 +918,10 @@
 			
 	</div>
 <a name="methodprintTitle" id="printTitle"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">printTitle</span> (line <span class="line-number">1060</span>)
+		<span class="method-title">printTitle</span> (line <span class="line-number">1499</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -862,10 +947,10 @@
 			
 	</div>
 <a name="methodprintToolbar" id="printToolbar"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">printToolbar</span> (line <span class="line-number">142</span>)
+		<span class="method-title">printToolbar</span> (line <span class="line-number">140</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -890,10 +975,10 @@
 			
 	</div>
 <a name="methodrenderJSON" id="renderJSON"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">renderJSON</span> (line <span class="line-number">22</span>)
+		<span class="method-title">renderJSON</span> (line <span class="line-number">21</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -916,10 +1001,10 @@
 			
 	</div>
 <a name="methodrenderPNG" id="renderPNG"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">renderPNG</span> (line <span class="line-number">33</span>)
+		<span class="method-title">renderPNG</span> (line <span class="line-number">32</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -942,10 +1027,10 @@
 			
 	</div>
 <a name="methodrenderToc" id="renderToc"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">renderToc</span> (line <span class="line-number">38</span>)
+		<span class="method-title">renderToc</span> (line <span class="line-number">37</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -972,7 +1057,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 09 Apr 2009 16:07:04 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+		Documentation generated on Mon, 15 Jun 2009 10:10:56 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
 	</p>
 	</div></body>
 </html>

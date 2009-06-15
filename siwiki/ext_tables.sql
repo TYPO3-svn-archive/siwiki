@@ -12,7 +12,7 @@ CREATE TABLE `tx_siwiki_articles` (
   `hidden` tinyint(4) NOT NULL default '0',
   `title` char(255) NOT NULL default '',
   `namespace` int(11) NOT NULL default '0',
-  `article` text NOT NULL,
+  `article` longtext NOT NULL,
   `creator` varchar(255) NOT NULL default '',
   `editor` varchar(255) NOT NULL default '',
   `version` int(11) NOT NULL default '0',
@@ -37,7 +37,7 @@ CREATE TABLE `tx_siwiki_articles_cache` (
   `hidden` tinyint(4) NOT NULL default '0',
   `title` char(255) NOT NULL default '',
   `namespace` int(11) NOT NULL default '0',
-  `article` text NOT NULL,
+  `article` longtext NOT NULL,
   `creator` varchar(255) NOT NULL default '',
   `editor` varchar(255) NOT NULL default '',
   `version` int(11) NOT NULL default '0',
@@ -77,9 +77,9 @@ CREATE TABLE `tx_siwiki_articles_versions` (
   `deleted` tinyint(4) NOT NULL default '0',
   `hidden` tinyint(4) NOT NULL default '0',
   `article_uid` int(11) NOT NULL default '0',
-  `title` text NOT NULL,
+  `title` char(255) NOT NULL default '',
   `namespace` int(11) NOT NULL default '0',
-  `article` text NOT NULL,
+  `article` longtext NOT NULL,
   `creator` varchar(255) NOT NULL default '', 
   `editor` varchar(255) NOT NULL default '',
   `comment` text,
@@ -102,7 +102,7 @@ CREATE TABLE `tx_siwiki_namespaces` (
   `tstamp` int(11) NOT NULL default '0',
   `crdate` int(11) NOT NULL default '0',
   `cruser_id` int(11) NOT NULL default '0',
-  `name` text NOT NULL,
+  `name` char(255) NOT NULL default '',
   `description` text NOT NULL,
   PRIMARY KEY  (`uid`),
   KEY `parent` (`pid`)
@@ -129,6 +129,26 @@ CREATE TABLE `tx_siwiki_notifications` (
 
 -- --------------------------------------------------------
 
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tx_siwiki_files`
+--
+
+CREATE TABLE `tx_siwiki_files` (
+  `uid` int(11) NOT NULL auto_increment,
+  `pid` int(11) NOT NULL default '0',
+  `tstamp` int(11) NOT NULL default '0',
+  `deleted` tinyint(4) NOT NULL default '0',
+  `user_uid` int(11) NOT NULL default '0',
+  `article_uid` int(11) NOT NULL default '0',
+  `file_name` char(255) NOT NULL default '',
+  `file_description` char(255) NOT NULL default '',
+  PRIMARY KEY  (`uid`),
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+-- --------------------------------------------------------
 --
 -- Tabellenstruktur für Tabelle `tx_siwiki_articles_locking`
 --

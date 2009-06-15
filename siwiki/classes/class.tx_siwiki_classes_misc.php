@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_classes_misc.php 1177 2009-04-09 12:29:29Z sisak $
+ * @version $Id: class.tx_siwiki_classes_misc.php 1209 2009-05-28 15:17:50Z sisak $
  *
  */
 
@@ -22,7 +22,6 @@ class tx_siwiki_classes_misc {
                 $context = new tx_lib_context();
                 $FE = $context->getFrontEnd();
                 $userArr = $FE->fe_user->user;
-
                 return (empty($userArr['username'])) ? 'anonymous' : $userArr['username'];
         }
 

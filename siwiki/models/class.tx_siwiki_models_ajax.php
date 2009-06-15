@@ -7,14 +7,14 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_ajax.php 1188 2009-04-17 08:27:22Z sisak $
+ * @version $Id: class.tx_siwiki_models_ajax.php 1210 2009-06-10 09:51:24Z sisak $
  *
  */ 
 
 class tx_siwiki_models_ajax extends tx_lib_object {
 
         /**
-         * Get a fucking DBAL 
+         * Get a fucking DBAL -> cheese
          * escape Strings to avoid mysql injections
          * @param mixed $input
          * @param String $table
@@ -39,8 +39,18 @@ class tx_siwiki_models_ajax extends tx_lib_object {
                         $entry = new tx_lib_object(array('response' => $ns));
                         $this->append($entry);
                         break;
+                case 'getAllFilesByArticle':
+                        $files = tx_siwiki_models_files::getAllFilesByArticle($pid, $this->controller->parameters->get('uid'));
+                        $entry = new tx_lib_object(array('response' => $files));
+                        $this->append($entry);
+                        break;
                 case 'imageUpload':
                         $file = tx_siwiki_models_upload::uploadImage($this->controller->configurations->get('uploadedImageMaxWidth'));
+                        $entry = new tx_lib_object(array('response' => $file));
+                        $this->append($entry);
+                        break;
+                case 'fileUpload':
+                        $file = tx_siwiki_models_upload::uploadFile($this->controller->parameters,$pid);
                         $entry = new tx_lib_object(array('response' => $file));
                         $this->append($entry);
                         break;
@@ -166,6 +176,21 @@ class tx_siwiki_models_ajax extends tx_lib_object {
                                 }
                         }
                         $entry = new tx_lib_object(array('response' => $json));
+                        $this->append($entry);
+                        break;
+
+                case 'initializeFilemanager':
+                        $select = 'COUNT(uid) as number';
+                        $from = 'tx_siwiki_files';
+                        $where = 'article_uid = '.$this->s($this->controller->parameters->get('uid')).' 
+                                  AND pid = \''.$pid.'\' AND deleted=0';
+
+                        $query = $GLOBALS['TYPO3_DB']->exec_SELECTquery($select,$from,$where);
+                        if($query) {
+                                while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($query)) {
+                                        $entry = new tx_lib_object(array('response' => $row));
+                                }
+                        }
                         $this->append($entry);
                         break;
                 default:
