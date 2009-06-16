@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_ajax.php 1210 2009-06-10 09:51:24Z sisak $
+ * @version $Id: class.tx_siwiki_models_ajax.php 1221 2009-06-16 09:34:37Z sisak $
  *
  */ 
 
@@ -45,12 +45,12 @@ class tx_siwiki_models_ajax extends tx_lib_object {
                         $this->append($entry);
                         break;
                 case 'imageUpload':
-                        $file = tx_siwiki_models_upload::uploadImage($this->controller->configurations->get('uploadedImageMaxWidth'));
+                        $file = tx_siwiki_models_upload::uploadImage($this->controller->configurations->get('uploadedImageMaxWidth'), $this->controller->configurations->get('imageUploadFolder'));
                         $entry = new tx_lib_object(array('response' => $file));
                         $this->append($entry);
                         break;
                 case 'fileUpload':
-                        $file = tx_siwiki_models_upload::uploadFile($this->controller->parameters,$pid);
+                        $file = tx_siwiki_models_upload::uploadFile($this->controller->parameters,$pid, $this->controller->configurations->get('filemanagerUploadFolder'));
                         $entry = new tx_lib_object(array('response' => $file));
                         $this->append($entry);
                         break;

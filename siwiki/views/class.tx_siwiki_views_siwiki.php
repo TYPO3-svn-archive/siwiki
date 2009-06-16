@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1217 2009-06-15 14:07:53Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1221 2009-06-16 09:34:37Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -1441,9 +1441,11 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
         }                  
 
         print "             });
-
                  	    wikilink(myEditor,'".$linkNs->makeUrl(false)."','".$this->controller->configurations->get("defaultNamespace")."');			    
-			    yuiImgUploader(myEditor,'".$link->makeUrl(false)."','img');
+        ";
+        if($this->controller->configurations->get('enableImageUpload'))
+                print "     yuiImgUploader(myEditor,'".$link->makeUrl(false)."','img');";
+        print "
 			    myEditor.render();
                             updateLocking(myEditor,'".$linkUpdateLocking->makeUrl(false)."','".$linkCancel->makeUrl(false)."','".$this->controller->configurations->get("timeAnArticleRemainsLocked")."','".$articleHash."');
 			})();

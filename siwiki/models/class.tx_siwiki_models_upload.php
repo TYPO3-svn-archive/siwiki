@@ -19,7 +19,7 @@ class tx_siwiki_models_upload  extends tx_lib_object {
          * @param int $uploadedImageMaxWidth
          * @return String
          */
-        public static function uploadImage($uploadedImageMaxWidth) {
+        public static function uploadImage($uploadedImageMaxWidth, $relativePath) {
                 $mimetype = Array("image/jpeg" => ".jpeg", 
                      "image/jpg" => ".jpeg", 
                      "image/x-jpeg" => ".jpeg",
@@ -36,11 +36,11 @@ class tx_siwiki_models_upload  extends tx_lib_object {
                         $imgTmpName = $_FILES['img']['tmp_name'];
                         $imgSize = $_FILES['img']['size'];
 
-		       // $image = tx_div::makeInstance('tx_lib_image');
-                       // $image->pathString = $imgTmpName; 
+                        $relativePath = trim($relativePath);
+                        if(substr($relativePath,0,1) == "/") $relativePath = substr_replace($relativePath,'',0,1);
+                        if(substr($relativePath,strlen($relativePath)-1,1) !== "/") $relativePath .= $relativePath."/";
                         
                         $absolutePath = PATH_site;
-                        $relativePath = 'fileadmin/user_upload/siwiki/images/';
                         $filename = $relativePath."img".mt_rand(1000,1000000).$mimetype[$imgType]; 
 
                         if(array_key_exists($imgType,$mimetype)){
@@ -71,7 +71,7 @@ class tx_siwiki_models_upload  extends tx_lib_object {
          * @param int $uploadedImageMaxWidth
          * @return String
          */
-        public static function uploadFile($parameters,$pid) {
+        public static function uploadFile($parameters,$pid, $relativePath) {
                 $articleUid = (int) $parameters->get('uid');
                 $pid = (int) $pid;
                 $fileName = str_replace(' ','_',htmlspecialchars(trim($parameters->get('name'))));
@@ -108,9 +108,10 @@ class tx_siwiki_models_upload  extends tx_lib_object {
                                          break;
                                 } 
                         } else { 
-                                //TODO: make path configurable
                                 $absolutePath = PATH_site;
-                                $relativePath = 'fileadmin/user_upload/siwiki/filemanager/';
+                                $relativePath = trim($relativePath);
+                                if(substr($relativePath,0,1) == "/") $relativePath = substr_replace($relativePath,'',0,1);
+                                if(substr($relativePath,strlen($relativePath)-1,1) !== "/") $relativePath .= $relativePath."/";
                                 $prefix = 'siwikiArticle';
                                 $path = $absolutePath.$relativePath.$prefix.$articleUid;
 

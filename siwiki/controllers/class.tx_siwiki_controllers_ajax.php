@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_ajax.php 1210 2009-06-10 09:51:24Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_ajax.php 1221 2009-06-16 09:34:37Z sisak $
  *
  */ 
 class tx_siwiki_controllers_ajax extends tx_lib_controller {
@@ -59,7 +59,7 @@ class tx_siwiki_controllers_ajax extends tx_lib_controller {
         function deleteFileAction() {
                 $modelClassName = tx_div::makeInstanceClassName('tx_siwiki_models_files');
                 $model = new $modelClassName($this);
-                $model->deleteFile($this->parameters, $this->configurations->get('storagePid'));
+                $model->deleteFile($this->parameters, $this->configurations->get('storagePid'), $this->configurations->get('filemanagerUploadFolder'));
 
                 $viewClassName = tx_div::makeInstanceClassName('tx_siwiki_views_siwiki');
                 $view = new $viewClassName($this, $model);

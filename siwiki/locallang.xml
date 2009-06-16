@@ -57,6 +57,7 @@
                         <label index="addDescription">Name your article and select a namespace.</label>
                         <label index="title">Title</label>
                         <label index="namespace">Namespace</label>
+                        <label index="add">Add new article</label>
                         <label index="filemanager">Filemanager</label>
                         <label index="filemanagerDescription">You see all files related to this article.</label>
                         <label index="filemanagerHeader">File manager</label>
@@ -131,6 +132,7 @@
                         <label index="addDescription">Wählen Sie einen Titel und eine Kategorie.</label>
                         <label index="title">Titel</label>
                         <label index="namespace">Kategorie</label>
+                        <label index="add">Neuer Artikel</label>
                         <label index="filemanager">Dateimanager</label>
                         <label index="filemanagerUploadOk">Datei wurde hochgeladen</label>
                         <label index="filemanagerDescription">Sie sehen alle Dateien zu diesem Artikel.</label>

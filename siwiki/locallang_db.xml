@@ -27,7 +27,8 @@
 			<label index="flexform.controllerSelection.siwiki">siWiki display</label>
 			<label index="flexform.storageFolderSelection">siWiki storage folder</label>
 			<label index="flexform.enableGraphviz">Enable graphviz overview?</label>
-			<label index="flexform.enableFilemanager">Enable Filemanager?</label>
+			<label index="flexform.enableFilemanager">Enable Filemanager? (Don't forget to set upload folder via TS, have a look at the manual!)</label>
+			<label index="flexform.enableImageUpload">Enable ImageUpload? (Don't forget to set upload folder via TS, have a look at the manual!)</label>
 			<label index="flexform.anonymous">Use anonymous?</label>
 			<label index="flexform.adminMail">Leave an email address to this field, if you want to get notified when an exception is triggerd.</label>
 			<label index="flexform.fullTextSearch">Enable full text search? (otherwise just title and namespace getting matched)</label>
@@ -56,7 +57,8 @@
 			<label index="flexform.rteHeight">Höhe (px)</label>
 			<label index="flexform.storageFolderSelection">siWiki storage folder</label>
 			<label index="flexform.enableGraphviz">Graphviz Übersicht aktivieren?</label>
-			<label index="flexform.enableFilemanager">Filemanager aktivieren?</label>
+			<label index="flexform.enableFilemanager">Filemanager aktivieren? (Nicht vergessen den Upload Folder per TS anzugeben s. Manual!)</label>
+			<label index="flexform.enableFilemanager">Bilder Upload aktivieren? (Nicht vergessen den Upload Folder per TS anzugeben s. Manual!)</label>
 			<label index="flexform.fullTextSearch">Volltextsuche aktivieren? (Ansonsten werden nur Title und Kategorie durchsucht)</label>
 			<label index="flexform.anonymous">Anonym arbeiten?</label>
 			<label index="flexform.adminMail">Sende eMail an diese Adresse, wenn ein Fehler auftritt.</label>

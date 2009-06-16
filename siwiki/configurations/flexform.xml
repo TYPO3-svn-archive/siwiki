@@ -95,6 +95,15 @@
 							</config>
 						</TCEforms>
 					</enableFilemanager>
+					<enableImageUpload>
+						<TCEforms>
+							<label>LLL:EXT:siwiki/locallang_db.xml:flexform.enableImageUpload</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</enableImageUpload>
 					<enableGraphviz>
 						<TCEforms>
 							<label>LLL:EXT:siwiki/locallang_db.xml:flexform.enableGraphviz</label>
