@@ -90,6 +90,7 @@
                         <label index="errorUploadPart">Partial upload</label>
                         <label index="errorFileName">Filename is empty</label>
                         <label index="latestUpdates">Latest updates</label>
+                        <label index="mailFrom">Wiki Notification Service</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="home">Startseite</label>
@@ -177,6 +178,7 @@
                         <label index="errorUploadPart">Datei wurde unvollständig hochgeladen</label>
                         <label index="errorFileName">Dateiname fehlt</label>
                         <label index="latestUpdates">Letzte Änderungen</label>
+                        <label index="mailFrom">Wiki Notification Service</label>
 		</languageKey>
 	</data>
 </T3locallang>

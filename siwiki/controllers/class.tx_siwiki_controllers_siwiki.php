@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_siwiki.php 1209 2009-05-28 15:17:50Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_siwiki.php 1238 2009-06-30 09:28:31Z sisak $
  *
  */ 
 
@@ -191,9 +191,52 @@ class tx_siwiki_controllers_siwiki extends tx_lib_controller {
                                 $modelClassName = tx_div::makeInstanceClassName('tx_siwiki_models_notification');
                                 $notification = new $modelClassName($this);
                                 $notification->getUsersToNotify($this->parameters->get('uid'),$this->configurations->get('storageFolder'));
-                                $message = "Wiki update service";
+                                $message = "<h1>Wiki update service</h1>";
+                                $currentUserMail = tx_siwiki_classes_misc::getEmail();
+
+                                $headers =  'From: "Wiki Notification Service"' . "\n";
+                                $headers .= 'Reply-To: '.$this->configurations->get('adminMail') . "\n";
+                                $headers .= 'MIME-Version: 1.0' . "\n";
+                                $headers .= 'Content-type: text/html; charset=utf-8' . "\n";
+
+                                //
+                                $uid = $this->parameters->get('uid');
+                                $uid = intval($uid ? $uid : $this->configurations->get('rootpage'));
+                                $this->parameters->set('uid', $uid);
+
+                                $ns = $this->parameters->get('namespace');
+                                $ns = intval($ns ? $ns : $this->configurations->get('defaultNamespace'));
+                                $this->parameters->set('namespace', $ns);
+
+                                $modelArticleClassName = tx_div::makeInstanceClassName('tx_siwiki_models_article');
+                                $modelArticle = new $modelArticleClassName($this);
+                                $modelArticle->load($uid,$this->configurations->get('storageFolder'));
+                                $version = $modelArticle->current()->get('version') - 1;
+                                $title = $modelArticle->current()->get('title');
+                                $namespaceName = $modelArticle->current()->get('namespaceName');
+
+                                $modelArticleVersionClassName = tx_div::makeInstanceClassName('tx_siwiki_models_articleVersion');
+                                $modelArticleVersion = new $modelArticleVersionClassName($this);
+                                $modelArticleVersion->load($uid,$this->configurations->get('storageFolder'), $version);
+
+                                $modelDiffClassName = tx_div::makeInstanceClassName('tx_siwiki_models_diff');
+                                $modelDiff = new $modelDiffClassName($this);
+                                $modelDiff->createDiff($modelArticle,$modelArticleVersion);
+
+                                $viewClassName = tx_div::makeInstanceClassName('tx_siwiki_views_siwiki');
+                                $view = new $viewClassName($this, $modelDiff);
+                                $view->castElements('tx_siwiki_views_siwiki');
+                                $view->render($this->configurations->get('notificationTemplate'));
+
+                                $translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
+                                $translator = new $translatorClassName($this,$view);
+
+                                $message = $translator->translateContent();
+
                                 foreach($notification as $entry){
-                                        $status = mail($entry->get('email'),"Update in > ".$modelArticle->get('title'),$message);
+                                       if($entry->get('email')!==$currentUserMail){ 
+                                              $status = mail($entry->get('email'),"Update in > ".$title."@".$namespaceName,$message,$headers);
+                                       }
                                 }
                         }
                         

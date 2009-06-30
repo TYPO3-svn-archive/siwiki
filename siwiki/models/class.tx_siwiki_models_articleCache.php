@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_articleCache.php 1234 2009-06-30 07:21:17Z sisak $
+ * @version $Id: class.tx_siwiki_models_articleCache.php 1236 2009-06-30 09:13:29Z sisak $
  * @see tx_siwiki_models_article
  *
  */
@@ -138,7 +138,6 @@ class tx_siwiki_models_articleCache extends tx_siwiki_models_article {
                 foreach($linksForHeaders as $key=>$val) {
                         $article = str_replace($key, $val, $article);
                 }
-                krumo($this->toc);
                 $article = preg_replace("/###TOC###/", $this->toc, $article);
         
                 return $article;

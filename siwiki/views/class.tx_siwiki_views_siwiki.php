@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1235 2009-06-30 07:35:47Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1238 2009-06-30 09:28:31Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -534,7 +534,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         $menu .= $this->createInfoLink();
                         $menu .= $this->createAddLink();
                         if($this->controller->configurations->get('enableFilemanager')) $menu .= $this->createFilemanagerLink();
-                        $menu .= $this->createNotificationCheckbox();
+                        if(!$this->controller->configurations->get('anonymous')) $menu .= $this->createNotificationCheckbox();
                 }
                 // add a div container to the menu items
                 $menu = '<div id="siwiki-menu-items">'.$menu.'</div>';
