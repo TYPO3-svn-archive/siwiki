@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_ajax.php 1221 2009-06-16 09:34:37Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_ajax.php 1230 2009-06-25 11:49:58Z sisak $
  *
  */ 
 class tx_siwiki_controllers_ajax extends tx_lib_controller {
@@ -49,6 +49,22 @@ class tx_siwiki_controllers_ajax extends tx_lib_controller {
                 $view = new $viewClassName($this,$model);
                 $view->castElements('tx_siwiki_views_siwiki');
                 $view->renderToc($this->configurations->get('tocTemplate'));
+
+                $translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
+                $translator = new $translatorClassName($this,$view);
+
+                return $translator->translateContent();
+        }
+
+        function getTagsAction() {
+                $modelClassName = tx_div::makeInstanceClassName('tx_siwiki_models_tags');
+                $model = new $modelClassName($this);
+                $model->getTags($this->configurations->get('storagePid'), $this->parameters->get('uid'), $this->parameters->get('namespace'));
+
+                $viewClassName = tx_div::makeInstanceClassName('tx_siwiki_views_siwiki');
+                $view = new $viewClassName($this,$model);
+                $view->castElements('tx_siwiki_views_siwiki');
+                $view->renderToc($this->configurations->get('tagTemplate'));
 
                 $translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
                 $translator = new $translatorClassName($this,$view);

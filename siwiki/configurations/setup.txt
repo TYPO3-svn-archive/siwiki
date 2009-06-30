@@ -20,6 +20,7 @@ temp.tx_siwiki.configurations {
 		errorTemplate = error.php
 		pngTemplate = png.php
 		tocTemplate = toc.php
+		tagTemplate = tag.php
 		pushTemplate = push.php
 		updatesTemplate = updates.php
 		filemanagerUploadFolder = fileadmin/user_upload/siwiki/filemanager/
@@ -307,6 +308,31 @@ div.siwiki-article a.siwiki-article-futurelink {
     *padding: 0.25em 1.75em;  /* IE only */
 }
 
+.yui-button#siwiki-menu-tag button {
+    background: url(../typo3conf/ext/siwiki/resources/images/save16.png) center center no-repeat;
+    text-indent: -4em;
+    overflow: hidden;
+    padding: 0 .75em;
+    width: 2em;
+    *margin-left: 4em;   /* IE only */
+    *padding: 0.25em 1.75em;  /* IE only */
+}
+
+#siwiki-menu-tag {
+    vertical-align: bottom;
+    margin-left: 0;
+}
+
+#siwiki-panel-tags div.yui-layout-bd-nohd {
+border: none;
+}
+#siwiki-panel-tags div.yui-layout-bd-nobd {
+border: none;
+}
+#siwiki-panel-tags div.yui-layout-bd-noft {
+border: none;
+}
+
 .yui-button#siwiki-menu-cancel button {
     background: url(../typo3conf/ext/siwiki/resources/images/cancel16.png) 10% 50% no-repeat;
     padding-left: 2em;
@@ -321,10 +347,17 @@ div.siwiki-article a.siwiki-article-futurelink {
 #siwiki-article-comment {
 	width: 30em;
 }
+
 #siwiki-menu-items {
         float: left;
-        width: 75%;
+        width: 50%;
 }
+
+#siwiki-tags {
+	float: right;
+	width: 48%;
+}
+
 #siwiki-searchbox {
 	width: 13em; 
 	background: #ffffff url(../typo3conf/ext/siwiki/resources/images/search16.png) no-repeat right center;
@@ -336,9 +369,17 @@ div.siwiki-article a.siwiki-article-futurelink {
 	padding-top: 5px;
 	width: 12em;
 }
-#siwiki-search {
-	float:left;
+
+#siwiki-title {
+	float: left;
+	width: 75%;
 }
+
+#siwiki-search {
+	float:right;
+        width: 25%;
+}
+
 #siwiki-toolbar {
 	height: 2em;
 	padding-bottom: 1em;
@@ -455,6 +496,16 @@ width: 150px;
 #tx_siwiki_latestUpdates td {
 	padding: 3px;
 }
+
+
+#siwiki-tags-panel .yui-resize-handle-br {
+        height: 11px;
+        width: 11px;
+        background-position: -20px -60px:
+        background-color: transparent;
+}
+
+
 
 )
 

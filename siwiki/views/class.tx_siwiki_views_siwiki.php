@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1221 2009-06-16 09:34:37Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1235 2009-06-30 07:35:47Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -134,10 +134,10 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                 
                                                                 
                          </script>'; 
-                print $box;
+                return $box;
         }
 
-        function printToolbar($which, $search = true){
+        function printToolbar($which){
                 print '<div id="siwiki-toolbar">';
                         switch($which){
                                 case 'display':
@@ -153,8 +153,354 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                         $this->printNewMenuItems();
                                 break;
                         }
-                        if($search) $this->createSearchBox();
+                        $this->printTags();
                 print '</div>';
+        }
+
+        function printTags(){
+		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+		$link = tx_div::makeInstance('tx_lib_link');
+		$link->destination($destination);
+		$link->designator($this->getDesignator());
+                $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
+                                        'uid' => $this->controller->parameters->get('uid'),
+                                        'action' => 'ajax',
+                                        'request' => 'getTags'));
+		$link->noHash();
+
+		$link2 = tx_div::makeInstance('tx_lib_link');
+		$link2->destination($destination);
+		$link2->designator($this->getDesignator());
+                $link2->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
+                                        'uid' => $this->controller->parameters->get('uid'),
+                                        'action' => 'ajax',
+                                        'request' => 'getArticlesByTag'));
+		$link2->noHash();
+
+		$link3 = tx_div::makeInstance('tx_lib_link');
+		$link3->destination($this->getDestination());
+		$link3->designator($this->getDesignator());
+		$link3->noHash();
+
+		$link4 = tx_div::makeInstance('tx_lib_link');
+		$link4->destination($destination);
+		$link4->designator($this->getDesignator());
+                $link4->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
+                                        'uid' => $this->controller->parameters->get('uid'),
+                                        'action' => 'ajax',
+                                        'request' => 'setTag',
+                                        'tag' => ''));
+		$link4->noHash();
+
+		$link5 = tx_div::makeInstance('tx_lib_link');
+		$link5->destination($destination);
+		$link5->designator($this->getDesignator());
+                $link5->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
+                                        'uid' => $this->controller->parameters->get('uid'),
+                                        'action' => 'ajax',
+                                        'request' => 'unsetTag',
+                                        'tid' => ''));
+		$link5->noHash();
+
+                print '<div id="siwiki-tags"><div id="siwiki-panel-tags"></div><div id="siwiki-tag-context"></div></div>
+                        <script type="text/javascript">
+                                var Dom = YAHOO.util.Dom,
+                                    Event = YAHOO.util.Event,
+                                    articles = null,
+                                    articleSource = null,
+                                    articleTable = null,
+                                    tagPanel = null,
+                                    tagMenuButton = null,
+                                    tagTable = null,
+                                    countRows = 0,
+                                    tags = null;
+                                
+                                //initially get all tags for current article
+                                YAHOO.util.Connect.asyncRequest("GET", "'.$link->makeUrl(false).'", 
+                                           {
+                                                success : function(o) {
+                                                        try {
+                                                           tags = YAHOO.lang.JSON.parse(o.responseText);
+                                                        }
+                                                        catch (e) {
+                                                                //console.log("json parse error: e");
+                                                        }
+                                                        var tagMenuButtonLabel = "";
+                                                        if(tags !== null){
+                                                                for(i in tags){
+                                                                        tagMenuButtonLabel += tags[i].tag + ", ";
+                                                                }
+                                                        } else {
+                                                                tagMenuButtonLabel = "%%%noTag%%%";
+                                                        }
+                                                        renderPanel();
+                                                        tagMenuButton = new YAHOO.widget.Button({id:"siwiki-menu-tags", label: tagMenuButtonLabel, title:"%%%edit%%%", container:"siwiki-tags", onclick: { fn: onTagMenuButtonClick } });
+                                                },
+                                                failure:function(o) {
+                                                        if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                //console.log("ajax connection failed");
+                                                        }
+                                                }
+                                   }); 
+
+                                function renderPanel(){                
+                                        // create the panel
+                                        tagPanel = new YAHOO.widget.Panel("siwiki-panel-tags", {
+                                                        draggable: true,
+                                                        autofillheight: "body",
+                                                        width: "440px",
+                                                        height: "320px",
+                                                        visible: false,
+                                                        close: true,
+                                                        underlay: "none",
+                                                        xy: [100, 100]
+                                                });
+                                        tagPanel.setHeader("%%%tagPanelHeader%%%");
+                                        tagPanel.setBody("<div id=\"siwiki-tags-panel-layout\"></div>");
+
+
+                                       // subscribe before the panel renders 
+                                        tagPanel.beforeRenderEvent.subscribe(function() {
+                                                Event.onAvailable("siwiki-tags-panel-layout", function() {
+                                                        // add a layout
+                                                        layout = new YAHOO.widget.Layout("siwiki-tags-panel-layout", {
+                                                                width: 410,
+                                                                height: 250,
+                                                                units: [
+                                                                        { position: "top", height: 50, body:"", gutter: "2" },
+                                                                        { position: "left", width: 150, body: "", gutter: "2", resize: true,scroll: true},
+                                                        //              { position: "bottom", height: 30, id: "status", body: "status", gutter: "2",scroll: true },
+                                                                        { position: "center", body: "", gutter: "2" }
+                                                                ]
+                                                        });
+
+                                                        layout.on("render", function(){
+                                                        // render add fields
+                                                                var t = layout.getUnitByPosition("top");
+                                                                var el = document.createElement("span");
+                                                                t.body.appendChild(el);
+                                                                el.innerHTML = "<label for=\"newTag\">%%%newTagLabel%%%</label><input id=\"siwiki-tag-newtag\" type=\"text\" name=\"newTag\" />";
+                                                                var el = document.createElement("span");
+                                                                t.body.appendChild(el);
+                                                                var add = new YAHOO.widget.Button({id:"siwiki-menu-tag", title:"%%%addTag%%%", container:el, onclick: { fn: addNewTag } });
+                                                                
+                                                                
+
+
+                                                        // render tag table
+                                                                var l = layout.getUnitByPosition("left");
+                                                                var el = document.createElement("div");
+                                                                l.body.appendChild(el);
+                                                                
+                                                                var tagColumns = [
+                                                                        {uid: "uid", sortable: true},
+                                                                        {key: "tag", label: "%%%tagTableTitle%%%", sortable: true}
+                                                                ];
+
+                                                                var tagSource = new YAHOO.util.DataSource(tags);
+                                                                tagSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
+                                                                tagSource.responseSchema = {
+                                                                        fields: ["tag","uid"]
+                                                                };
+
+                                                                tagTable = new YAHOO.widget.DataTable(el,tagColumns,tagSource,{selectionMode: "singlecell"});
+                                                                tagTable.hideColumn(0);
+
+                                                                var onContextTagTable = function(type, args, table){
+
+                                                                        var task = args[1];
+                                                                        if(task) { 
+                                                                                var elRow = this.contextEventTarget; 
+                                                                                elRow = table.getTrEl(elRow); 
+
+                                                                                if(elRow) { 
+                                                                                        switch(task.index) { 
+                                                                                                case 0:     // Delete row upon confirmation 
+                                                                                                        var oRecord = table.getRecord(elRow); 
+                                                                                                                if(confirm("%%%confirmDeleteTag%%% " + oRecord.getData("tag")+"?")) { 
+                                                                                                         YAHOO.util.Connect.asyncRequest("POST", "'.$link5->makeUrl(false).'"+oRecord.getData("uid"),
+                                                                                                                                   {
+                                                                                                                                        success : function(o) {
+                                                                                                                                                try {
+                                                                                                                                                   var status = YAHOO.lang.JSON.parse(o.responseText);
+                                                                                                                                                }
+                                                                                                                                                catch (e) {
+                                                                                                                                                        //console.log("json parse error: e");
+                                                                                                                                                }
+                                                                                                                                                if(status){
+                                                                                                                                                        table.deleteRow(elRow); 
+                                                                                                                                                        var t = tagTable.getRecordSet().getRecords();
+
+                                                                                                                                                        var l = "";
+                                                                                                                                                        for(i in t){
+                                                                                                                                                                l += t[i].getData().tag + ", ";
+                                                                                                                                                        }
+                                                                                                                                                        tagMenuButton.setAttributes({label:l});
+                                                                                                                                                }
+                                                                                                                                        },
+                                                                                                                                        failure:function(o) {
+                                                                                                                                                if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                                                                                                        //console.log("ajax connection failed");
+                                                                                                                                                }
+                                                                                                                                        }
+                                                                                                                           }); 
+                                                                                                                } 
+                                                                                                } 
+                                                                                } 
+                                                                        } 
+                                                                }
+                                                                var contextMenuTagTable = new YAHOO.widget.ContextMenu("siwikitagcontext",
+                                                                        {trigger:tagTable.getTbodyEl()});
+                                                                contextMenuTagTable.addItem("%%%deleteTag%%%");
+                                                                contextMenuTagTable.render("siwiki-tag-context");
+                                                                contextMenuTagTable.clickEvent.subscribe(onContextTagTable, tagTable);
+
+
+                                                                tagTable.subscribe("cellMouseoverEvent",tagTable.onEventHighlightCell);
+                                                                tagTable.subscribe("cellMouseoutEvent", tagTable.onEventUnhighlightCell);
+                                                                tagTable.subscribe("cellClickEvent", tagTable.onEventSelectCell);
+                                                                tagTable.subscribe("cellSelectEvent", renderArticlesHavingTag);
+
+                                                        // render article table
+                                                                var l = layout.getUnitByPosition("center");
+                                                                var el = document.createElement("div");
+                                                                l.body.appendChild(el);
+                                                                
+                                                                var articleColumns = [
+                                                                        {key: "article_uid", sortable: true},
+                                                                        {key: "namespace_uid", sortable: true},
+                                                                        {key: "article_title", label: "%%%articleTableTitle%%%", sortable: true},
+                                                                        {key: "namespace_name", label: "%%%articleTableNamespace%%%", sortable: true}
+                                                                ];
+
+                                                                articleSource = new YAHOO.util.DataSource(articles);
+                                                                articleSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
+                                                                articleSource.responseSchema = {
+                                                                        fields: ["article_uid","namespace_uid","article_title", "namespace_name"]
+                                                                };
+
+                                                                articleTable = new YAHOO.widget.DataTable(el,articleColumns,articleSource,{selectionMode: "single"});
+                                                                articleTable.hideColumn(0);
+                                                                articleTable.hideColumn(1);
+
+                                                                articleTable.subscribe("rowMouseoverEvent", articleTable.onEventHighlightRow);
+                                                                articleTable.subscribe("rowMouseoutEvent", articleTable.onEventUnhighlightRow);
+                                                                articleTable.subscribe("rowClickEvent", articleTable.onEventSelectRow);
+                                                                articleTable.subscribe("rowSelectEvent", navigateToArticle);
+                                                        });
+
+                                                        layout.render();
+                                                });
+                                        });
+                                        tagPanel.render();
+
+                                        resize = new YAHOO.util.Resize("siwiki-panel-tags", {
+                                                handles: ["br"],
+                                                autoRatio: true,
+                                                status: true,
+                                                proxy: true,
+                                                useShim: true,
+                                                minWidth: 410,
+                                                minHeight: 280
+                                        });
+
+                                        resize.on("resize", function(args) {
+                                                var h = args.height;
+                                                var hh = this.header.clientHeight;
+                                                var padding = ((10 * 2) + 2);
+                                                var bh = (h - hh - padding);
+                                                Dom.setStyle(this.body, "height", bh + "px");
+                                                layout.set("height", bh);
+                                                layout.set("width", (args.width - padding));    
+                                                layout.resize();
+                                        }, tagPanel, true);
+                                }
+
+                                var addNewTag = function(args){
+                                        var newTag = Dom.get("siwiki-tag-newtag").value;
+                                        newTag = newTag.toLowerCase().replace(/\s+/g,"");
+                                        var check = true;
+                                        var table = tagTable.getRecordSet().getRecords();
+
+                                        for(i in table){
+                                                if(table[i].getData().tag == newTag) check = false;
+                                        }
+
+                                        if(check && newTag !== ""){
+                                                
+                                                YAHOO.util.Connect.asyncRequest("POST", "'.$link4->makeUrl(false).'"+newTag, 
+                                                           {
+                                                                success : function(o) {
+                                                                        try {
+                                                                           var status = YAHOO.lang.JSON.parse(o.responseText);
+                                                                        }
+                                                                        catch (e) {
+                                                                                //console.log("json parse error: e");
+                                                                        }
+                                                                        if(status){
+                                                                                data = [{tag: newTag, id: status[0]}];
+                                                                                tagTable.addRow(data[0]);
+                                                                                var c = tagMenuButton.get("label");
+                                                                                if(tags == null) c = newTag;
+                                                                                else c += newTag + ", ";
+                                                                                console.log(c);
+                                                                                tagMenuButton.setAttributes({label: c});
+                                                                        }
+                                                                },
+                                                                failure:function(o) {
+                                                                        if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                                //console.log("ajax connection failed");
+                                                                        }
+                                                                }
+                                                   }); 
+
+
+                                        } else {
+                                                if(newTag !== "") alert("%%%tagAlreadyExists%%%");
+                                        }
+                                }
+                                var navigateToArticle = function(args){
+                                        var a = articleTable.getSelectedRows();
+                                            a = articleTable.getRecord(a[0]).getData();
+
+                                        window.location.href = "'.$link3->makeUrl(false).'&siwiki[namespace]="+a.namespace_uid+"&siwiki[uid]="+a.article_uid+"&siwiki[action]=display";
+                                }
+
+
+                                var renderArticlesHavingTag = function(args){
+                                        var tag = tagTable.getSelectedCells();
+                                            tag = tagTable.getRecord(tag[0].recordId).getData().tag;
+                                        YAHOO.util.Connect.asyncRequest("GET", "'.$link2->makeUrl(false).'&siwiki[tag]="+tag, 
+                                                   {
+                                                        success : function(o) {
+                                                                try {
+                                                                   articles = YAHOO.lang.JSON.parse(o.responseText);
+                                                                }
+                                                                catch (e) {
+                                                                        //console.log("json parse error: e");
+                                                                }
+
+                                                                articleTable.deleteRows(0,countRows);
+                                                                articleTable.addRows(articles,0); 
+                                                                countRows = articles.length;
+                                                        },
+                                                        failure:function(o) {
+                                                                if(!YAHOO.util.Connect.isCallInProgress(o)) {
+                                                                        //console.log("ajax connection failed");
+                                                                }
+                                                        }
+                                        }); 
+                                        
+                                        
+                                }
+
+                        function onTagMenuButtonClick(){
+                                tagPanel.show();
+                        }       
+
+
+
+                        </script>';
         }
 
         function printBottomToolbar($action){
@@ -505,7 +851,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                         var panel2 = new YAHOO.widget.Panel("panel2", {  visible:false, draggable:true, close:true } );
                                         panel2.setHeader("%%%plot%%%");
                                         panel2.setBody("<img src=\"'.$link->makeUrl(false).'\" alt=\'%%%plot%%%\' />");
-                                        panel2.setFooter("Grün: Artikel existiert bereits. Rot: Artikel existiert noch nicht.");
+                                        panel2.setFooter("%%%plotFooter%%%");
                                         panel2.render("siwiki-panel-plot");
 
                         function onButtonClick(){
@@ -1294,6 +1640,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                      { type: 'push', label: 'Bold CTRL + SHIFT + B', value: 'bold' },
                                                      { type: 'push', label: 'Italic CTRL + SHIFT + I', value: 'italic' },
                                                      { type: 'push', label: 'Underline CTRL + SHIFT + U', value: 'underline' },
+                                                     { type: 'push', label: 'Strike Through', value: 'strikethrough' },
                                                      { type: 'separator' },
                                                      { type: 'color', label: '%%%typocolor%%%', value: 'forecolor', disabled: true },
                                                      { type: 'color', label: '%%%backgroundcolor%%%', value: 'backcolor', disabled: true },
@@ -1498,9 +1845,11 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @param string $title
          * @param string $namespace
          */
-        function printTitle($title,$namespace) {
+        function printTitle($title,$namespace, $search = true) {
                 $title = str_replace("_"," ",$title);
-                print '<h1>'.$title.' @ '.$namespace.'</h1>';
+                $out = '<div id="siwiki-title"><h1>'.$title.' @ '.$namespace.'</h1></div>';
+                if($search) $out .= $this->createSearchBox();
+                print '<div id="siwiki-titlebar">'.$out.'</div>';
         }
 
         /**

@@ -1,6 +1,7 @@
 <?php if (!defined ('TYPO3_MODE')) 	die ('Access denied.'); ?>
 <?php 
 foreach($this as $entry) {
+	$this->printTitle($entry->get('title'),$entry->get('namespaceName'));
 	$this->printFormTag('siwiki_edit');
 	$this->printToolbar('edit',true);
 	$this->printAsYuiRte($entry->get('title'),$entry->get('namespaceName'),$entry->get('article'));

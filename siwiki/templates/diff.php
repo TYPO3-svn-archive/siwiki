@@ -1,6 +1,12 @@
 <?php if (!defined('TYPO3_MODE')) die('Access denied.'); ?>
 
-<?php $this->printToolbar('diff',true); ?>
+<?php 
+$this->rewind();
+$entry = $this->current();
+$this->printTitle($entry->get('newTitle'),$entry->get('newNamespaceName'));
+$this->printToolbar('diff',true); 
+$this->rewind();
+?>
 
 <table class="diff">
 

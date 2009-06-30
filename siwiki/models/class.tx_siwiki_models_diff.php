@@ -23,6 +23,7 @@ class tx_siwiki_models_diff extends tx_lib_object {
 
                 foreach($newArticle as $entry) {
                         $diff["newTitle"] = $entry->get('title');
+                        $diff["newNamespaceName"] = $entry->get('namespaceName');
                         $diff["newVersion"] = $entry->get('version');
                         $diff["newTime"] = $entry->get('tstamp');
                         $diff["newEditor"] = $entry->get('editor');

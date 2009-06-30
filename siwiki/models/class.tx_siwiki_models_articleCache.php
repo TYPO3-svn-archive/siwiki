@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_articleCache.php 1201 2009-04-28 10:00:45Z sisak $
+ * @version $Id: class.tx_siwiki_models_articleCache.php 1234 2009-06-30 07:21:17Z sisak $
  * @see tx_siwiki_models_article
  *
  */
@@ -138,6 +138,7 @@ class tx_siwiki_models_articleCache extends tx_siwiki_models_article {
                 foreach($linksForHeaders as $key=>$val) {
                         $article = str_replace($key, $val, $article);
                 }
+                krumo($this->toc);
                 $article = preg_replace("/###TOC###/", $this->toc, $article);
         
                 return $article;
@@ -159,6 +160,8 @@ class tx_siwiki_models_articleCache extends tx_siwiki_models_article {
                         $hTag = $hArray[0];
                         $level = preg_replace("/.*<h(\d)>.*/", "\\1", $hTag)-1;
                         $text = preg_replace("/<h\d>(.*?)<\/h\d>/", "\\1", $hTag);
+                        preg_match("/(?<=^|>)[^><]+?(?=<|$)/", $text, $text);
+                        $text = $text[0];
                         $hashOfText = substr(md5($text),0,8);
                         $linkClassName = tx_div::makeInstanceClassName('tx_lib_link');
                         $link = new $linkClassName();

@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_ajax.php 1221 2009-06-16 09:34:37Z sisak $
+ * @version $Id: class.tx_siwiki_models_ajax.php 1235 2009-06-30 07:35:47Z sisak $
  *
  */ 
 
@@ -85,7 +85,7 @@ class tx_siwiki_models_ajax extends tx_lib_object {
                 case 'getInfo':
                         $select = 's.crdate as "%%%crdate%%%",s.tstamp as "%%%tstamp%%%",s.version,c.name as cname,e.name as ename';
                         $from = 'tx_siwiki_articles as s, fe_users as c, fe_users as e';
-                        $where = 's.uid = '.$this->s($this->controller->parameters->get('uid')).' AND c.username = creator AND e.username = editor';
+                        $where = 's.uid = '.$this->s((int) $this->controller->parameters->get('uid')).' AND c.username = s.creator AND e.username = s.editor';
 
                         $query = $GLOBALS['TYPO3_DB']->exec_SELECTquery($select,$from,$where);
                         if($query) {
@@ -99,6 +99,116 @@ class tx_siwiki_models_ajax extends tx_lib_object {
                                         $this->append($entry);
                                 }
                         }
+                        break;
+
+                case 'getTags':
+                        $pid = (int) $pid;
+                        $uid = (int) $this->controller->parameters->get('uid');
+                        $namespace = (int) $this->controller->parameters->get('namespace');
+
+                        $select = 't.uid as uid, t.tag_name as tag';
+                        $from = 'tx_siwiki_tags as t, tx_siwiki_articles_tags as at';
+                        $where = 'at.uid_article = '.$this->s($uid).'
+                                  AND at.uid_namespace = '.$this->s($namespace).'
+                                  AND at.uid_tag = t.uid 
+                                  AND at.pid = '.$this->s($pid);
+
+                        $query = $GLOBALS['TYPO3_DB']->exec_SELECTquery($select,$from,$where);
+
+                        if($query) {
+                                while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($query)) {
+                                        $tags[] = $row;
+                                }
+                        }
+                        $entry = new tx_lib_object(array('response' => $tags));
+                        $this->append($entry);
+                        break;
+
+                case 'setTag':
+                        $pid = (int) $pid;
+                        $uid = (int) $this->controller->parameters->get('uid');
+                        $namespace = (int) $this->controller->parameters->get('namespace');
+                        $tag = htmlspecialchars($this->controller->parameters->get('tag'));
+
+                        $select = 'uid';
+                        $from = 'tx_siwiki_tags';
+                        $where = 'tag_name = '.$this->s($tag);
+                        $query = $GLOBALS['TYPO3_DB']->exec_SELECTquery($select,$from,$where);
+                        if($query) {
+                                while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($query)) {
+                                        $id = $row['uid'];
+                                }
+                        }
+
+                        if(!$id){
+                                $insert = Array();
+                                $insert['pid'] = $pid;
+                                $insert['crdate'] = time();
+                                $insert['tag_name'] = $tag;
+
+                                $query = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_siwiki_tags',$insert);
+
+                                if($query) {
+                                        $id = $GLOBALS['TYPO3_DB']->sql_insert_id();
+                                }
+                        }
+
+                        $insert = Array();
+                        $insert['pid'] = $pid;
+                        $insert['uid_tag'] = (int) $id;
+                        $insert['uid_article'] = $uid;
+                        $insert['uid_namespace'] = $namespace;
+
+                        $query = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_siwiki_articles_tags',$insert);
+
+                        $status[] = $id;
+
+                        $entry = new tx_lib_object(array('response' => $status));
+                        $this->append($entry);
+                        break;
+
+                case 'unsetTag':
+                        $pid = (int) $pid;
+                        $uid = (int) $this->controller->parameters->get('uid');
+                        $namespace = (int) $this->controller->parameters->get('namespace');
+                        $tid = (int) $this->controller->parameters->get('tid');
+
+                        $where = 'uid_article = '.$this->s($uid).'
+                                  AND uid_namespace = '.$this->s($namespace).'
+                                  AND uid_tag = '.$this->s($tid).' 
+                                  AND pid = '.$this->s($pid);
+
+                        $query = $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_siwiki_articles_tags',$where);
+                        if($query) $status[] = true;
+                        else $status[] = false;
+
+                        $entry = new tx_lib_object(array('response' => $status));
+                        $this->append($entry);
+                        break;
+
+                case 'getArticlesByTag':
+                        $pid = (int) $pid;
+                        $uid = (int) $this->controller->parameters->get('uid');
+                        $namespace = (int) $this->controller->parameters->get('namespace');
+                        $tag = htmlspecialchars($this->controller->parameters->get('tag'));
+
+                        $select = 'a.title as article_title, n.name as namespace_name, a.uid as article_uid, a.namespace as namespace_uid';
+                        $from = 'tx_siwiki_tags as t, tx_siwiki_articles_tags as at, tx_siwiki_articles as a, tx_siwiki_namespaces as n';
+                        $where = 't.tag_name = '.$this->s($tag).'
+                                  AND t.pid = '.$this->s($pid).'
+                                  AND t.uid = at.uid_tag
+                                  AND at.uid_article = a.uid
+                                  AND at.uid_namespace = n.uid';
+
+                        $query = $GLOBALS['TYPO3_DB']->exec_SELECTquery($select,$from,$where);
+
+                        if($query) {
+                                while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($query)) {
+                                        $articles[] = $row;
+                                }
+                        }
+                        $entry = new tx_lib_object(array('response' => $articles));
+                        $this->append($entry);
                         break;
 
                 case 'getNotification':

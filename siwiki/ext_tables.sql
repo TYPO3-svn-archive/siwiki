@@ -161,3 +161,38 @@ CREATE TABLE `tx_siwiki_articles_locking` (
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- --------------------------------------------------------
+--
+-- Tabellenstruktur für Tabelle `tx_siwiki_tags`
+--
+
+CREATE TABLE `tx_siwiki_tags` (
+  `uid` int(11) NOT NULL auto_increment,
+  `pid` int(11) NOT NULL default '0',
+  `deleted` tinyint(4) NOT NULL default '0',
+  `crdate` int(11) NOT NULL default '0',
+  `tag_name` char(255) NOT NULL default '',
+  PRIMARY KEY  (`uid`),
+  KEY `parent` (`pid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+-- --------------------------------------------------------
+
+-- --------------------------------------------------------
+--
+-- Tabellenstruktur für Tabelle `tx_siwiki_articles_tags`
+--
+
+CREATE TABLE `tx_siwiki_articles_tags` (
+  `uid` int(11) NOT NULL auto_increment,
+  `pid` int(11) NOT NULL default '0',
+  `uid_tag` int(11) NOT NULL default '0',
+  `uid_article` int(11) NOT NULL default '0',
+  `uid_namespace` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`uid`),
+  UNIQUE KEY `uid_tag` (`uid_tag`,`uid_article`,`uid_namespace`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+-- --------------------------------------------------------
