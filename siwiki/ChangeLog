@@ -1,3 +1,8 @@
+30-06-10 Stefan Isak <stefanisak@gmail.com>
+	* added tag feature
+	* added diff view to notification mails
+	* some bugfixes
+
 15-06-10 Stefan Isak <stefanisak@gmail.com>
 	* fixed some smaller bugs
 	* added flexform to enable/disable filemanager
