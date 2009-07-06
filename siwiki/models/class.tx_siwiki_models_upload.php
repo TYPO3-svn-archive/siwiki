@@ -19,7 +19,8 @@ class tx_siwiki_models_upload  extends tx_lib_object {
          * @param int $uploadedImageMaxWidth
          * @return String
          */
-        public static function uploadImage($uploadedImageMaxWidth, $relativePath) {
+
+        public static function uploadImage($pid, $uid, $ajaxPageType, $uploadedImageMaxWidth, $relativePath) {
                 $mimetype = Array("image/jpeg" => ".jpeg", 
                      "image/jpg" => ".jpeg", 
                      "image/x-jpeg" => ".jpeg",
@@ -29,7 +30,10 @@ class tx_siwiki_models_upload  extends tx_lib_object {
                      "image/gif" => ".gif"); 
                                                                     
                 $status = Array();                                  
-                                                                    
+
+                $uid = (int) $uid;
+                $pid = (int) $pid;                                                    
+
                 if(isset($_FILES['img'])){                          
                         $imgName = $_FILES['img']['name'];          
                         $imgType = $_FILES['img']['type'];
@@ -41,17 +45,32 @@ class tx_siwiki_models_upload  extends tx_lib_object {
                         if(substr($relativePath,strlen($relativePath)-1,1) !== "/") $relativePath .= $relativePath."/";
                         
                         $absolutePath = PATH_site;
-                        $filename = $relativePath."img".mt_rand(1000,1000000).$mimetype[$imgType]; 
+                        $filename = $pid."_".$uid."_img".mt_rand(1000,9999).$mimetype[$imgType]; 
+                        $file = $relativePath.$filename; 
+
+		        $destination = $GLOBALS['TSFE']->id;  
 
                         if(array_key_exists($imgType,$mimetype)){
-                                if(move_uploaded_file($imgTmpName,$absolutePath.$filename)){
-                                        //@chmod($file,octdec('0660'));
+                                if(move_uploaded_file($imgTmpName,$absolutePath.$file)){
+
                                         $imageObjClassName = tx_div::makeInstanceClassName('tx_lib_image');
                                         $imageObj = new $imageObjClassName;
                                         $imageObj->maxWidth($uploadedImageMaxWidth);
-                                        $imageObj->path($filename);
+                                        $imageObj->path($file); 
+                                        
+                                        $tmpImage = preg_replace("/.*src=\"(.[^\"]*)\".*/", "\\1", $imageObj->make());
+                                        
+                                        if(strpos($tmpImage,"temp/")){
+                                                @unlink($absolutePath.$relativePath.$filename);
+                                                @rename($absolutePath.$tmpImage,$absolutePath.$relativePath.$filename);
+                                                @unlink($absolutePath.$tmpImage);
+                                        }
+
+                                        $url = "index.php?id=".$destination."&type=".$ajaxPageType."&siwiki[action]=getImage&siwiki[file]=".$filename; 
+                                        $url = urlencode($url);
+
                                         $status[]["status"] = "UPLOADED";
-                                        $status[]["image_url"] = preg_replace("/.*src=\"(.[^\"]*)\".*/", "\\1", $imageObj->make());
+                                        $status[]["image_url"] = $url;
                                 } else {
                                         $status[]["status"] = "Could not upload image";
                                 }
@@ -63,7 +82,6 @@ class tx_siwiki_models_upload  extends tx_lib_object {
                 }
                 return $status;
         }
-
 
         /**
          * Uploads a file to a specified folder and returns the filepath

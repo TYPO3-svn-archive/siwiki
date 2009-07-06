@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1238 2009-06-30 09:28:31Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1241 2009-07-06 13:56:30Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -335,6 +335,10 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                                                                                                         for(i in t){
                                                                                                                                                                 l += t[i].getData().tag + ", ";
                                                                                                                                                         }
+                                                                                                                                                        if(l == "") {
+                                                                                                                                                                l = "%%%noTag%%%";
+                                                                                                                                                                tags = null;
+                                                                                                                                                        }
                                                                                                                                                         tagMenuButton.setAttributes({label:l});
                                                                                                                                                 }
                                                                                                                                         },
@@ -441,8 +445,12 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                                 data = [{tag: newTag, id: status[0]}];
                                                                                 tagTable.addRow(data[0]);
                                                                                 var c = tagMenuButton.get("label");
-                                                                                if(tags == null) c = newTag;
-                                                                                else c += newTag + ", ";
+                                                                                if(tags == null){
+                                                                                        tags = newTag;
+                                                                                        c = newTag + ", ";
+                                                                                } else {
+                                                                                        c += newTag + ", ";
+                                                                                }
                                                                                 console.log(c);
                                                                                 tagMenuButton.setAttributes({label: c});
                                                                         }
@@ -1550,7 +1558,6 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          */
 	function includeYuiRte($title, $namespace, $articleHash) {
 
-
                 $title = str_replace("_"," ",$title);
 		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
 		$link = tx_div::makeInstance('tx_lib_link');
@@ -1564,7 +1571,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 		$linkNs->destination($destination);
 		$linkNs->designator($this->getDesignator());
                 $linkNs->parameters(array('action' => 'ajax',
-                                        'request' => 'getNamespaces'));
+                                          'request' => 'getNamespaces'));
 		$linkNs->noHash();
 
 		$linkUpdateLocking = tx_div::makeinstance('tx_lib_link');

@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_controllers_ajax.php 1230 2009-06-25 11:49:58Z sisak $
+ * @version $Id: class.tx_siwiki_controllers_ajax.php 1240 2009-07-06 13:47:07Z sisak $
  *
  */ 
 class tx_siwiki_controllers_ajax extends tx_lib_controller {
@@ -70,6 +70,16 @@ class tx_siwiki_controllers_ajax extends tx_lib_controller {
                 $translator = new $translatorClassName($this,$view);
 
                 return $translator->translateContent();
+        }
+
+        function getImageAction() {
+                $file = htmlspecialchars($this->parameters->get('file'));
+                $viewClassName = tx_div::makeInstanceClassName('tx_siwiki_views_siwiki');
+                $view = new $viewClassName($this);
+                $entry = new tx_lib_object(array('file' => $file));
+                $view->append($entry);
+                $view->castElements('tx_siwiki_views_siwiki');
+                return $view->render($this->configurations->get('imageTemplate'));
         }
 
         function deleteFileAction() {

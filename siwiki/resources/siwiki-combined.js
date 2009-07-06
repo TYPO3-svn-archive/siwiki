@@ -499,30 +499,29 @@ function yuiImgUploader(rte, upload_url, upload_image_name) {
                            YAHOO.util.Event.on (rte.get('id') + '_insertimage_upload', 'change', function(ev) {
                                YAHOO.util.Event.stopEvent(ev); // no default click action
                                YAHOO.util.Connect.setForm ( img_elem.form, true, true );
-
                                   YAHOO.util.Connect.asyncRequest('POST', upload_url, 
 					  { 
-                                   upload:function(r){
-                                       try {
-                                           // strip pre tags if they got added somehow
-                                           //resp=r.responseText.replace( /<pre>/i, '').replace( /<\/pre>/i, '');
-                                          // //console.log(resp);
-                                          // var o=eval('('+resp+')');
-                                           var result = YAHOO.lang.JSON.parse(r.responseText);
-                                           if (result[0]['status']=='UPLOADED') {
-                                               Dom.get(rte.get('id') + '_insertimage_upload').value='';
-                                               Dom.get(rte.get('id') + '_insertimage_url').value=result[1]['image_url'];
-                                               // tell the image panel the url changed
-                                               // hack instead of fireEvent('blur')
-                                               // which for some reason isn't working
-                                               Dom.get(rte.get('id') + '_insertimage_url').focus();
-                                               Dom.get(rte.get('id') + '_insertimage_upload').focus();
-                                           } else {
-                                               alert( "Upload Failed: "+result[0]['status']);
-                                           }
-                                       } catch ( eee ) {
-                                           //console.log( eee.message, 'error' );
-                                       }
+                                           upload:function(r){
+                                               try {
+                                                   // strip pre tags if they got added somehow
+                                                   //resp=r.responseText.replace( /<pre>/i, '').replace( /<\/pre>/i, '');
+                                                  // //console.log(resp);
+                                                  // var o=eval('('+resp+')');
+                                                   var result = YAHOO.lang.JSON.parse(r.responseText);
+                                                   if (result[0]['status']=='UPLOADED') {
+                                                       Dom.get(rte.get('id') + '_insertimage_upload').value='';
+                                                       Dom.get(rte.get('id') + '_insertimage_url').value=decodeURIComponent(result[1]['image_url']);
+                                                       // tell the image panel the url changed
+                                                       // hack instead of fireEvent('blur')
+                                                       // which for some reason isn't working
+                                                       Dom.get(rte.get('id') + '_insertimage_url').focus();
+                                                       Dom.get(rte.get('id') + '_insertimage_upload').focus();
+                                                   } else {
+                                                       alert( "Upload Failed: "+result[0]['status']);
+                                                   }
+                                               } catch ( eee ) {
+                                                  // console.log( eee.message, 'error' );
+                                               }
                                    }
                                }
                                );

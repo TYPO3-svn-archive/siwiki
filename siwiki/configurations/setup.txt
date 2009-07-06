@@ -22,6 +22,7 @@ temp.tx_siwiki.configurations {
 		tocTemplate = toc.php
 		tagTemplate = tag.php
 		pushTemplate = push.php
+		imageTemplate = image.php
 		updatesTemplate = updates.php
 		filemanagerUploadFolder = fileadmin/user_upload/siwiki/filemanager/
 		rootpage = 1 
