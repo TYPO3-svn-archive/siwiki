@@ -177,7 +177,7 @@ function wikilink(rte, asyncUrl, defaultNamespace) {
 					showWikiLink.style.display = 'none';
 
 	        			// new wiki link
-					var linkname = el.innerHTML.replace(/<a>/,"").replace(/<\/a>/,"").replace(/\s/,"_");
+					var linkname = el.innerHTML.replace(/<a>/,"").replace(/<\/a>/,"").replace(/\s/g,"_");
 					wikilinkUrl.value = decodeURIComponent(linkname);
 	        		}		
         }

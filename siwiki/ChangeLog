@@ -1,4 +1,8 @@
-30-06-10 Stefan Isak <stefanisak@gmail.com>
+07-08-10 Stefan Isak <stefanisak@gmail.com>
+	* bugfix in link panel regex
+	* switched version to 1.0.7
+
+30-07-10 Stefan Isak <stefanisak@gmail.com>
 	* added tag feature
 	* added diff view to notification mails
 	* some bugfixes

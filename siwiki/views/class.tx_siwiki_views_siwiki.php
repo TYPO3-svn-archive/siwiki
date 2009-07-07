@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1241 2009-07-06 13:56:30Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1242 2009-07-07 08:11:25Z sisak $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -1072,7 +1072,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 
                                 function handleSave() {
                                        var data = this.getData();
-                                       window.location.href = "'.$link->makeUrl(false).'&'.$this->getDesignator().'[namespace]="+data.siwikiNamespace+"&'.$this->getDesignator().'[title]="+data.siwikiTitle;  
+                                       window.location.href = "'.$link->makeUrl(false).'&'.$this->getDesignator().'[namespace]="+data.siwikiNamespace+"&'.$this->getDesignator().'[title]="+data.siwikiTitle.replace(/\s/g,"_");  
                                 }
 
                                 function handleCancel() {
