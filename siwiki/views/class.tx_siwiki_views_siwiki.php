@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_views_siwiki.php 1242 2009-07-07 08:11:25Z sisak $
+ * @version $Id: class.tx_siwiki_views_siwiki.php 1248 2009-07-09 09:36:57Z alappe $
  *
  */ 
 class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
@@ -40,7 +40,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
         }
         
         function printAsImage($str) {
-		$image = tx_div::makeInstance('tx_lib_image');
+        $image = tx_div::makeInstance('tx_lib_image');
                 $image->path($str);
                 print $image->make();
         }
@@ -50,11 +50,11 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          *
          * @param string $article
          */
-	function printAsHtml($article) {
-		print '<div class="siwiki-article">';
-	        parent::printAsHtml($article);
-		print '</div>'; 
-	}
+    function printAsHtml($article) {
+        print '<div class="siwiki-article">';
+            parent::printAsHtml($article);
+        print '</div>'; 
+    }
 
         /**
          * Render the Yahoo! User Interface Rich Text Editor with the article
@@ -63,17 +63,17 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @param int $namespace
          * @param string $article
          */
-	function printAsYuiRte($title, $namespace, $article){
-		$this->includeYuiRte($title, $namespace, md5($article));	
-	        print '<textarea name="siwiki[article]" id="siwiki_article" cols="50" rows="10">'.$article.'</textarea>'; 
-	}
+    function printAsYuiRte($title, $namespace, $article){
+        $this->includeYuiRte($title, $namespace, md5($article));    
+            print '<textarea name="siwiki[article]" id="siwiki_article" cols="50" rows="10">'.$article.'</textarea>'; 
+    }
 
 
         function createSearchBox(){
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 if($this->controller->configurations->get('fullTextSearch')){
                         $link->parameters(array('action' => 'ajax',
                                                 'request' => 'getFullTextSearchResult'));
@@ -82,12 +82,12 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                 'request' => 'getSearchResult'));
                 }
                         
-		$link->noHash();
+        $link->noHash();
 
-		$searchLink = tx_div::makeInstance('tx_lib_link');
-		$searchLink->destination($this->getDestination());
-		$searchLink->designator($this->getDesignator());
-		$searchLink->noHash();
+        $searchLink = tx_div::makeInstance('tx_lib_link');
+        $searchLink->destination($this->getDestination());
+        $searchLink->designator($this->getDesignator());
+        $searchLink->noHash();
                 $searchLink = $searchLink->makeUrl(false);
 
                 $box = '<div id="siwiki-search"><input id="siwiki-searchbox" type="text" value="%%%searchlabel%%%" /><div id="siwiki-autocomplete"></div></div>';
@@ -142,9 +142,11 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         switch($which){
                                 case 'display':
                                         $this->printMenuItems();
+                                        $this->printTags();
                                 break;
                                 case 'edit':
                                         $this->printEditMenuItems();
+                                        $this->printTags();
                                 break;
                                 case 'diff':
                                         $this->printDiffMenuItems();
@@ -153,54 +155,53 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                         $this->printNewMenuItems();
                                 break;
                         }
-                        $this->printTags();
                 print '</div>';
         }
 
         function printTags(){
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'getTags'));
-		$link->noHash();
+        $link->noHash();
 
-		$link2 = tx_div::makeInstance('tx_lib_link');
-		$link2->destination($destination);
-		$link2->designator($this->getDesignator());
+        $link2 = tx_div::makeInstance('tx_lib_link');
+        $link2->destination($destination);
+        $link2->designator($this->getDesignator());
                 $link2->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'getArticlesByTag'));
-		$link2->noHash();
+        $link2->noHash();
 
-		$link3 = tx_div::makeInstance('tx_lib_link');
-		$link3->destination($this->getDestination());
-		$link3->designator($this->getDesignator());
-		$link3->noHash();
+        $link3 = tx_div::makeInstance('tx_lib_link');
+        $link3->destination($this->getDestination());
+        $link3->designator($this->getDesignator());
+        $link3->noHash();
 
-		$link4 = tx_div::makeInstance('tx_lib_link');
-		$link4->destination($destination);
-		$link4->designator($this->getDesignator());
+        $link4 = tx_div::makeInstance('tx_lib_link');
+        $link4->destination($destination);
+        $link4->designator($this->getDesignator());
                 $link4->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'setTag',
                                         'tag' => ''));
-		$link4->noHash();
+        $link4->noHash();
 
-		$link5 = tx_div::makeInstance('tx_lib_link');
-		$link5->destination($destination);
-		$link5->designator($this->getDesignator());
+        $link5 = tx_div::makeInstance('tx_lib_link');
+        $link5->destination($destination);
+        $link5->designator($this->getDesignator());
                 $link5->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'unsetTag',
                                         'tid' => ''));
-		$link5->noHash();
+        $link5->noHash();
 
                 print '<div id="siwiki-tags"><div id="siwiki-panel-tags"></div><div id="siwiki-tag-context"></div></div>
                         <script type="text/javascript">
@@ -451,7 +452,6 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                                 } else {
                                                                                         c += newTag + ", ";
                                                                                 }
-                                                                                console.log(c);
                                                                                 tagMenuButton.setAttributes({label: c});
                                                                         }
                                                                 },
@@ -529,7 +529,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * Print the menu items but only IF A USER IS LOGGED IN
          *
          */
-	function printMenuItems() {
+    function printMenuItems() {
                 $menu = $this->createHomeLink();
 
                 if((tx_siwiki_classes_misc::getUsername()!='' && tx_siwiki_classes_misc::getUsername()!='anonymous') || $this->controller->configurations->get('anonymous')) {
@@ -547,7 +547,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                 // add a div container to the menu items
                 $menu = '<div id="siwiki-menu-items">'.$menu.'</div>';
 
-		print $menu;
+        print $menu;
         }
 
         /**
@@ -555,7 +555,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * Print the menu items but only IF A USER IS LOGGED IN
          *
          */
-	function printDiffMenuItems() {
+    function printDiffMenuItems() {
                 $menu = $this->createHomeLink();
 
                 if((tx_siwiki_classes_misc::getUsername()!='' && tx_siwiki_classes_misc::getUsername()!='anonymous') || $this->controller->configurations->get('anonymous')) {
@@ -567,7 +567,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                 // add a div container to the menu items
                 $menu = '<div id="siwiki-menu-items">'.$menu.'</div>';
 
-		print $menu;
+        print $menu;
         }
 
         /**
@@ -575,7 +575,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * Print the menu items but only IF A USER IS LOGGED IN
          *
          */
-	function printEditMenuItems() {
+    function printEditMenuItems() {
 
                 if((tx_siwiki_classes_misc::getUsername()!='' && tx_siwiki_classes_misc::getUsername()!='anonymous') || $this->controller->configurations->get('anonymous')) {
                         $menu .= $this->createHomeLink();
@@ -590,7 +590,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                 // add a div container to the menu items
                 $menu = '<div id="siwiki-menu-items">'.$menu.'</div>';
 
-		print $menu;
+        print $menu;
         }
 
         /**
@@ -598,7 +598,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * Print the menu items but only IF A USER IS LOGGED IN
          *
          */
-	function printNewMenuItems() {
+    function printNewMenuItems() {
                 if((tx_siwiki_classes_misc::getUsername()!='' && tx_siwiki_classes_misc::getUsername()!='anonymous') || $this->controller->configurations->get('anonymous')) {
                         $menu .= $this->createHomeLink();
 
@@ -612,8 +612,8 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                 // add a div container to the menu items
                 $menu = '<div id="siwiki-menu-items">'.$menu.'</div>';
 
-		print $menu;
-	}
+        print $menu;
+    }
 
         /**
          *
@@ -621,10 +621,10 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createHomeLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
                 $link->parameters(array('namespace' => $this->controller->configurations->get('defaultNamespace'),
                                         'uid' => $this->controller->configurations->get('rootpage'),
                                         'action' => 'display'));
@@ -635,20 +635,20 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         }       
                        var home = new YAHOO.widget.Button({id:"siwiki-menu-home", title:"%%%home%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                        </script>';
-	}
+    }
 
         /**
          * Creates the edit link as YUI button
          * @return string
          */
-	function createEditLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
-		$link->parameters(array('namespace' => $this->get('namespace'),
+    function createEditLink() {
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
+        $link->parameters(array('namespace' => $this->get('namespace'),
                                         'uid' => $this->get('uid'),
-                                	'action' => 'edit'));
+                                    'action' => 'edit'));
 
                 return '<script type="text/javascript">
                         function onButtonClick(){
@@ -656,21 +656,21 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         }       
                        var edit = new YAHOO.widget.Button({id:"siwiki-menu-edit", title:"%%%edit%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                        </script>';
-	}
+    }
 
 
         /**
          * Creates the back link as YUI button
          * @return string
          */
-	function createBackLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
+    function createBackLink() {
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
                 $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
-                                	'action' => 'display'));
+                                    'action' => 'display'));
 
                 return '<script type="text/javascript">
                         function onButtonClick(){
@@ -678,7 +678,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         }       
                        var back = new YAHOO.widget.Button({id:"siwiki-menu-back", title:"%%%back%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                        </script>';
-	}
+    }
 
         /**
          * Creates the revert link as YUI button
@@ -686,12 +686,12 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createRevertLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
                 $link->parameters(array('uid' => $this->get('uid'),
-					'action' => 'save'));
+                    'action' => 'save'));
                 
                 return  '<span id="siwiki-panel-revert"></span>
                            <script type="text/javascript">
@@ -724,18 +724,18 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                         var revert = new YAHOO.widget.Button({id:"siwiki-menu-revert", title:"%%%revert%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                                });       
                        </script>';      
-	}
+    }
 
         /**
          * Creates a drop down box
          * @return string
          */
-	function createDropDownBox() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
-		$link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
+    function createDropDownBox() {
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
+        $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'diff',
                                         'newVersion' => $this->controller->parameters->get('newVersion'),
@@ -764,23 +764,23 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                });       
                         </script>';
                        
-	}
+    }
 
 
         /**
          * Creates the version link as YUI button
          * @return string
          */
-	function createVersionLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
-		$link->parameters(array('namespace' => $this->get('namespace'),
+    function createVersionLink() {
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
+        $link->parameters(array('namespace' => $this->get('namespace'),
                                         'uid' => $this->get('uid'),
                                         'oldVersion' => intval($this->get('version'))-1,
                                         'newVersion' => intval($this->get('version')),
-                                	'action' => 'diff'));
+                                    'action' => 'diff'));
 
 
                 return '<script type="text/javascript">
@@ -789,7 +789,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         }       
                        var version = new YAHOO.widget.Button({id:"siwiki-menu-version", title:"%%%version%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                        </script>';
-	}
+    }
 
         /**
          * Creates the delete link as YUI button
@@ -797,14 +797,14 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createDeleteLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
                 $link->parameters(array('namespace' => $this->get('namespace'),
                                         'uid' => $this->get('uid'),
                                         'title' => $this->get('title'),
-					'action' => 'delete'));
+                    'action' => 'delete'));
                 
                 return  '<span id="siwiki-panel-delete"></span>
                            <script type="text/javascript">
@@ -835,7 +835,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                 }       
                                 var del = new YAHOO.widget.Button({id:"siwiki-menu-delete", title:"%%%delete%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                        </script>';      
-	}
+    }
 
 
         
@@ -846,14 +846,14 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createPlotLink() {
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('relationsPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('relationsPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'relations'));
-		$link->noHash();
+        $link->noHash();
                 return '<span id="siwiki-panel-plot"> </span>
                         <script type="text/javascript">
                                         var panel2 = new YAHOO.widget.Panel("panel2", {  visible:false, draggable:true, close:true } );
@@ -867,7 +867,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                         }       
                         var plot = new YAHOO.widget.Button({id:"siwiki-menu-plot", title:"%%%plot%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                         </script>';      
-	}
+    }
 
         /**
          * Creates the index link
@@ -876,13 +876,13 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createTocLink() {
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'action' => 'toc'));
-		$link->noHash();
+        $link->noHash();
 
                 return '<span id="siwiki-panel-toc"> </span>
                         <script type="text/javascript">
@@ -910,7 +910,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                         var toc = new YAHOO.widget.Button({id:"siwiki-menu-toc", title:"%%%toc%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                                 });
                         </script>';      
-	}
+    }
 
 
         /**
@@ -919,15 +919,15 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createInfoLink() {
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'getInfo'));
-		$link->noHash();
+        $link->noHash();
 
                 return '<span id="siwiki-panel-info"></span>
                         <script type="text/javascript">
@@ -965,7 +965,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                 var info = new YAHOO.widget.Button({id:"siwiki-menu-info", title:"%%%info%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                         });
                         </script>';      
-	}
+    }
 
 
         /**
@@ -974,19 +974,19 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createAddLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($this->getDestination());
-		$link->designator($this->getDesignator());
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($this->getDestination());
+        $link->designator($this->getDesignator());
                 $link->parameters(array('action' => 'new'));
-		$link->noHash();
+        $link->noHash();
 
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$linkNs = tx_div::makeInstance('tx_lib_link');
-		$linkNs->destination($destination);
-		$linkNs->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $linkNs = tx_div::makeInstance('tx_lib_link');
+        $linkNs->destination($destination);
+        $linkNs->designator($this->getDesignator());
                 $linkNs->parameters(array('action' => 'ajax',
                                           'request' => 'getNamespaces'));
-		$linkNs->noHash();
+        $linkNs->noHash();
 
                 return '<div id="siwiki-panel-add"> 
                                 <div class="hd">%%%addHeader%%%</div> 
@@ -1047,7 +1047,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                                 var namespaces = YAHOO.lang.JSON.parse(o.responseText);
                                                                         }
                                                                         catch (e){
-                                                                        }		
+                                                                        }        
                                                                         createDropDownMenu(namespaces);
                                                                         gotData = true;
                                                          },
@@ -1083,16 +1083,16 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 
                                 var add = new YAHOO.widget.Button({id:"siwiki-menu-add", title:"%%%add%%%", container:"siwiki-menu-items", onclick: { fn: onButtonClick } });
                         </script>';      
-	}
+    }
 
         function createLink($parameters = null, $ajax = true){
                 if($ajax) $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
                 else $destination = $this->getDestination();
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters($parameters);
-		$link->noHash();
+        $link->noHash();
                 return $link->makeUrl(false);
         }
 
@@ -1102,29 +1102,29 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createFilemanagerLink() {
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('action' => 'ajax',
                                         'request' => 'fileUpload'));
-		$link->noHash();
+        $link->noHash();
 
-		$linkGetFiles = tx_div::makeInstance('tx_lib_link');
-		$linkGetFiles->destination($destination);
-		$linkGetFiles->designator($this->getDesignator());
+        $linkGetFiles = tx_div::makeInstance('tx_lib_link');
+        $linkGetFiles->destination($destination);
+        $linkGetFiles->designator($this->getDesignator());
                 $linkGetFiles->parameters(array('uid' => $this->controller->parameters->get('uid'),
                                                 'action' => 'ajax',
                                                 'request' => 'getAllFilesByArticle'));
-		$linkGetFiles->noHash();
+        $linkGetFiles->noHash();
 
-		$linkInitialize = tx_div::makeInstance('tx_lib_link');
-		$linkInitialize->destination($destination);
-		$linkInitialize->designator($this->getDesignator());
+        $linkInitialize = tx_div::makeInstance('tx_lib_link');
+        $linkInitialize->destination($destination);
+        $linkInitialize->designator($this->getDesignator());
                 $linkInitialize->parameters(array('uid' => $this->controller->parameters->get('uid'),
                                                   'action' => 'ajax',
                                                   'request' => 'initializeFilemanager'));
-		$linkInitialize->noHash();
+        $linkInitialize->noHash();
 
                 return '<div id="siwiki-panel-filemanager"> 
                                 <div class="hd">%%%filemanagerHeader%%%</div> 
@@ -1243,7 +1243,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                 }
                                                         }
                                                 }
-        		                        var later = YAHOO.lang.later(1000, timer, "updateLoading",[{"data":"foo"}], true);
+                                        var later = YAHOO.lang.later(1000, timer, "updateLoading",[{"data":"foo"}], true);
                                     } else {
                                                 var timer = {
                                                         count: 4,
@@ -1264,7 +1264,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                 }
                                                         }
                                                 }
-        		                        var later = YAHOO.lang.later(1000, timer, "updateLoading",[{"data":"foo"}], true);
+                                        var later = YAHOO.lang.later(1000, timer, "updateLoading",[{"data":"foo"}], true);
                                     }
                              }
 
@@ -1321,7 +1321,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                     }
                                                                 }
                                                                 catch (e){
-                                                                }		
+                                                                }        
                                                  },
                                                 failure:function(o) {
                                                         if(!YAHOO.util.Connect.isCallInProgress(o)) {
@@ -1339,7 +1339,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                                             var files = YAHOO.lang.JSON.parse(o.responseText);
                                                                         }
                                                                         catch (e){
-                                                                        }		
+                                                                        }        
                                                                         listFiles(files);
                                                          },
                                                         failure:function(o) {
@@ -1389,7 +1389,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                 }); 
                                         }); 
                         </script>';      
-	}
+    }
         /**
          *
          * Creates the notification checkbox
@@ -1398,22 +1398,22 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          */
         function createNotificationCheckbox() {
 
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'getNotification'));
-		$link->noHash();
+        $link->noHash();
 
-		$linkSet = tx_div::makeInstance('tx_lib_link');
-		$linkSet->destination($destination);
-		$linkSet->designator($this->getDesignator());
+        $linkSet = tx_div::makeInstance('tx_lib_link');
+        $linkSet->destination($destination);
+        $linkSet->designator($this->getDesignator());
                 $linkSet->parameters(array('uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'ajax',
                                         'request' => 'setNotification'));
-		$linkSet->noHash();
+        $linkSet->noHash();
 
 
                 $linkSet = $linkSet->makeUrl(false).'&'.$this->getDesignator().'[mode]=';
@@ -1503,7 +1503,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                         }); 
                                 });
                         </script>';      
-	}
+    }
 
 
         /**
@@ -1512,10 +1512,10 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
          * @return string
          */
         function createCancelLink() {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->designator($this->getDesignator());
-		$link->destination($this->getDestination());	
-		$link->noHash();
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->designator($this->getDesignator());
+        $link->destination($this->getDestination());    
+        $link->noHash();
                 $link->parameters(array('namespace' => $this->controller->parameters->get('namespace'),
                                         'uid' => $this->controller->parameters->get('uid'),
                                         'action' => 'cancel'));
@@ -1528,7 +1528,7 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                 var can = new YAHOO.widget.Button({label:"%%%cancel%%%", id:"siwiki-menu-cancel", title:"%%%cancel%%%", container:"siwiki-bottom-toolbar", onclick: { fn: onButtonClick } });
                         });
                        </script>';
-	}
+    }
 
         /**
          * Create a submit button with YUI
@@ -1545,88 +1545,88 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
         /**
          * Print the <form> tag
          */
-	function printFormTag($id) {
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($this->getDestination());
-		$link->noHash();
-		$action = $link->makeUrl();
-		printf(chr(10) . '<form name="'.$id.'" id="%s" action="%s" method="post">' . chr(10),$id,$action);
-	}
+    function printFormTag($id) {
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($this->getDestination());
+        $link->noHash();
+        $action = $link->makeUrl();
+        printf(chr(10) . '<form name="'.$id.'" id="%s" action="%s" method="post">' . chr(10),$id,$action);
+    }
 
         /**
          * Include YUI RTE by printing the <script /> block
          */
-	function includeYuiRte($title, $namespace, $articleHash) {
+    function includeYuiRte($title, $namespace, $articleHash) {
 
                 $title = str_replace("_"," ",$title);
-		$destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
-		$link = tx_div::makeInstance('tx_lib_link');
-		$link->destination($destination);
-		$link->designator($this->getDesignator());
+        $destination = $GLOBALS['TSFE']->id . ',' . $this->controller->configurations->get('ajaxPageType');  
+        $link = tx_div::makeInstance('tx_lib_link');
+        $link->destination($destination);
+        $link->designator($this->getDesignator());
                 $link->parameters(array('action' => 'ajax',
                                         'request' => 'imageUpload'));
-		$link->noHash();
+        $link->noHash();
 
-		$linkNs = tx_div::makeInstance('tx_lib_link');
-		$linkNs->destination($destination);
-		$linkNs->designator($this->getDesignator());
+        $linkNs = tx_div::makeInstance('tx_lib_link');
+        $linkNs->destination($destination);
+        $linkNs->designator($this->getDesignator());
                 $linkNs->parameters(array('action' => 'ajax',
                                           'request' => 'getNamespaces'));
-		$linkNs->noHash();
+        $linkNs->noHash();
 
-		$linkUpdateLocking = tx_div::makeinstance('tx_lib_link');
-		$linkUpdateLocking->destination($destination);
-		$linkUpdateLocking->designator($this->getDesignator());
+        $linkUpdateLocking = tx_div::makeinstance('tx_lib_link');
+        $linkUpdateLocking->destination($destination);
+        $linkUpdateLocking->designator($this->getDesignator());
                 $linkUpdateLocking->parameters(array('uid' => $this->controller->parameters->get('uid'),
                         'action' => 'ajax',
                         'request' => 'updateLocking'));
-		$linkUpdateLocking->nohash();
+        $linkUpdateLocking->nohash();
 
-		$linkCancel = tx_div::makeinstance('tx_lib_link');
-		$linkCancel->destination($this->getDestination());
-		$linkCancel->designator($this->getDesignator());
+        $linkCancel = tx_div::makeinstance('tx_lib_link');
+        $linkCancel->destination($this->getDestination());
+        $linkCancel->designator($this->getDesignator());
                 $linkCancel->parameters(array('uid' => $this->controller->parameters->get('uid'),
                                                      'action' => 'cancel'));
-		$linkCancel->nohash();
+        $linkCancel->nohash();
                         
-		$linksignature = tx_div::makeinstance('tx_lib_link');
-		$linksignature->destination($destination);
-		$linksignature->designator($this->getDesignator());
+        $linksignature = tx_div::makeinstance('tx_lib_link');
+        $linksignature->destination($destination);
+        $linksignature->designator($this->getDesignator());
                 $linksignature->parameters(array('action' => 'ajax',
                                                  'request' => 'getSignature'));
-		$linksignature->nohash();
+        $linksignature->nohash();
         
                 $width = $this->controller->configurations->get('rteWidth');
                 $height = $this->controller->configurations->get('rteHeight');
                 if(!$width) $width = '600';
                 if(!$height) $height = '300';
                 
-		print "
-		<script type='text/javascript'>	
-				(function() {
-			    var Dom = YAHOO.util.Dom,
-			        Event = YAHOO.util.Event;
-			
-			    var myConfig = {
-				width: '".$width."px',
-			        height: '".$height."px',
-				handleSubmit: true,
-				markup: 'xhtml',
-			        animate: true,
-			        dompath: true,
+        print "
+        <script type='text/javascript'>    
+                (function() {
+                var Dom = YAHOO.util.Dom,
+                    Event = YAHOO.util.Event;
+            
+                var myConfig = {
+                width: '".$width."px',
+                    height: '".$height."px',
+                handleSubmit: true,
+                markup: 'xhtml',
+                    animate: true,
+                    dompath: true,
                                 filterWord: true,
-			        focusAtStart: true,
+                    focusAtStart: true,
                                 css: 'html {height: 95%;}body {height: 100%;padding: 7px; background-color: #fff; font:13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}a {color: blue;text-decoration: underline;cursor: pointer;}.warning-localfile {border-bottom: 1px dashed red !important;}.yui-busy {cursor: wait !important;}img.selected { //Safari image selectionborder: 2px dotted #808080;}img {cursor: pointer !important;border: none;}h2 {font-size: 138.5%;color: #555555;margin-bottom: 8px;border-bottom: 1px solid #aaa;}h3 {font-size: 131%;color: #555555;margin-bottom: 6px;border-bottom: 1px solid #aaa;}h4 {font-size: 123.1%;color: #555555;margin-bottom: 4px;border-bottom: 1px solid #aaa;} .siwiki-article-toc{border: 1px dashed #555555;padding:10px;margin:10px 0;}.siwiki-article-signature { text-align: right; padding: 5px;} table {border-collapse:collapse; }td {border: 1px solid #555;}',
-			        toolbar: {
-					collapse: true,
-					titlebar: '".$title." @ ".$namespace."',
-					draggable: false,
-					buttons: [
-                                                 { group: 'undoredo', label: '%%%undo%%%/%%%redo%%%', 
-                                                   buttons: [ 
-                                                    { type: 'push', label: '%%%undo%%%', value: 'undo', disabled: true }, 
-                                                    { type: 'push', label: '%%%redo%%%', value: 'redo', disabled: true } 
-                                                   ]
+                    toolbar: {
+                    collapse: true,
+                    titlebar: '".$title." @ ".$namespace."',
+                    draggable: false,
+                    buttons: [
+{ group: 'undoredo', label: '%%%undo%%%/%%%redo%%%', 
+buttons: [ 
+{ type: 'push', label: '%%%undo%%%', value: 'undo', disabled: true }, 
+{ type: 'push', label: '%%%redo%%%', value: 'redo', disabled: true } 
+]
                                                  },
                                                 { type: 'separator' },
                                                 { group: 'fontstyle', label: '%%%typoname%%% %%%typosize%%%',
@@ -1683,73 +1683,73 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
                                                             { type: 'push', label: '%%%insertimage%%%', value: 'insertimage' }
                                                         ]
                                                 }    
-					]
-				}
-			    };
-			
-			    var state = 'off';
-			
-			    var myEditor = new YAHOO.widget.Editor('siwiki_article', myConfig);
+                    ]
+                }
+                };
+            
+                var state = 'off';
+            
+                var myEditor = new YAHOO.widget.Editor('siwiki_article', myConfig);
 
-			    myEditor.on('toolbarLoaded', function() {
-			        var codeConfig = {
-			            type: 'push', label: 'Edit HTML Code', value: 'editcode'
-			        };
-			        YAHOO.log('Create the (editcode) Button', 'info', 'example');
-			        this.toolbar.addButtonToGroup(codeConfig, 'insertitem');
-			        
-			        this.toolbar.on('editcodeClick', function() {
-			            var ta = this.get('element'),
-			                iframe = this.get('iframe').get('element');
-			
-			            if (state == 'on') {
-			                state = 'off';
-			                this.toolbar.set('disabled', false);
-			                YAHOO.log('Show the Editor', 'info', 'example');
-			                YAHOO.log('Inject the HTML from the textarea into the editor', 'info', 'example');
-			                this.setEditorHTML(ta.value);
-			                if (!this.browser.ie) {
-			                    this._setDesignMode('on');
-			                }
-			
-			                Dom.removeClass(iframe, 'editor-hidden');
-			                Dom.addClass(ta, 'editor-hidden');
-			                this.show();
-			                this._focusWindow();
-			            } else {
-			                state = 'on';
-			                YAHOO.log('Show the Code Editor', 'info', 'example');
-			                this.cleanHTML();
-			                YAHOO.log('Save the Editors HTML', 'info', 'example');
-			                Dom.addClass(iframe, 'editor-hidden');
-			                Dom.removeClass(ta, 'editor-hidden');
-			                this.toolbar.set('disabled', true);
-			                this.toolbar.getButtonByValue('editcode').set('disabled', false);
-			                this.toolbar.selectButton('editcode');
-			                this.dompath.innerHTML = 'Editing HTML Code';
-			                this.hide();
-			            }
-			            return false;
-			        }, this, true);
-			
-			        this.on('cleanHTML', function(ev) {
-			            YAHOO.log('cleanHTML callback fired..', 'info', 'example');
-			            this.get('element').value = ev.html;
-			        }, this, true);
-			        
-			        this.on('afterRender', function() {
-			            var wrapper = this.get('editor_wrapper');
-			            wrapper.appendChild(this.get('element'));
-			            this.setStyle('width', '100%');
-			            this.setStyle('height', '100%');
-			            this.setStyle('visibility', '');
-			            this.setStyle('top', '');
-			            this.setStyle('left', '');
-			            this.setStyle('position', '');
-			
-			            this.addClass('editor-hidden');
-			        }, this, true);
-			    }, myEditor, true);
+                myEditor.on('toolbarLoaded', function() {
+                    var codeConfig = {
+                        type: 'push', label: 'Edit HTML Code', value: 'editcode'
+                    };
+                    YAHOO.log('Create the (editcode) Button', 'info', 'example');
+                    this.toolbar.addButtonToGroup(codeConfig, 'insertitem');
+                    
+                    this.toolbar.on('editcodeClick', function() {
+                        var ta = this.get('element'),
+                            iframe = this.get('iframe').get('element');
+            
+                        if (state == 'on') {
+                            state = 'off';
+                            this.toolbar.set('disabled', false);
+                            YAHOO.log('Show the Editor', 'info', 'example');
+                            YAHOO.log('Inject the HTML from the textarea into the editor', 'info', 'example');
+                            this.setEditorHTML(ta.value);
+                            if (!this.browser.ie) {
+                                this._setDesignMode('on');
+                            }
+            
+                            Dom.removeClass(iframe, 'editor-hidden');
+                            Dom.addClass(ta, 'editor-hidden');
+                            this.show();
+                            this._focusWindow();
+                        } else {
+                            state = 'on';
+                            YAHOO.log('Show the Code Editor', 'info', 'example');
+                            this.cleanHTML();
+                            YAHOO.log('Save the Editors HTML', 'info', 'example');
+                            Dom.addClass(iframe, 'editor-hidden');
+                            Dom.removeClass(ta, 'editor-hidden');
+                            this.toolbar.set('disabled', true);
+                            this.toolbar.getButtonByValue('editcode').set('disabled', false);
+                            this.toolbar.selectButton('editcode');
+                            this.dompath.innerHTML = 'Editing HTML Code';
+                            this.hide();
+                        }
+                        return false;
+                    }, this, true);
+            
+                    this.on('cleanHTML', function(ev) {
+                        YAHOO.log('cleanHTML callback fired..', 'info', 'example');
+                        this.get('element').value = ev.html;
+                    }, this, true);
+                    
+                    this.on('afterRender', function() {
+                        var wrapper = this.get('editor_wrapper');
+                        wrapper.appendChild(this.get('element'));
+                        this.setStyle('width', '100%');
+                        this.setStyle('height', '100%');
+                        this.setStyle('visibility', '');
+                        this.setStyle('top', '');
+                        this.setStyle('left', '');
+                        this.setStyle('position', '');
+            
+                        this.addClass('editor-hidden');
+                    }, this, true);
+                }, myEditor, true);
 
                             myEditor.on('toolbarLoaded', function() {
 
@@ -1795,16 +1795,16 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
         }                  
 
         print "             });
-                 	    wikilink(myEditor,'".$linkNs->makeUrl(false)."','".$this->controller->configurations->get("defaultNamespace")."');			    
+                         wikilink(myEditor,'".$linkNs->makeUrl(false)."','".$this->controller->configurations->get("defaultNamespace")."');                
         ";
         if($this->controller->configurations->get('enableImageUpload'))
                 print "     yuiImgUploader(myEditor,'".$link->makeUrl(false)."','img');";
         print "
-			    myEditor.render();
+                myEditor.render();
                             updateLocking(myEditor,'".$linkUpdateLocking->makeUrl(false)."','".$linkCancel->makeUrl(false)."','".$this->controller->configurations->get("timeAnArticleRemainsLocked")."','".$articleHash."');
-			})();
-			</script>";
-	}
+            })();
+            </script>";
+    }
 
         /**
          * Print two article versions side by side
@@ -1885,6 +1885,6 @@ class tx_siwiki_views_siwiki extends tx_lib_phpTemplateEngine {
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/siwiki/views/class.tx_siwiki_views_siwiki.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/siwiki/views/class.tx_siwiki_views_siwiki.php']);
+    include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/siwiki/views/class.tx_siwiki_views_siwiki.php']);
 }
 ?>
