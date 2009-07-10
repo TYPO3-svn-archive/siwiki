@@ -10,7 +10,7 @@ CREATE TABLE `tx_siwiki_articles` (
   `cruser_id` int(11) NOT NULL default '0',
   `deleted` tinyint(4) NOT NULL default '0',
   `hidden` tinyint(4) NOT NULL default '0',
-  `title` char(255) NOT NULL default '',
+  `title` varchar(255) NOT NULL default '',
   `namespace` int(11) NOT NULL default '0',
   `article` longtext NOT NULL,
   `creator` varchar(255) NOT NULL default '',
@@ -19,7 +19,7 @@ CREATE TABLE `tx_siwiki_articles` (
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `title` (`title`,`namespace`),
   KEY `parent` (`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------
 
@@ -35,7 +35,7 @@ CREATE TABLE `tx_siwiki_articles_cache` (
   `cruser_id` int(11) NOT NULL default '0',
   `deleted` tinyint(4) NOT NULL default '0',
   `hidden` tinyint(4) NOT NULL default '0',
-  `title` char(255) NOT NULL default '',
+  `title` varchar(255) NOT NULL default '',
   `namespace` int(11) NOT NULL default '0',
   `article` longtext NOT NULL,
   `creator` varchar(255) NOT NULL default '',
@@ -43,7 +43,7 @@ CREATE TABLE `tx_siwiki_articles_cache` (
   `version` int(11) NOT NULL default '0',
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `title` (`title`,`namespace`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC ;
+);
 
 -- --------------------------------------------------------
 
@@ -56,11 +56,11 @@ CREATE TABLE `tx_siwiki_articles_references` (
   `tstamp` int(11) NOT NULL default '0',
   `linking_uid` int(11) NOT NULL default '0',
   `linked_uid` int(11) NOT NULL default '0',
-  `linked_title` char(255) NOT NULL default '',
+  `linked_title` varchar(255) NOT NULL default '',
   `linked_namespace` int(11) NOT NULL default '0',
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `linking_uid` (`linking_uid`,`linked_uid`,`linked_title`,`linked_namespace`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,7 @@ CREATE TABLE `tx_siwiki_articles_versions` (
   `deleted` tinyint(4) NOT NULL default '0',
   `hidden` tinyint(4) NOT NULL default '0',
   `article_uid` int(11) NOT NULL default '0',
-  `title` char(255) NOT NULL default '',
+  `title` varchar(255) NOT NULL default '',
   `namespace` int(11) NOT NULL default '0',
   `article` longtext NOT NULL,
   `creator` varchar(255) NOT NULL default '', 
@@ -86,7 +86,7 @@ CREATE TABLE `tx_siwiki_articles_versions` (
   `version` int(11) default '0',
   PRIMARY KEY  (`uid`),
   KEY `parent` (`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC  ;
+);
 
 -- --------------------------------------------------------
 
@@ -102,11 +102,11 @@ CREATE TABLE `tx_siwiki_namespaces` (
   `tstamp` int(11) NOT NULL default '0',
   `crdate` int(11) NOT NULL default '0',
   `cruser_id` int(11) NOT NULL default '0',
-  `name` char(255) NOT NULL default '',
+  `name` varchar(255) NOT NULL default '',
   `description` text NOT NULL,
   PRIMARY KEY  (`uid`),
   KEY `parent` (`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE `tx_siwiki_notifications` (
   `article_uid` int(11) NOT NULL default '0',
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `user_uid` (`user_uid`,`article_uid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------
 
@@ -143,10 +143,10 @@ CREATE TABLE `tx_siwiki_files` (
   `deleted` tinyint(4) NOT NULL default '0',
   `user_uid` int(11) NOT NULL default '0',
   `article_uid` int(11) NOT NULL default '0',
-  `file_name` char(255) NOT NULL default '',
-  `file_description` char(255) NOT NULL default '',
+  `file_name` varchar(255) NOT NULL default '',
+  `file_description` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`uid`),
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------
 --
@@ -160,7 +160,7 @@ CREATE TABLE `tx_siwiki_articles_locking` (
   `user` int(11) NOT NULL default '0',
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `uid` (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+);
 
 
 -- --------------------------------------------------------
@@ -173,10 +173,10 @@ CREATE TABLE `tx_siwiki_tags` (
   `pid` int(11) NOT NULL default '0',
   `deleted` tinyint(4) NOT NULL default '0',
   `crdate` int(11) NOT NULL default '0',
-  `tag_name` char(255) NOT NULL default '',
+  `tag_name` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`uid`),
   KEY `parent` (`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------
 
@@ -193,6 +193,6 @@ CREATE TABLE `tx_siwiki_articles_tags` (
   `uid_namespace` int(11) NOT NULL default '0',
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `uid_tag` (`uid_tag`,`uid_article`,`uid_namespace`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+);
 
 -- --------------------------------------------------------

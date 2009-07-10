@@ -178,6 +178,7 @@ function wikilink(rte, asyncUrl, defaultNamespace) {
 
 	        			// new wiki link
 					var linkname = el.innerHTML.replace(/<a>/,"").replace(/<\/a>/,"").replace(/\s/g,"_");
+					    linkname = linkname.replace(/<.[^>]*>/gm,"");
 					wikilinkUrl.value = decodeURIComponent(linkname);
 	        		}		
         }

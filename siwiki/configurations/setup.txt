@@ -457,15 +457,15 @@ padding: 10px;
 }
 
 #siwiki-panel-filemanager-list .yui-button {
-margin: 2px 0;
+	margin: 2px 0;
 }
 
 #siwiki-panel-filemanager-list .yui-push-button {
-margin: 2px 10px 2px 0;
+	margin: 2px 10px 2px 0;
 }
 
 #siwiki-panel-filemanager-list .yui-link-button {
-width: 150px;
+	width: 200px;
 }
 
 #siwiki-panel-filemanager-list .yui-push-button button {
