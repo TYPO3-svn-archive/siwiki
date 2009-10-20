@@ -7,7 +7,7 @@
  * @author Andreas Lappe <nd@off-pist.de>
  * @package TYPO3
  * @subpackage tx_siwiki
- * @version $Id: class.tx_siwiki_models_articleCache.php 1236 2009-06-30 09:13:29Z sisak $
+ * @version $Id: class.tx_siwiki_models_articleCache.php 1254 2009-10-20 11:04:14Z sisak $
  * @see tx_siwiki_models_article
  *
  */
@@ -276,7 +276,7 @@ class tx_siwiki_models_articleCache extends tx_siwiki_models_article {
                 $linking_uid = $this->uid; 
 
                 $table = 'tx_siwiki_articles_references';
-                $where = 'linking_uid = "'.$this->s($linking_uid);
+                $where = 'linking_uid = '.$this->s($linking_uid);
                 $GLOBALS['TYPO3_DB']->exec_DELETEquery($table,$where);
 
                 foreach($insertArray as $row) {

@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext: "siwiki"
 #
-# Auto generated 10-07-2009 10:35
+# Auto generated 10-07-2009 11:13
 #
 # Manual updates:
 # Only the data in the array - anything else is removed by next write.
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'this is a mvc based wiki using yui rte',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.0.8',
+	'version' => '1.0.9',
 	'dependencies' => 'lib,div',
 	'conflicts' => '',
 	'priority' => '',

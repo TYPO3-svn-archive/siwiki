@@ -73,7 +73,7 @@
                         <label index="filemanagerDescription">You see all files related to this article.</label>
                         <label index="filemanagerHeader">File manager</label>
                         <label index="filemanagerFilelist">File list</label>
-                        <label index="filemanagerForm">Load a file up</label>
+                        <label index="filemanagerForm">Upload a file</label>
                         <label index="filemanagerFormButton">Upload</label>
                         <label index="filemanagerFormFile">File</label>
                         <label index="filemanagerFormName">Name</label>

@@ -1,18 +1,22 @@
-07-08-10 Stefan Isak <stefanisak@gmail.com>
+09-07-23 Stefan Isak <stefanisak@gmail.com>
+	* bugfix insert signature
+	* updated some english labels 
+
+09-07-07 Stefan Isak <stefanisak@gmail.com>
 	* bugfix in link panel regex
 	* switched version to 1.0.7
 
-30-07-10 Stefan Isak <stefanisak@gmail.com>
+09-06-30 Stefan Isak <stefanisak@gmail.com>
 	* added tag feature
 	* added diff view to notification mails
 	* some bugfixes
 
-15-06-10 Stefan Isak <stefanisak@gmail.com>
+09-06-15 Stefan Isak <stefanisak@gmail.com>
 	* fixed some smaller bugs
 	* added flexform to enable/disable filemanager
 	* added latest updates in a first simple version
 
-10-06-10 Stefan Isak <stefanisak@gmail.com>
+09-06-10 Stefan Isak <stefanisak@gmail.com>
 	* improved filemanager panel
 	* added loading status and error codes for filemanager
 
